@@ -1,4 +1,4 @@
-# App Layout Addon
+# App Layout Add-on
 
 Vaadin 10 Java integration of https://github.com/PolymerElements/app-layout
 
