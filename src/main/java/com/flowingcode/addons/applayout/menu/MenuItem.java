@@ -1,0 +1,78 @@
+package com.flowingcode.addons.applayout.menu;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.vaadin.flow.server.Command;
+
+/**
+ * Model object for representing menu and submenu items
+ * 
+ * @author mlopez
+ *
+ */
+public class MenuItem {
+
+	private String label;
+	private String icon;
+	private Command command;
+	private List<MenuItem> subMenuItems = new ArrayList<>();
+
+	public MenuItem(MenuItem... subMenuItems) {
+		this.subMenuItems = Arrays.asList(subMenuItems);
+	}
+
+	public MenuItem(String label, Command command) {
+		this.label = label;
+		this.command = command;
+	}
+
+	public MenuItem(String label, String icon, Command command) {
+		this.label = label;
+		this.command = command;
+		this.icon = icon;
+	}
+
+	
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public Command getCommand() {
+		return command;
+	}
+
+	public void setCommand(Command command) {
+		this.command = command;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+	
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
+	public List<MenuItem> getSubMenuItems() {
+		return subMenuItems;
+	}
+
+	public void setSubMenuItems(List<MenuItem> subMenuItems) {
+		this.subMenuItems = subMenuItems;
+	}
+
+	/**
+	 * @return true if this item has sub menu items
+	 */
+	public boolean isSubMenuFolder() {
+		return getSubMenuItems().size() > 0;
+	}
+
+
+}
