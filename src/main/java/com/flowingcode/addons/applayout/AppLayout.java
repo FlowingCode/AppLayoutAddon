@@ -26,7 +26,7 @@ public class AppLayout extends Div implements PageConfigurator {
 	AppHeader header;
 	
 	public AppLayout(String title) {
-		drawer = new AppDrawer();
+		drawer = new AppDrawer(title);
 		header = new AppHeader(title, drawer);
         add(header);
         add(drawer);

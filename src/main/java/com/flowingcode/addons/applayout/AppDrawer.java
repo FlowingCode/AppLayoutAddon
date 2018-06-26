@@ -8,6 +8,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.html.H4;
 
 /**
  * Component that renders the app drawer
@@ -20,9 +21,12 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 @HtmlImport("bower_components/app-layout/app-drawer/app-drawer.html")
 public class AppDrawer extends Component implements HasComponents {
 
-    public AppDrawer() {
+    public AppDrawer(String title) {
     	getElement().setAttribute("id", "drawer");
     	getElement().setAttribute("swipe-open", true);
+    	H4 htitle = new H4(title);
+    	htitle.getElement().setAttribute("style", "text-align:center");
+    	this.add(htitle);
     }
     
     public void setMenuItems(List<MenuItem> menuItems) {
