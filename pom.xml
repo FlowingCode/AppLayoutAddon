@@ -17,9 +17,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-    <organization>
-        <name>Martín López</name>
-    </organization>
+	
+	<organization>
+	   <name>Flowing Code</name>
+	   <url>https://www.flowingcode.com</url>
+	 </organization>
+	<inceptionYear>2018</inceptionYear>
     <licenses>
         <license>
             <name>Apache 2</name>
@@ -27,6 +30,7 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
+	
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -109,7 +113,16 @@
 
     <build>
         <plugins>
-
+			
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.14</version>
+				<configuration>
+				  <licenseName>apache_v2</licenseName>
+				</configuration>
+			</plugin>
+	
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
