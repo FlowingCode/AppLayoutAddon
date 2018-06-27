@@ -12,6 +12,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.ThemableLayout;
+import com.vaadin.flow.dom.Element;
 
 /**
  * Component that renders a paper-card
@@ -22,11 +23,19 @@ import com.vaadin.flow.component.orderedlayout.ThemableLayout;
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-card/paper-card.html")
 @Tag("paper-card")
-public class PaperCard extends Component implements HasComponents, HasSize, HasStyle, ThemableLayout {
+public class PaperCard extends Component implements HasSize, HasStyle, ThemableLayout {
 
     private final Div cardContentDiv = new Div();
 
     private final Div cardActionsDiv = new Div();
+    
+    private final HasComponents hasComponentsVersion = new HasComponents() {
+		@Override
+		public Element getElement() {
+			return this.getElement();
+		}
+    };
+
 
     protected PaperCard() {
         this(null);
@@ -35,7 +44,8 @@ public class PaperCard extends Component implements HasComponents, HasSize, HasS
     public PaperCard(final Component cardContent, final MenuItem... cardActions) {
         cardContentDiv.setClassName("card-content");
         cardActionsDiv.setClassName("card-actions");
-        this.add(cardContentDiv);
+
+        hasComponentsVersion.add(cardContentDiv);
 
         if (cardContent != null) {
             setCardContent(cardContent);
@@ -58,10 +68,10 @@ public class PaperCard extends Component implements HasComponents, HasSize, HasS
             cardActionsDiv.add(inner);
             inner.addClassNames("horizontal", "justified");
             buttons.forEach(b -> inner.add(b));
-            this.add(cardActionsDiv);
+            hasComponentsVersion.add(cardActionsDiv);
         }
     }
-
+    
     public void setCardContent(final Component content) {
         cardContentDiv.removeAll();
         cardContentDiv.add(content);
