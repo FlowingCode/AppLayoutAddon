@@ -52,10 +52,9 @@ public class PaperCard extends Component implements HasSize, HasStyle, ThemableL
     private final HasComponents hasComponentsVersion = new HasComponents() {
 		@Override
 		public Element getElement() {
-			return this.getElement();
+			return PaperCard.this.getElement();
 		}
     };
-
 
     protected PaperCard() {
         this(null);
