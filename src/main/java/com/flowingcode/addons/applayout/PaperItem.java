@@ -37,18 +37,24 @@ import com.vaadin.flow.server.Command;
 @HtmlImport("bower_components/paper-item/paper-item.html")
 @Tag("paper-item")
 public class PaperItem extends Component implements HasText {
-
-	public PaperItem(String title, Command command, AppDrawer appDrawer) {
-		setText(title);
-		this.getElement().addEventListener("click", e->{
-			command.execute();
-			if (appDrawer!=null)
-				UI.getCurrent().getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()");
-		});
+	
+	public PaperItem(String title) {
+		this(title, null,null);
 	}
 
 	public PaperItem(String label, Command command) {
 		this(label, command, null);
+	}
+
+	public PaperItem(String title, Command command, AppDrawer appDrawer) {
+		setText(title);
+		if (command!=null) {
+			this.getElement().addEventListener("click", e->{
+				command.execute();
+				if (appDrawer!=null)
+					UI.getCurrent().getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()");
+			});
+		}
 	}
 
 }

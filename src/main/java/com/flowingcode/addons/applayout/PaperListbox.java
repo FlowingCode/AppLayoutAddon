@@ -42,4 +42,8 @@ public class PaperListbox extends Component implements HasComponents {
 		components.stream().forEach(c->this.add(c));
 	}
 
+	public PaperListbox(String label, PaperItem...items) {
+		this.add(new CollapseButton(label, items));
+	}
+
 }

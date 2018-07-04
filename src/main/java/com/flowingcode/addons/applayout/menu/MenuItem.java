@@ -39,7 +39,8 @@ public class MenuItem {
 	private Command command;
 	private List<MenuItem> subMenuItems = new ArrayList<>();
 
-	public MenuItem(MenuItem... subMenuItems) {
+	public MenuItem(String label, MenuItem... subMenuItems) {
+		this.label = label;
 		this.subMenuItems = Arrays.asList(subMenuItems);
 	}
 

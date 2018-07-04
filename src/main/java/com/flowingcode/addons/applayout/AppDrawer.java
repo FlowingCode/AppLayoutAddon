@@ -21,6 +21,7 @@ package com.flowingcode.addons.applayout;
  */
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
@@ -50,29 +51,28 @@ public class AppDrawer extends Component implements HasComponents {
     }
     
     public void setMenuItems(List<MenuItem> menuItems) {
-    	List<Component> components = createComponents(menuItems);
-    	PaperListbox pm = new PaperListbox(components);
+    	Component[] components = createComponents(menuItems);
+    	PaperListbox pm = new PaperListbox(Arrays.asList(components));
     	add(pm);
     }
 
-	private List<Component> createComponents(List<MenuItem> menuItems) {
+	private Component[] createComponents(List<MenuItem> menuItems) {
 		List<Component> components = new ArrayList<>();
     	for (MenuItem menuItem : menuItems) {
-    		// TODO: Support for sub-menus
-//    		if (menuItem.isSubMenuFolder()) {
-//    			components.add(collectMenus(menuItem));
-//    		} else {
+    		if (menuItem.isSubMenuFolder()) {
+    			components.add(collectMenus(menuItem));
+    		} else {
     			PaperItem pi = new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this);
     			components.add(pi);
-//    		}
+    		}
 		}
-		return components;
+		return components.toArray(new Component[] {});
 	}
 
-//	private PaperListbox collectMenus(MenuItem topMenuItem) {
-//		List<MenuItem> menuItems = topMenuItem.getSubMenuItems();
-//    	List<Component> components = createComponents(menuItems);
-//		return new PaperListbox(topMenuItem.getLabel(), components);
-//	}
+	private CollapseButton collectMenus(MenuItem topMenuItem) {
+		List<MenuItem> menuItems = topMenuItem.getSubMenuItems();
+    	Component[] components = createComponents(menuItems);
+		return new CollapseButton(topMenuItem.getLabel(), components);
+	}
     
 }
