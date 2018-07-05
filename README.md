@@ -5,7 +5,7 @@ This addon is particularly usefull if you want to create a new application with 
 
 ## Features
 
-* Left side menu with hamburguer button
+* Left side menu with hamburguer button, and now with support for sub-menus and icons
 * Toolbar icons
 * Paper-cards with icons
 
@@ -69,10 +69,17 @@ Creating the AppLayout:
 ```
 AppLayout app =new AppLayout("AppLayout Addon for Vaadin 10 Demo");
 ```
-Adding menu items:
+Adding menu items with sub-menus & icons:
 ```
-    	app.setMenuItems(new MenuItem("Say hello", ()->showContent("Hello!")),
-    			new MenuItem("About", ()->showContent("About"))
+		app.setMenuItems(new MenuItem("Say hello", "star", () -> showContent("Hello!")),
+				new MenuItem("About", "cloud", () -> showContent("About")),
+				new MenuItem("SubMenu", "build", 
+						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
+						new MenuItem("And Again",()->showContent("And Again!")),
+						new MenuItem("SubMenu",
+								new MenuItem("Hello Again",()->showContent("Hello Again!")),
+								new MenuItem("And Again",()->showContent("And Again!")))
+						));
 ```
 Toolbar icons:
 ```
