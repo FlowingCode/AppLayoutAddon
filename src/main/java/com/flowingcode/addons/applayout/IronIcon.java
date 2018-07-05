@@ -24,9 +24,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.server.Command;
 
 /**
  * Component that renders a paper-item
@@ -35,27 +33,13 @@ import com.vaadin.flow.server.Command;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-item/paper-item.html")
-@Tag("paper-item")
-public class PaperItem extends Component implements HasText, HasSize {
+@HtmlImport("bower_components/iron-icon/iron-icon.html")
+@Tag("iron-icon")
+public class IronIcon extends Component implements HasText, HasSize {
 	
-	public PaperItem(String title) {
-		this(title, null,null);
-	}
-
-	public PaperItem(String label, Command command) {
-		this(label, command, null);
-	}
-
-	public PaperItem(String title, Command command, AppDrawer appDrawer) {
-		setText(title);
-		if (command!=null) {
-			this.getElement().addEventListener("click", e->{
-				command.execute();
-				if (appDrawer!=null)
-					UI.getCurrent().getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()");
-			});
-		}
+	public IronIcon(String icon) {
+		this.getElement().setAttribute("icon", icon);
+		this.getElement().setAttribute("slot", "item-icon");
 	}
 
 }

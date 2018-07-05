@@ -44,6 +44,12 @@ public class MenuItem {
 		this.subMenuItems = Arrays.asList(subMenuItems);
 	}
 
+	public MenuItem(String label, String icon, MenuItem... subMenuItems) {
+		this.label = label;
+		this.icon = icon;
+		this.subMenuItems = Arrays.asList(subMenuItems);
+	}
+
 	public MenuItem(String label, Command command) {
 		this.label = label;
 		this.command = command;

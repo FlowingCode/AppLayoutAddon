@@ -23,7 +23,6 @@ package com.flowingcode.addons.applayout;
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.Notification.Position;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -42,11 +41,17 @@ public class DemoView extends VerticalLayout {
 		this.setMargin(false);
 
 		AppLayout app = new AppLayout("AppLayout Addon for Vaadin 10 Demo");
-		app.setMenuItems(new MenuItem("Say hello", () -> showContent("Hello!")),
-				new MenuItem("About", () -> showContent("About")),
-				new MenuItem("SubMenu",
-						new MenuItem("Hello Again",()->showContent("Hello Again!")),
-						new MenuItem("And Again",()->showContent("And Again!"))));
+		app.setMenuItems(new MenuItem("Say hello", "star", () -> showContent("Hello!")),
+				new MenuItem("About", "cloud", () -> showContent("About")),
+				new MenuItem("SubMenu", "build", 
+						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
+						new MenuItem("And Again",()->showContent("And Again!")),
+						new MenuItem("SubMenu",
+								new MenuItem("Hello Again",()->showContent("Hello Again!")),
+								new MenuItem("And Again",()->showContent("And Again!")))
+						));
+		
+		
 		app.setToolbarIconButtons(new MenuItem("Delete", "delete", () -> Notification.show("Delete action")),
 				new MenuItem("Search", "search", () -> Notification.show("Search action")),
 				new MenuItem("Close", "close", () -> Notification.show("Close action")));

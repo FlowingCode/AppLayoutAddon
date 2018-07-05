@@ -62,8 +62,10 @@ public class AppDrawer extends Component implements HasComponents {
     		if (menuItem.isSubMenuFolder()) {
     			components.add(collectMenus(menuItem));
     		} else {
-    			PaperItem pi = new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this);
-    			components.add(pi);
+    			if (menuItem.getIcon()==null)
+    				components.add(new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this));
+    			else
+    				components.add(new PaperIconItem(menuItem.getLabel(), menuItem.getIcon(),menuItem.getCommand(), this));
     		}
 		}
 		return components.toArray(new Component[] {});
@@ -72,7 +74,7 @@ public class AppDrawer extends Component implements HasComponents {
 	private CollapseButton collectMenus(MenuItem topMenuItem) {
 		List<MenuItem> menuItems = topMenuItem.getSubMenuItems();
     	Component[] components = createComponents(menuItems);
-		return new CollapseButton(topMenuItem.getLabel(), components);
+		return new CollapseButton(topMenuItem.getLabel(), topMenuItem.getIcon(), components);
 	}
     
 }

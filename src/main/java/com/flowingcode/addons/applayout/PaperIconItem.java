@@ -21,9 +21,11 @@ package com.flowingcode.addons.applayout;
  */
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.server.Command;
@@ -35,20 +37,21 @@ import com.vaadin.flow.server.Command;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-item/paper-item.html")
-@Tag("paper-item")
-public class PaperItem extends Component implements HasText, HasSize {
+@HtmlImport("bower_components/paper-item/paper-icon-item.html")
+@Tag("paper-icon-item")
+public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 	
-	public PaperItem(String title) {
-		this(title, null,null);
+	public PaperIconItem(String title, String icon) {
+		this(title, icon, null ,null);
 	}
 
-	public PaperItem(String label, Command command) {
-		this(label, command, null);
+	public PaperIconItem(String label, String icon, Command command) {
+		this(label, icon, command, null);
 	}
 
-	public PaperItem(String title, Command command, AppDrawer appDrawer) {
-		setText(title);
+	public PaperIconItem(String title, String icon, Command command, AppDrawer appDrawer) {
+		add(new IronIcon(icon));
+		add(new Text(title));
 		if (command!=null) {
 			this.getElement().addEventListener("click", e->{
 				command.execute();
