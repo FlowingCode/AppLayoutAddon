@@ -28,17 +28,13 @@ To see the demo, navigate to http://localhost:8080/
 
 ## Release notes
 
-### Version 1.0.0
-
-- Initial Version.
-
-### Version 1.0.1
-
-- Fixed recursion problem
+- **Version 1.0.0** Initial Version
+- **Version 1.0.1** Fixed recursion problem
+- **Version 1.0.2** Added support for sub-menus and icons in the menus
 
 ## Roadmap
 
-* Support for multilevel menu
+* Support for app-grid
 
 ## Issue tracking
 
@@ -59,7 +55,7 @@ Contributions are welcome, but there are no guarantees that they are accepted as
 
 Add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-OrgChart Add-On is written by Paola De Bartolo and Martin Lopez
+FilterableLayout is written by Flowing Code S.A.
 
 # Developer Guide
 
