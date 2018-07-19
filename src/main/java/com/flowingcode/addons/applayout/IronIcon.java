@@ -38,6 +38,10 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 public class IronIcon extends Component implements HasText, HasSize {
 	
 	public IronIcon(String icon) {
+		setIcon(icon);
+	}
+	
+	public void setIcon(String icon) {
 		this.getElement().setAttribute("icon", icon);
 		this.getElement().setAttribute("slot", "item-icon");
 	}

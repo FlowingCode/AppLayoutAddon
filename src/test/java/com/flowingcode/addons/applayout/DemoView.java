@@ -41,8 +41,18 @@ public class DemoView extends VerticalLayout {
 		this.setMargin(false);
 
 		AppLayout app = new AppLayout("AppLayout Addon for Vaadin 10 Demo");
-		app.setMenuItems(new MenuItem("Say hello", "star", () -> showContent("Hello!")),
+		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
+		app.setMenuItems(mi ,
 				new MenuItem("About", "cloud", () -> showContent("About")),
+				new MenuItem("Change Text & Icon", "cloud", () -> {
+					if (mi.getIcon().equals("star")) {
+						mi.setIcon("cloud");
+						mi.setLabel("Say hello modified");
+					} else {
+						mi.setIcon("star");
+						mi.setLabel("Say hello");
+					}
+				}),
 				new MenuItem("SubMenu", "build", 
 						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
 						new MenuItem("And Again",()->showContent("And Again!")),

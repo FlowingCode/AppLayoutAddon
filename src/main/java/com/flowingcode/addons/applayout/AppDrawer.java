@@ -62,10 +62,18 @@ public class AppDrawer extends Component implements HasComponents {
     		if (menuItem.isSubMenuFolder()) {
     			components.add(collectMenus(menuItem));
     		} else {
-    			if (menuItem.getIcon()==null)
-    				components.add(new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this));
-    			else
-    				components.add(new PaperIconItem(menuItem.getLabel(), menuItem.getIcon(),menuItem.getCommand(), this));
+    			if (menuItem.getIcon()==null) {
+    				PaperItem pi = new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this);
+    				components.add(pi);
+    				menuItem.setRefreshCallback(()->pi.setText(menuItem.getLabel()));
+    			} else {
+    				PaperIconItem pi = new PaperIconItem(menuItem.getLabel(), menuItem.getIcon(),menuItem.getCommand(), this);
+    				components.add(pi);
+    				menuItem.setRefreshCallback(()->{
+    					pi.setTitle(menuItem.getLabel());
+    					pi.setIcon(menuItem.getIcon());
+    				});
+    			}
     		}
 		}
 		return components.toArray(new Component[] {});

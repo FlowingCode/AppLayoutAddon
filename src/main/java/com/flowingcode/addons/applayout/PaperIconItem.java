@@ -41,17 +41,23 @@ import com.vaadin.flow.server.Command;
 @Tag("paper-icon-item")
 public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 	
+	private IronIcon ironIcon;
+	private Text text;
+	
 	public PaperIconItem(String title, String icon) {
 		this(title, icon, null ,null);
 	}
 
-	public PaperIconItem(String label, String icon, Command command) {
-		this(label, icon, command, null);
+	public PaperIconItem(String title, String icon, Command command) {
+		this(title, icon, command, null);
 	}
 
 	public PaperIconItem(String title, String icon, Command command, AppDrawer appDrawer) {
-		add(new IronIcon(icon));
-		add(new Text(title));
+		this.setText("");
+		this.ironIcon = new IronIcon(icon);
+		add(ironIcon);
+		this.text = new Text(title);
+		add(text);
 		if (command!=null) {
 			this.getElement().addEventListener("click", e->{
 				command.execute();
@@ -59,6 +65,14 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 					UI.getCurrent().getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()");
 			});
 		}
+	}
+	
+	public void setTitle(String title) {
+		this.text.setText(title);
+	}
+	
+	public void setIcon(String icon) {
+		this.ironIcon.setIcon(icon);
 	}
 
 }

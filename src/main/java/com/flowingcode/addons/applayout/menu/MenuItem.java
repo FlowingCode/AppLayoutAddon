@@ -38,6 +38,7 @@ public class MenuItem {
 	private String icon;
 	private Command command;
 	private List<MenuItem> subMenuItems = new ArrayList<>();
+	private Runnable refreshCallback;
 
 	public MenuItem(String label, MenuItem... subMenuItems) {
 		this.label = label;
@@ -60,7 +61,6 @@ public class MenuItem {
 		this.command = command;
 		this.icon = icon;
 	}
-
 	
 	public String getLabel() {
 		return label;
@@ -68,6 +68,7 @@ public class MenuItem {
 
 	public void setLabel(String label) {
 		this.label = label;
+		this.refreshCallback.run();
 	}
 
 	public Command getCommand() {
@@ -84,6 +85,7 @@ public class MenuItem {
 	
 	public void setIcon(String icon) {
 		this.icon = icon;
+		this.refreshCallback.run();
 	}
 
 	public List<MenuItem> getSubMenuItems() {
@@ -99,6 +101,14 @@ public class MenuItem {
 	 */
 	public boolean isSubMenuFolder() {
 		return getSubMenuItems().size() > 0;
+	}
+
+	/**
+	 * This allows you to configure a callback that is called whenever you change the label and icon
+	 * @param refreshCallback
+	 */
+	public void setRefreshCallback(Runnable refreshCallback) {
+		this.refreshCallback = refreshCallback;
 	}
 
 
