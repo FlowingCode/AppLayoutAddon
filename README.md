@@ -31,6 +31,7 @@ To see the demo, navigate to http://localhost:8080/
 - **Version 1.0.0** Initial Version
 - **Version 1.0.1** Fixed recursion problem
 - **Version 1.0.2** Added support for sub-menus and icons in the menus
+- **Version 1.0.3** Added support for changing the label and icon of a MenuItem dinamically.
 
 ## Roadmap
 
