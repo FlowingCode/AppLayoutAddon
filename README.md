@@ -20,9 +20,7 @@ This addon is particularly usefull if you want to create a new application with 
 ## Building and running demo
 
 - git clone repository
-- mvn clean install
-- cd demo
-- mvn jetty:run
+- mvn clean install jetty:run
 
 To see the demo, navigate to http://localhost:8080/
 
