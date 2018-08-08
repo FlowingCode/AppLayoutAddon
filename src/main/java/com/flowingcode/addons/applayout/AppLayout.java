@@ -39,7 +39,7 @@ import com.vaadin.flow.server.PageConfigurator;
 @HtmlImport("bower_components/iron-icons/iron-icons.html")
 @HtmlImport("bower_components/app-layout/app-scroll-effects/app-scroll-effects.html")
 @HtmlImport("bower_components/app-layout/app-toolbar/app-toolbar.html")
-@HtmlImport("styles/shared-styles.html")
+@HtmlImport("frontend://styles/applayout-styles.html")
 public class AppLayout extends Div implements PageConfigurator {
 
 	AppDrawer drawer;

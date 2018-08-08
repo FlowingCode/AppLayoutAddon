@@ -169,6 +169,7 @@
                     <webAppConfig>
                         <resourceBases>
 	                        <resourceBase>src/test/resources/META-INF/resources</resourceBase>
+	                        <resourceBase>src/main/resources/META-INF/resources</resourceBase>
 	                        <!-- This is only needed to be able to unzip webjars 
 	                            directly into src/test/webjar-debug and modify them for testing -->
 	                        <resourceBase>src/test/webjar-debug/META-INF/resources</resourceBase>
