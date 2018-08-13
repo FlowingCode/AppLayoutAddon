@@ -41,6 +41,8 @@ import com.vaadin.flow.component.html.H4;
 @Tag("app-drawer")
 @HtmlImport("bower_components/app-layout/app-drawer/app-drawer.html")
 public class AppDrawer extends Component implements HasComponents {
+	
+	private PaperListbox pm = new PaperListbox(Arrays.asList(new Component[] {}));
 
     public AppDrawer(String title) {
     	getElement().setAttribute("id", "drawer");
@@ -48,12 +50,13 @@ public class AppDrawer extends Component implements HasComponents {
     	H4 htitle = new H4(title);
     	htitle.getElement().setAttribute("style", "text-align:center");
     	this.add(htitle);
+    	this.add(pm);
     }
     
     public void setMenuItems(List<MenuItem> menuItems) {
     	Component[] components = createComponents(menuItems);
-    	PaperListbox pm = new PaperListbox(Arrays.asList(components));
-    	add(pm);
+    	pm.removeAll();
+    	pm.add(components);
     }
 
 	private Component[] createComponents(List<MenuItem> menuItems) {

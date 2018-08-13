@@ -1,5 +1,7 @@
 package com.flowingcode.addons.applayout;
 
+import java.util.ArrayList;
+
 /*-
  * #%L
  * App Layout Addon
@@ -56,6 +58,10 @@ public class AppLayout extends Div implements PageConfigurator {
 	
 	public void setMenuItems(MenuItem... menuitems) {
 		drawer.setMenuItems(Arrays.asList(menuitems));
+	}
+	
+	public void clearMenuItems() {
+		drawer.setMenuItems(new ArrayList<MenuItem>());
 	}
 	
 	public void setToolbarIconButtons(MenuItem... menuItems) {

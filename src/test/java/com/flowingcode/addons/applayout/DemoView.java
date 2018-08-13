@@ -22,6 +22,7 @@ package com.flowingcode.addons.applayout;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -31,6 +32,7 @@ import com.vaadin.flow.router.Route;
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
+	private final AppLayout app = new AppLayout("AppLayout Addon for Vaadin 10 Demo");
 
 	public DemoView() {
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -40,10 +42,20 @@ public class DemoView extends VerticalLayout {
 		this.setSpacing(false);
 		this.setMargin(false);
 
-		AppLayout app = new AppLayout("AppLayout Addon for Vaadin 10 Demo");
+		app.setMenuItems(createMenuItems());
+		
+		app.setToolbarIconButtons(new MenuItem("Delete", "delete", () -> Notification.show("Delete action")),
+				new MenuItem("Search", "search", () -> Notification.show("Search action")),
+				new MenuItem("Close", "close", () -> Notification.show("Close action")));
+
+		this.add(app, container);
+	}
+
+	private MenuItem[] createMenuItems() {
 		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
-		app.setMenuItems(mi ,
+		return new MenuItem[] {mi ,
 				new MenuItem("About", "cloud", () -> showContent("About")),
+				new MenuItem("Clear Items", "star", () -> app.clearMenuItems()), 
 				new MenuItem("Change Text & Icon", "cloud", () -> {
 					if (mi.getIcon().equals("star")) {
 						mi.setIcon("cloud");
@@ -59,14 +71,7 @@ public class DemoView extends VerticalLayout {
 						new MenuItem("SubMenu",
 								new MenuItem("Hello Again",()->showContent("Hello Again!")),
 								new MenuItem("And Again",()->showContent("And Again!")))
-						));
-		
-		
-		app.setToolbarIconButtons(new MenuItem("Delete", "delete", () -> Notification.show("Delete action")),
-				new MenuItem("Search", "search", () -> Notification.show("Search action")),
-				new MenuItem("Close", "close", () -> Notification.show("Close action")));
-
-		this.add(app, container);
+						)};
 	}
 
 	private void showContent(String content) {
