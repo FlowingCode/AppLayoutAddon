@@ -43,13 +43,18 @@ import com.vaadin.flow.component.html.H4;
 public class AppDrawer extends Component implements HasComponents {
 	
 	private PaperListbox pm = new PaperListbox(Arrays.asList(new Component[] {}));
+	private Component header;
 
     public AppDrawer(String title) {
+    	this(new H4(title));
+    	header.getElement().setAttribute("style", "text-align:center");
+    }
+    
+    public AppDrawer(Component headerComponent) {
+    	this.header = headerComponent;
     	getElement().setAttribute("id", "drawer");
     	getElement().setAttribute("swipe-open", true);
-    	H4 htitle = new H4(title);
-    	htitle.getElement().setAttribute("style", "text-align:center");
-    	this.add(htitle);
+    	this.add(headerComponent);
     	this.add(pm);
     }
     

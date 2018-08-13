@@ -21,7 +21,11 @@ package com.flowingcode.addons.applayout;
  */
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -31,7 +35,7 @@ import com.vaadin.flow.router.Route;
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
-	private final AppLayout app = new AppLayout("AppLayout Addon for Vaadin 10 Demo");
+	private final AppLayout app = new AppLayout(createAvatarComponent(), "AppLayout Addon for Vaadin 10 Demo");
 
 	public DemoView() {
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -49,6 +53,16 @@ public class DemoView extends VerticalLayout {
 				new MenuItem("Close", "close", () -> Notification.show("Close action")));
 
 		this.add(app, container);
+	}
+
+	private Component createAvatarComponent() {
+		Div container = new Div();
+		container.getElement().setAttribute("style", "text-align: center;");
+		Image i = new Image("/frontend/images/avatar.png","avatar");
+		i.getElement().setAttribute("style", "width: 80px; margin-top:20px");
+		H4 h4 = new H4("User");
+		container.add(i,h4);
+		return container;
 	}
 
 	private MenuItem[] createMenuItems() {

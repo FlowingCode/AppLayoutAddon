@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.server.InitialPageSettings;
@@ -49,13 +50,22 @@ public class AppLayout extends Div implements PageConfigurator {
 	
 	public AppLayout(String title) {
 		drawer = new AppDrawer(title);
+		configureAppLayout(title);
+	}
+	
+	public AppLayout(Component header, String title) {
+		drawer = new AppDrawer(header);
+		configureAppLayout(title);
+	}
+
+	private void configureAppLayout(String title) {
 		header = new AppHeader(title, drawer);
         add(header);
         add(drawer);
         setWidth("100%");
         setHeight("64px");
 	}
-	
+
 	public void setMenuItems(MenuItem... menuitems) {
 		drawer.setMenuItems(Arrays.asList(menuitems));
 	}
