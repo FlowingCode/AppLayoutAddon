@@ -22,7 +22,6 @@ package com.flowingcode.addons.applayout;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -45,6 +44,7 @@ public class DemoView extends VerticalLayout {
 		app.setMenuItems(createMenuItems());
 		
 		app.setToolbarIconButtons(new MenuItem("Delete", "delete", () -> Notification.show("Delete action")),
+				new MenuItem("Hide/Show Menu", "clear", () -> app.setMenuVisible(!app.isMenuVisible())),
 				new MenuItem("Search", "search", () -> Notification.show("Search action")),
 				new MenuItem("Close", "close", () -> Notification.show("Close action")));
 
@@ -55,7 +55,7 @@ public class DemoView extends VerticalLayout {
 		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
 		return new MenuItem[] {mi ,
 				new MenuItem("About", "cloud", () -> showContent("About")),
-				new MenuItem("Clear Items", "star", () -> app.clearMenuItems()), 
+				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()), 
 				new MenuItem("Change Text & Icon", "cloud", () -> {
 					if (mi.getIcon().equals("star")) {
 						mi.setIcon("cloud");

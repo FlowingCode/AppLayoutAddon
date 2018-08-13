@@ -70,5 +70,9 @@ public class AppToolbar extends Component implements HasComponents {
         return result;
 }
 
+	public void setMenuIconVisible(boolean visible) {
+		menu.setVisible(visible);
+	}
+
     
 }

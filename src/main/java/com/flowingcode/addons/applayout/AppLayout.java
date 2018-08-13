@@ -67,6 +67,15 @@ public class AppLayout extends Div implements PageConfigurator {
 	public void setToolbarIconButtons(MenuItem... menuItems) {
 		header.setToolbarIconButtons(menuItems);
 	}
+	
+	public void setMenuVisible(boolean visible) {
+		drawer.setVisible(visible);
+		header.setMenuIconVisible(visible);
+	}
+	
+	public boolean isMenuVisible() {
+		return drawer.isVisible();
+	}
 
 	@Override
 	public void configurePage(InitialPageSettings settings) {
