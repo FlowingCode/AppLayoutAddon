@@ -35,7 +35,7 @@ import com.vaadin.flow.router.Route;
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
-	private final AppLayout app = new AppLayout(createAvatarComponent(), "AppLayout Addon for Vaadin 10 Demo");
+	private final AppLayout app = new AppLayout(new Image("/frontend/images/applogo.png","avatar"), createAvatarComponent(), "AppLayout Vaadin 10 Demo");
 
 	public DemoView() {
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);

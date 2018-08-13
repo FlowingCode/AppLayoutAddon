@@ -25,6 +25,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.html.Image;
 
 /**
  * Component that renders the app header
@@ -40,10 +41,14 @@ public class AppHeader extends Component implements HasComponents {
 	private AppToolbar appToolbar;
 	
     public AppHeader(String title, AppDrawer drawer) {
+    	this(null,title,drawer);
+    }
+
+    public AppHeader(Image logo, String title, AppDrawer drawer) {
     	this.getElement().setAttribute("reveals", true);
     	this.getElement().setAttribute("condenses", true);
     	this.getElement().setAttribute("effects", true);
-    	appToolbar = new AppToolbar(title, drawer);
+    	appToolbar = new AppToolbar(logo, title, drawer);
     	this.add(appToolbar);
     }
     

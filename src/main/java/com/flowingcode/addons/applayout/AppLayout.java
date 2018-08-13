@@ -28,6 +28,7 @@ import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
 
@@ -50,16 +51,21 @@ public class AppLayout extends Div implements PageConfigurator {
 	
 	public AppLayout(String title) {
 		drawer = new AppDrawer(title);
-		configureAppLayout(title);
+		configureAppLayout(title, null);
 	}
 	
-	public AppLayout(Component header, String title) {
-		drawer = new AppDrawer(header);
-		configureAppLayout(title);
+	public AppLayout(Component menuHeader, String title) {
+		drawer = new AppDrawer(menuHeader);
+		configureAppLayout(title, null);
 	}
 
-	private void configureAppLayout(String title) {
-		header = new AppHeader(title, drawer);
+	public AppLayout(Image logo, Component menuHeader, String title) {
+		drawer = new AppDrawer(menuHeader);
+		configureAppLayout(title, logo);
+	}
+
+	private void configureAppLayout(String title, Image logo) {
+		header = new AppHeader(logo, title, drawer);
         add(header);
         add(drawer);
         setWidth("100%");

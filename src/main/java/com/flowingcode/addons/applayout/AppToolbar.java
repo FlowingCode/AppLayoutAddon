@@ -29,6 +29,7 @@ import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 
 /**
  * Component that renders the app toolbar
@@ -41,22 +42,36 @@ import com.vaadin.flow.component.html.Div;
 @HtmlImport("bower_components/app-layout/app-toolbar/app-toolbar.html")
 public class AppToolbar extends Component implements HasComponents {
 	
-	PaperIconButton menu;
-	Div divTitle;
+	private PaperIconButton menu;
+	private Component ctitle;
+	private Div divTitle;
 	
     public AppToolbar(String title, AppDrawer drawer) {
+    	this(null,title, drawer);
+    }
+
+    public AppToolbar(Image logo, String title, AppDrawer drawer) {
     	menu = new PaperIconButton("menu");
     	menu.getElement().setAttribute("onclick", "" + drawer.getId().get() + ".toggle()");
-    	divTitle = new Div();
-    	divTitle.setText(title);
-    	divTitle.getElement().setAttribute("main-title", true);
-    	this.add(menu,divTitle);
+    	this.add(menu);
+    	if (logo!=null) {
+    		ctitle = logo;
+    		this.add(ctitle);
+    	}
+    	if (title!=null) {
+        	divTitle = new Div();
+        	divTitle.setText(title);
+        	divTitle.getElement().setAttribute("main-title", true);
+    		this.add(divTitle);
+    	}
     }
 
 	public void setToolbarIconButtons(MenuItem[] menuItems) {
 		List<PaperIconButton> toolbarIconButtons = createToolbarIconButtons(menuItems);
 		this.removeAll();
-		this.add(menu,divTitle);
+		this.add(menu);
+		if (ctitle!=null) this.add(ctitle);
+		if (divTitle!=null) this.add(divTitle);
 		toolbarIconButtons.forEach(tib->this.add(tib));
 	}
 
