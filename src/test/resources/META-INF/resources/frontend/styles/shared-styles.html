@@ -33,7 +33,16 @@
 		}
 		
 		app-drawer {
-		  z-index: 1001;
+			--app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
+			--app-drawer-content-container: {
+	          background-color: #F1F1F1;
+	        }
+			z-index: 1001;
 		}
+		
+		app-drawer paper-listbox {
+			background-color:transparent;
+		}
+		
     </style>
 </custom-style>
