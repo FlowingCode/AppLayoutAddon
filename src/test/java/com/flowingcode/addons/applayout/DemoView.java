@@ -28,10 +28,12 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
 @Route("")
+@HtmlImport("frontend://styles/shared-styles.html")
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
