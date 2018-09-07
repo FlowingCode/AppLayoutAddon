@@ -1,3 +1,6 @@
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/app-layout-addon)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/app-layout-addon.svg)](https://vaadin.com/directory/component/app-layout-addon)
+
 # App Layout Add-on
 
 Vaadin 10 Java integration of https://github.com/PolymerElements/app-layout
