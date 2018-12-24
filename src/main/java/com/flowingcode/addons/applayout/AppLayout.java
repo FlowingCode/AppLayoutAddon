@@ -72,6 +72,12 @@ public class AppLayout extends Div implements PageConfigurator {
         setHeight("64px");
 	}
 
+	@Override
+	public void setHeight(String height) {
+		super.setHeight(height);
+		header.setHeight(height);
+	}
+
 	public void setMenuItems(MenuItem... menuitems) {
 		drawer.setMenuItems(Arrays.asList(menuitems));
 	}
