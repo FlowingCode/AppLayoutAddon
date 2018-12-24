@@ -58,12 +58,14 @@ public class AppToolbar extends Component implements HasComponents {
     		ctitle = logo;
     		this.add(ctitle);
     	}
-    	if (title!=null) {
-        	divTitle = new Div();
-        	divTitle.setText(title);
-        	divTitle.getElement().setAttribute("main-title", true);
-    		this.add(divTitle);
-    	}
+    	divTitle = new Div();
+    	divTitle.getElement().setAttribute("main-title", true);
+    	this.add(divTitle);
+    	setTitle(title);
+    }
+
+    public void setTitle(String title) {
+    	divTitle.setText(title);
     }
 
 	public void setToolbarIconButtons(MenuItem[] menuItems) {

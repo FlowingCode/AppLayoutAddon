@@ -93,6 +93,11 @@ public class AppLayout extends Div implements PageConfigurator {
 		return drawer.isVisible();
 	}
 
+	/**Set the toolbar title*/
+	public void setCaption(String caption) {
+		header.getAppToolbar().setTitle(caption);
+	}
+
 	@Override
 	public void configurePage(InitialPageSettings settings) {
         settings.addMetaTag("viewport", "width=device-width, initial-scale=1.0");
