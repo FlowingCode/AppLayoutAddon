@@ -39,6 +39,7 @@ public class MenuItem {
 	private Command command;
 	private List<MenuItem> subMenuItems = new ArrayList<>();
 	private Runnable refreshCallback;
+	private boolean enabled = true;
 
 	public MenuItem(String label, MenuItem... subMenuItems) {
 		this.label = label;
@@ -111,5 +112,12 @@ public class MenuItem {
 		this.refreshCallback = refreshCallback;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 }
