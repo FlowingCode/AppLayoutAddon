@@ -34,6 +34,7 @@ To see the demo, navigate to http://localhost:8080/
 - **Version 1.0.2** Added support for sub-menus and icons in the menus
 - **Version 1.0.3** Added support for changing the label and icon of a MenuItem dinamically.
 - **Version 1.0.4** Added support for: placing a logo in the application header, changing icons in the toolbar, setting a custom component to the menu header (such as logged-in user account details), setting visibility of side menu and button and dynamically clearing menu items.
+- **Version 1.0.5** Added support for: setting the header title and height, configuring the header behavior on scroll, and disabling menu items.
 
 ## Roadmap
 
