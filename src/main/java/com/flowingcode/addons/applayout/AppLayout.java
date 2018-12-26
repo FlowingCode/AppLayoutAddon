@@ -108,5 +108,14 @@ public class AppLayout extends Div implements PageConfigurator {
 	public void configurePage(InitialPageSettings settings) {
         settings.addMetaTag("viewport", "width=device-width, initial-scale=1.0");
 	}
-	
+
+	/**Mantains the header fixed at the top so it never moves away.*/
+	public void setFixed(boolean fixed) {
+		header.setFixed(fixed);
+	}
+
+	/**Slides back the header when scrolling back up.*/
+	public void setReveals(boolean reveals) {
+		header.setReveals(reveals);
+	}
 }
