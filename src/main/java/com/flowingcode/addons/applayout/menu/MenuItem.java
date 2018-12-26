@@ -39,6 +39,7 @@ public class MenuItem {
 	private Command command;
 	private List<MenuItem> subMenuItems = new ArrayList<>();
 	private Runnable refreshCallback;
+	private boolean enabled = true;
 
 	public MenuItem(String label, MenuItem... subMenuItems) {
 		this.label = label;
@@ -68,7 +69,9 @@ public class MenuItem {
 
 	public void setLabel(String label) {
 		this.label = label;
-		this.refreshCallback.run();
+		if (refreshCallback!=null) {
+			this.refreshCallback.run();
+		}
 	}
 
 	public Command getCommand() {
@@ -82,10 +85,12 @@ public class MenuItem {
 	public String getIcon() {
 		return icon;
 	}
-	
+
 	public void setIcon(String icon) {
 		this.icon = icon;
-		this.refreshCallback.run();
+		if (refreshCallback!=null) {
+			this.refreshCallback.run();
+		}
 	}
 
 	public List<MenuItem> getSubMenuItems() {
@@ -111,5 +116,12 @@ public class MenuItem {
 		this.refreshCallback = refreshCallback;
 	}
 
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 }

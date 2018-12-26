@@ -77,4 +77,9 @@ public class AppHeader extends Component implements HasComponents {
 	public void setReveals(boolean reveals) {
 		this.getElement().setAttribute("reveals", reveals);
 	}
+
+  void setHeight(String height) {
+		appToolbar.getElement().getStyle().set("height", height);
+	}
+
 }

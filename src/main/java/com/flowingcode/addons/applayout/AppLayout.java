@@ -72,6 +72,12 @@ public class AppLayout extends Div implements PageConfigurator {
         setHeight("64px");
 	}
 
+	@Override
+	public void setHeight(String height) {
+		super.setHeight(height);
+		header.setHeight(height);
+	}
+
 	public void setMenuItems(MenuItem... menuitems) {
 		drawer.setMenuItems(Arrays.asList(menuitems));
 	}
@@ -91,6 +97,11 @@ public class AppLayout extends Div implements PageConfigurator {
 	
 	public boolean isMenuVisible() {
 		return drawer.isVisible();
+	}
+
+	/**Set the toolbar title*/
+	public void setCaption(String caption) {
+		header.getAppToolbar().setTitle(caption);
 	}
 
 	@Override

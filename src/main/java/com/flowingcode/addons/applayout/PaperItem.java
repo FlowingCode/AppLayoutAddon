@@ -21,6 +21,7 @@ package com.flowingcode.addons.applayout;
  */
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
@@ -37,8 +38,8 @@ import com.vaadin.flow.server.Command;
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-item/paper-item.html")
 @Tag("paper-item")
-public class PaperItem extends Component implements HasText, HasSize {
-	
+public class PaperItem extends Component implements HasEnabled, HasText, HasSize {
+
 	public PaperItem(String title) {
 		this(title, null,null);
 	}
