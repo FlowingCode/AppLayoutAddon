@@ -68,5 +68,9 @@ public class AppHeader extends Component implements HasComponents {
 	public void setMenuIconVisible(boolean visible) {
 		appToolbar.setMenuIconVisible(visible);
 	}
-    
+
+	void setHeight(String height) {
+		appToolbar.getElement().getStyle().set("height", height);
+	}
+
 }
