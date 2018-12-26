@@ -21,6 +21,7 @@ package com.flowingcode.addons.applayout;
  */
 
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.server.Command;
@@ -34,8 +35,8 @@ import com.vaadin.flow.server.Command;
 @SuppressWarnings("serial")
 @Tag("paper-icon-button")
 @HtmlImport("bower_components/paper-icon-button/paper-icon-button.html")
-public class PaperIconButton extends Component  {
-	
+public class PaperIconButton extends Component implements HasEnabled {
+
     public PaperIconButton(String icon) {
     	this.setIcon(icon);
     }
