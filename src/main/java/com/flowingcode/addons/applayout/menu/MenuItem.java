@@ -68,7 +68,9 @@ public class MenuItem {
 
 	public void setLabel(String label) {
 		this.label = label;
-		this.refreshCallback.run();
+		if (refreshCallback!=null) {
+			this.refreshCallback.run();
+		}
 	}
 
 	public Command getCommand() {
@@ -82,10 +84,12 @@ public class MenuItem {
 	public String getIcon() {
 		return icon;
 	}
-	
+
 	public void setIcon(String icon) {
 		this.icon = icon;
-		this.refreshCallback.run();
+		if (refreshCallback!=null) {
+			this.refreshCallback.run();
+		}
 	}
 
 	public List<MenuItem> getSubMenuItems() {
