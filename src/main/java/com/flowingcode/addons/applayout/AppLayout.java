@@ -118,4 +118,9 @@ public class AppLayout extends Div implements PageConfigurator {
 	public void setReveals(boolean reveals) {
 		header.setReveals(reveals);
 	}
+
+	/**Create an area at the edge of the screen to swipe open the app-drawer*/
+	public void setSwipeOpen(boolean swipeOpen) {
+		drawer.setSwipeOpen(swipeOpen);
+	}
 }
