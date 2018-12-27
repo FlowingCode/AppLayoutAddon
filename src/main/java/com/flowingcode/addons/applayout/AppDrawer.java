@@ -53,12 +53,16 @@ public class AppDrawer extends Component implements HasComponents {
     public AppDrawer(Component headerComponent) {
     	this.header = headerComponent;
     	getElement().setAttribute("id", "drawer");
-    	getElement().setAttribute("swipe-open", true);
+    	setSwipeOpen(true);
     	this.add(headerComponent);
     	this.add(pm);
     }
-    
-    public void setMenuItems(List<MenuItem> menuItems) {
+
+    public void setSwipeOpen(boolean swipeOpen) {
+    	getElement().setAttribute("swipe-open", swipeOpen);
+	}
+
+	public void setMenuItems(List<MenuItem> menuItems) {
     	Component[] components = createComponents(menuItems);
     	pm.removeAll();
     	pm.add(components);
