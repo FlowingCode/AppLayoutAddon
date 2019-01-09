@@ -1,5 +1,10 @@
 package com.flowingcode.addons.applayout;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
+
 /*-
  * #%L
  * App Layout Addon
@@ -22,23 +27,34 @@ package com.flowingcode.addons.applayout;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
 @Route("")
 @HtmlImport("frontend://styles/shared-styles.html")
+@HtmlImport("frontend://bower_components/vaadin-icons/vaadin-icons.html")
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
-	private final AppLayout app = new AppLayout(new Image("/frontend/images/applogo.png","avatar"), createAvatarComponent(), "AppLayout Vaadin 10 Demo");
-
+	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 10 Demo");
+	private final MenuItem miSettings = new MenuItem("Settings", "settings", this::openSettings);
+	
+	private final DemoSettings settings = new DemoSettings();
+	
 	public DemoView() {
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 		container.setSizeFull();
@@ -46,30 +62,123 @@ public class DemoView extends VerticalLayout {
 		this.setPadding(false);
 		this.setSpacing(false);
 		this.setMargin(false);
-
-		app.setMenuItems(createMenuItems());
+	
+		app.setMenuItems(createMenuItems());			
 		
-		app.setToolbarIconButtons(new MenuItem("Delete", "delete", () -> Notification.show("Delete action")),
-				new MenuItem("Hide/Show Menu", "clear", () -> app.setMenuVisible(!app.isMenuVisible())),
-				new MenuItem("Search", "search", () -> Notification.show("Search action")),
-				new MenuItem("Close", "close", () -> Notification.show("Close action")));
-
+		app.setToolbarIconButtons(miSettings);
 		this.add(app, container);
+		
+		settings.setSwipeOpen(true);
+		settings.setMenuVisible(true);
+		settings.setReveals(true);
+		applySettings();
+		
+		showHamletContent();
 	}
 
+	//apply the current settings
+	private void applySettings() {
+		app.setMenuVisible(settings.isMenuVisible());
+		app.setSwipeOpen(settings.isSwipeOpen());
+		app.setFixed(settings.isFixed());
+		app.setReveals(settings.isReveals());
+		
+		if (settings.isCompact()) {
+			app.addClassName("compact");
+			app.setHeight("32px");
+		} else {
+			app.removeClassName("compact");
+			app.setHeight("64px");
+		}
+	}
+	
+	private void openSettings() {
+		Dialog dialog = new Dialog();
+		H3 title = new H3("Demo settings");
+		title.getStyle().set("margin-top", "0");
+		dialog.add(title);
+		
+		Checkbox cbMenuVisible = new Checkbox("Menu visible");
+		Checkbox cbSwipeOpen = new Checkbox("Swipe Open");
+		Checkbox cbFixed = new Checkbox("Fixed");
+		Checkbox cbReveals = new Checkbox("Reveals");
+		Checkbox cbCompact = new Checkbox("Compact");
+		
+		cbMenuVisible.getElement().setAttribute("title", "Toggle visibility of the hamburguer icon.");
+		cbSwipeOpen.getElement().setAttribute("title", "When enabled, you can open the menu by swiping the left border of the screen.");
+		cbFixed.getElement().setAttribute("title", "When enabled, the header is fixed at the top so it never moves away.");
+		cbReveals.getElement().setAttribute("title", "When enabled, the header slides back when scrolling back up.");
+		cbCompact.getElement().setAttribute("title", "When enabled, the height of the header is set to 32px.");
+		
+		Binder<DemoSettings> binder = new Binder<>();
+		binder.forField(cbMenuVisible).bind(DemoSettings::isMenuVisible, DemoSettings::setMenuVisible);
+		binder.forField(cbSwipeOpen).bind(DemoSettings::isSwipeOpen, DemoSettings::setSwipeOpen);
+		binder.forField(cbFixed).bind(DemoSettings::isFixed, DemoSettings::setFixed);
+		binder.forField(cbReveals).bind(DemoSettings::isReveals, DemoSettings::setReveals);
+		binder.forField(cbCompact).bind(DemoSettings::isCompact, DemoSettings::setCompact);
+		binder.setBean(this.settings);
+
+		VerticalLayout content = new VerticalLayout(
+				cbMenuVisible, 
+				cbSwipeOpen,
+				cbFixed,
+				cbReveals,
+				cbCompact);
+		content.setSpacing(false);
+		
+		HorizontalLayout buttons = new HorizontalLayout();
+		Button btnOk = new Button("OK",ev -> {
+			applySettings();			
+			dialog.close();
+		});
+		
+		Button btnCancel = new Button("Cancel", ev -> dialog.close());
+		btnOk.getElement().setAttribute("theme", "primary");
+		buttons.setSpacing(true);
+		buttons.add(btnOk, btnCancel);
+		buttons.setSpacing(true);
+		
+		dialog.add(content, buttons);			
+		dialog.setSizeUndefined();
+		dialog.open();
+	}
+
+	private Image createLogoImage() {
+		Image img = new Image("/frontend/images/applogo.png","applogo");
+		img.addClassName("applogo");
+		return img;
+	}
+	
 	private Component createAvatarComponent() {
 		Div container = new Div();
 		container.getElement().setAttribute("style", "text-align: center;");
-		Image i = new Image("/frontend/images/avatar.png","avatar");
-		i.getElement().setAttribute("style", "width: 80px; margin-top:20px");
+		Image img = new Image("/frontend/images/avatar.png","avatar");
+		img.getStyle().set("width", "80px");
+		img.getStyle().set("margin-top", "20px");
 		H4 h4 = new H4("User");
-		container.add(i,h4);
+		container.add(img,h4);
 		return container;
 	}
 
 	private MenuItem[] createMenuItems() {
 		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
-		return new MenuItem[] {mi ,
+		MenuItem toggleSettings = new MenuItem("", "settings");
+		toggleSettings.setCommand(() -> {
+			settings.setEnabled(!settings.isEnabled());
+			miSettings.setEnabled(settings.isEnabled());
+			app.setToolbarIconButtons(miSettings);
+			if (settings.isEnabled())  {
+				toggleSettings.setLabel("Disable settings");
+			} else {
+				toggleSettings.setLabel("Enable settings");
+			}
+		});
+		toggleSettings.getCommand().execute();
+		
+		return new MenuItem[] {
+				new MenuItem("Content", "vaadin:book", () -> showHamletContent()),
+				toggleSettings,
+				mi,
 				new MenuItem("About", "cloud", () -> showContent("About")),
 				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()), 
 				new MenuItem("Change Text & Icon", "cloud", () -> {
@@ -91,6 +200,7 @@ public class DemoView extends VerticalLayout {
 	}
 
 	private void showContent(String content) {
+		container.setClassName("");
 		container.removeAll();
 		H3 label = new H3();
 		label.setSizeFull();
@@ -100,4 +210,34 @@ public class DemoView extends VerticalLayout {
 		pc.setWidth("100%");
 		container.add(pc);
 	}
+	
+	private void showHamletContent() { 
+		InputStream in = this.getClass().getClassLoader().getResourceAsStream("hamlet");
+		String text = new BufferedReader(new InputStreamReader(in)).lines().collect(Collectors.joining("\n"));
+		
+		container.removeAll();
+		container.setClassName("hamlet");
+		for (String block : text.split("\n\n")) {
+			if (block.startsWith("$")) {
+				
+			} else if (block.startsWith("[")) {
+				PaperCard card = new PaperCard();
+				card.setCardContent(new Span(block.substring(1, block.indexOf("]"))));
+				card.getElement().setAttribute("elevation", "0");
+				container.add(card);
+			} else {
+				PaperCard card = new PaperCard();				
+				String ss[] = block.split("\\.",2);
+				card.setCardContent(new Div(new H5(ss[0]), new Span(ss[1])));				
+				if (ss[0].equals("Claudius")) {
+					container.setHorizontalComponentAlignment(Alignment.END, card);
+					card.addClassName("claudius");
+				} else {
+					container.setHorizontalComponentAlignment(Alignment.START, card);
+				}
+				container.add(card);
+			}
+		}		
+	}
+
 }

@@ -22,10 +22,11 @@
     <style>
         html, body {
 		  margin: 0;
-		      font-family: 'Roboto', 'Noto', sans-serif;
-		      -webkit-font-smoothing: antialiased;
-		      background: #f1f1f1;
-		      max-height: 368px;
+		  font-family: 'Roboto', 'Noto', sans-serif;
+		  -webkit-font-smoothing: antialiased;
+		  background: #f1f1f1;
+		  max-height: 368px;
+		  max-width: 100%;
 		}
 		
 		sample-content {
@@ -44,5 +45,36 @@
 			background-color:transparent;
 		}
 		
+		img.applogo {
+			margin-right: 8px;
+		}
+		
+		.compact img.applogo {
+			width:  22px;
+			height: 22px;
+		}
+		
+		.hamlet paper-card {
+			max-width: 600px;
+			min-width: 200px;
+		}
+		
+		.hamlet paper-card.claudius {
+			background: rgb(220,248,198);
+		}
+		
+		.hamlet paper-card h5 {margin-top: 0.25em}
+		
+		.hamlet paper-card[elevation="0"] {
+			background: rgb(254,244,197);
+			border-radius: 8px;
+			min-width: 30%;
+			height: 42px;
+		}
+		
+		.hamlet paper-card[elevation="0"] .card-content {
+			padding: 8px;
+			text-align: center;
+		}
     </style>
 </custom-style>
