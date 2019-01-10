@@ -20,6 +20,7 @@ package com.flowingcode.addons.applayout;
  * #L%
  */
 
+
 public class DemoSettings {
 
 	private boolean enabled;

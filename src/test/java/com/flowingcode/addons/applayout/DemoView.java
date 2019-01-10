@@ -1,15 +1,10 @@
 package com.flowingcode.addons.applayout;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
-
 /*-
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 Flowing Code
+ * Copyright (C) 2018 - 2019 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +19,12 @@ import java.util.stream.Collectors;
  * limitations under the License.
  * #L%
  */
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
+
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
