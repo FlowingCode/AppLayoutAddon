@@ -4,7 +4,7 @@
 
     <groupId>com.flowingcode.addons.applayout</groupId>
     <artifactId>app-layout-addon</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
     <name>App Layout Addon</name>
     <description>Integration of app-layout for Vaadin 10</description>
 
@@ -33,7 +33,7 @@
         <url>https://github.com/FlowingCode/AppLayoutAddon</url>
         <connection>scm:git:git://github.com/FlowingCode/AppLayoutAddon.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:/FlowingCode/AppLayoutAddon.git</developerConnection>
-        <tag>app-layout-addon-1.0.5</tag>
+        <tag>App Layout add-on for Vaadin</tag>
     </scm>
 	
     <dependencyManagement>
