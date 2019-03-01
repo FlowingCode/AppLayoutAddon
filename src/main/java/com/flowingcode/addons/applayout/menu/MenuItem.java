@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -64,6 +65,14 @@ public class MenuItem {
 		this.icon = icon;
 	}
 	
+	public MenuItem(String label, VaadinIcon icon, Command command) {
+		this(label, getIconName(icon), command);
+	}
+	
+	private static String getIconName(VaadinIcon icon) {
+		return icon.create().getElement().getAttribute("icon");
+	}
+
 	public String getLabel() {
 		return label;
 	}

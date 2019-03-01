@@ -25,7 +25,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -38,6 +37,7 @@ import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -177,7 +177,7 @@ public class DemoView extends VerticalLayout {
 		toggleSettings.getCommand().execute();
 		
 		return new MenuItem[] {
-				new MenuItem("Content", "vaadin:book", () -> showHamletContent()),
+				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent()),
 				toggleSettings,
 				mi,
 				new MenuItem("About", "cloud", () -> showContent("About")),
