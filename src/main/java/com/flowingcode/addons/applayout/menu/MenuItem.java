@@ -1,5 +1,3 @@
-package com.flowingcode.addons.applayout.menu;
-
 /*-
  * #%L
  * App Layout Addon
@@ -19,6 +17,8 @@ package com.flowingcode.addons.applayout.menu;
  * limitations under the License.
  * #L%
  */
+package com.flowingcode.addons.applayout.menu;
+
 
 
 import java.util.ArrayList;
