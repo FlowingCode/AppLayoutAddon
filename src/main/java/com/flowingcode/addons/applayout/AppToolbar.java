@@ -75,10 +75,10 @@ public class AppToolbar extends Component implements HasComponents {
 		this.add(menu);
 		if (ctitle!=null) this.add(ctitle);
 		if (divTitle!=null) this.add(divTitle);
-		toolbarIconButtons.forEach(tib->this.add(tib));
+		toolbarIconButtons.forEach(this::add);
 	}
 
-	private List<PaperIconButton> createToolbarIconButtons(MenuItem[] menuItems) {
+	private static List<PaperIconButton> createToolbarIconButtons(MenuItem[] menuItems) {
         List<PaperIconButton> result = new ArrayList<>();
         for (MenuItem menuItem : menuItems) {
                 PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(),menuItem.getCommand());

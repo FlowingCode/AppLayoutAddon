@@ -115,7 +115,7 @@ public class MenuItem {
 	 * @return true if this item has sub menu items
 	 */
 	public boolean isSubMenuFolder() {
-		return getSubMenuItems().size() > 0;
+		return !getSubMenuItems().isEmpty();
 	}
 
 	/**

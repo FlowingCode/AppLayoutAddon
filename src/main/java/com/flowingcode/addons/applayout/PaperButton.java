@@ -43,9 +43,7 @@ public class PaperButton extends Component {
 
     public PaperButton(String label, Command command) {
     	this.setLabel(label);
-		this.getElement().addEventListener("click", e->{
-			command.execute();
-		});
+		this.getElement().addEventListener("click", e->command.execute());
     }
 
     public void setLabel(String label) {

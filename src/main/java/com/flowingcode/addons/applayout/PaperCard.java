@@ -87,7 +87,7 @@ public class PaperCard extends Component implements HasSize, HasStyle, ThemableL
             final Div inner = new Div();
             cardActionsDiv.add(inner);
             inner.addClassNames("horizontal", "justified");
-            buttons.forEach(b -> inner.add(b));
+            buttons.forEach(inner::add);
             hasComponentsVersion.add(cardActionsDiv);
         }
     }

@@ -44,9 +44,7 @@ public class PaperIconButton extends Component implements HasEnabled {
 
     public PaperIconButton(String icon, Command command) {
     	this.setIcon(icon);
-		this.getElement().addEventListener("click", e->{
-			command.execute();
-		});
+		this.getElement().addEventListener("click", e->command.execute());
     }
 
     public void setIcon(String icon) {
