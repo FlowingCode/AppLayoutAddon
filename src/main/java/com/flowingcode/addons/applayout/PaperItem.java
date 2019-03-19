@@ -26,7 +26,6 @@ import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.server.Command;
 
@@ -55,7 +54,7 @@ public class PaperItem extends Component implements HasEnabled, HasText, HasSize
 			this.getElement().addEventListener("click", e->{
 				command.execute();
 				if (appDrawer!=null)
-					UI.getCurrent().getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()");
+					appDrawer.getUI().ifPresent(ui->ui.getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()"));
 			});
 		}
 	}

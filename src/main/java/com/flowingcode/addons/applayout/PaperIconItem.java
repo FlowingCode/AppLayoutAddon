@@ -63,7 +63,7 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 			this.getElement().addEventListener("click", e->{
 				command.execute();
 				if (appDrawer!=null)
-					UI.getCurrent().getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()");
+					appDrawer.getUI().ifPresent(ui->ui.getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()"));
 			});
 		}
 	}
