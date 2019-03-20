@@ -26,11 +26,13 @@ import java.util.Collections;
 import java.util.List;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
+import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.shared.Registration;
 
 /**
  * Component that renders the app drawer
@@ -41,10 +43,11 @@ import com.vaadin.flow.component.html.H4;
 @SuppressWarnings("serial")
 @Tag("app-drawer")
 @HtmlImport("bower_components/app-layout/app-drawer/app-drawer.html")
+@HtmlImport("bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html")
 public class AppDrawer extends Component implements HasComponents {
 	
-	private PaperListbox pm = new PaperListbox(Collections.emptyList());
-	private Component header;
+	private final PaperListbox pm = new PaperListbox(Collections.emptyList());
+	private final Component header;
 
     public AppDrawer(String title) {
     	this(new H4(title));
@@ -57,8 +60,15 @@ public class AppDrawer extends Component implements HasComponents {
     	setSwipeOpen(true);
     	this.add(headerComponent);
     	this.add(pm);
+    	
+    	Registration r[] = new Registration[1];
+    	r[0] = getElement().addEventListener("app-drawer-transitioned", ev->{
+    		//need to adjust the height after the drawer has been rendered
+    		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$1.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header, pm));
+    		r[0].remove();
+    	});
     }
-
+    
     public void setSwipeOpen(boolean swipeOpen) {
     	getElement().setAttribute("swipe-open", swipeOpen);
 	}

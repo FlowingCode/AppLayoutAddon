@@ -197,7 +197,20 @@ public class DemoView extends VerticalLayout {
 						new MenuItem("SubMenu",
 								new MenuItem("Hello Again",()->showContent("Hello Again!")),
 								new MenuItem("And Again",()->showContent("And Again!")))
-						)};
+						),
+				new MenuItem("Item 1"),
+				new MenuItem("Item 2"),
+				new MenuItem("Item 3"),
+				new MenuItem("Item 4"),
+				new MenuItem("Item 5"),
+				new MenuItem("Item 6"),
+				new MenuItem("Item 7"),
+				new MenuItem("Item 8"),
+				new MenuItem("Item 9"),
+				new MenuItem("Item 10"),
+				new MenuItem("Item 11"),
+				new MenuItem("Item 12")
+			};
 	}
 
 	private void showContent(String content) {
