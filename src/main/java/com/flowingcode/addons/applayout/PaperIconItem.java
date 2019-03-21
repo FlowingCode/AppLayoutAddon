@@ -1,5 +1,7 @@
 package com.flowingcode.addons.applayout;
 
+import java.net.URL;
+
 /*-
  * #%L
  * App Layout Addon
@@ -27,8 +29,8 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -43,20 +45,42 @@ import com.vaadin.flow.server.Command;
 public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 	
 	private IronIcon ironIcon;
+	private Image image;
 	private Text text;
 	
 	public PaperIconItem(String title, String icon) {
-		this(title, icon, null ,null);
+		this(title, icon, null, null ,null);
 	}
 
 	public PaperIconItem(String title, String icon, Command command) {
-		this(title, icon, command, null);
+		this(title, icon, null, command, null);
 	}
 
 	public PaperIconItem(String title, String icon, Command command, AppDrawer appDrawer) {
+		this(title, icon, null, command, appDrawer);
+	}
+
+	public PaperIconItem(String title, URL image) {
+		this(title, null, image, null ,null);
+	}
+
+	public PaperIconItem(String title, URL image, Command command) {
+		this(title, null, image, command, null);
+	}
+
+	public PaperIconItem(String title, URL image, Command command, AppDrawer appDrawer) {
+		this(title, null, image, command, appDrawer);
+	}
+
+	public PaperIconItem(String title, String icon, URL image, Command command, AppDrawer appDrawer) {
 		this.setText("");
-		this.ironIcon = new IronIcon(icon);
-		add(ironIcon);
+		if (image!=null) {
+			this.ironIcon = new IronIcon(image);
+			add(ironIcon);
+		} else {
+			this.ironIcon = new IronIcon(icon);
+			add(ironIcon);
+		}
 		this.text = new Text(title);
 		add(text);
 		if (command!=null) {
@@ -68,12 +92,17 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 		}
 	}
 	
+	
 	public void setTitle(String title) {
 		this.text.setText(title);
 	}
 	
 	public void setIcon(String icon) {
 		this.ironIcon.setIcon(icon);
+	}
+	
+	public void setImage(Image image) {
+		this.image = image;
 	}
 
 }

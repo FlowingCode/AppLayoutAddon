@@ -75,13 +75,19 @@ public class AppDrawer extends Component implements HasComponents {
     		if (menuItem.isSubMenuFolder()) {
     			components.add(collectMenus(menuItem));
     		} else {
-    			if (menuItem.getIcon()==null) {
+    			if (menuItem.getIcon()==null && menuItem.getImageURL()==null) {
     				PaperItem pi = new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this);
     				pi.setEnabled(menuItem.isEnabled());
     				components.add(pi);
     				menuItem.setRefreshCallback(()->pi.setText(menuItem.getLabel()));
     			} else {
-    				PaperIconItem pi = new PaperIconItem(menuItem.getLabel(), menuItem.getIcon(),menuItem.getCommand(), this);
+    				PaperIconItem pi;
+    				if (menuItem.getImageURL()!=null) {
+    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getImageURL() ,menuItem.getCommand(), this);
+    				} else {
+    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getIcon() ,menuItem.getCommand(), this);
+    				}
+    				
     				components.add(pi);
     				pi.setEnabled(menuItem.isEnabled());
     				menuItem.setRefreshCallback(()->{
@@ -97,7 +103,7 @@ public class AppDrawer extends Component implements HasComponents {
 	private CollapseButton collectMenus(MenuItem topMenuItem) {
 		List<MenuItem> menuItems = topMenuItem.getSubMenuItems();
     	Component[] components = createComponents(menuItems);
-    	CollapseButton collapseButton = new CollapseButton(topMenuItem.getLabel(), topMenuItem.getIcon(), components);
+    	CollapseButton collapseButton = new CollapseButton(topMenuItem.getLabel(), topMenuItem.getIcon(), topMenuItem.getImageURL(), components);
     	collapseButton.setEnabled(topMenuItem.isEnabled());
     	return collapseButton;
 	}

@@ -1,5 +1,7 @@
 package com.flowingcode.addons.applayout.menu;
 
+import java.net.URL;
+
 /*-
  * #%L
  * App Layout Addon
@@ -38,6 +40,7 @@ public class MenuItem {
 
 	private String label;
 	private String icon;
+	private URL imageURL;
 	private Command command;
 	private List<MenuItem> subMenuItems = new ArrayList<>();
 	private Runnable refreshCallback;
@@ -54,6 +57,12 @@ public class MenuItem {
 		this.subMenuItems = Arrays.asList(subMenuItems);
 	}
 
+	public MenuItem(String label, URL image, MenuItem... subMenuItems) {
+		this.label = label;
+		this.setImageURL(image);
+		this.subMenuItems = Arrays.asList(subMenuItems);
+	}
+
 	public MenuItem(String label, Command command) {
 		this.label = label;
 		this.command = command;
@@ -63,6 +72,12 @@ public class MenuItem {
 		this.label = label;
 		this.command = command;
 		this.icon = icon;
+	}
+
+	public MenuItem(String label, URL image, Command command) {
+		this.label = label;
+		this.command = command;
+		this.setImageURL(image);
 	}
 	
 	public MenuItem(String label, VaadinIcon icon, Command command) {
@@ -132,6 +147,14 @@ public class MenuItem {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public URL getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(URL imageURL) {
+		this.imageURL = imageURL;
 	}
 
 }

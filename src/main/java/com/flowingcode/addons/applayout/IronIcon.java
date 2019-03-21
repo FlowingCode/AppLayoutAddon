@@ -1,5 +1,7 @@
 package com.flowingcode.addons.applayout;
 
+import java.net.URL;
+
 /*-
  * #%L
  * App Layout Addon
@@ -42,6 +44,15 @@ public class IronIcon extends Component implements HasText, HasSize {
 		setIcon(icon);
 	}
 	
+	public IronIcon(URL image) {
+		setImage(image);
+	}
+	
+	public void setImage(URL image) {
+		this.getElement().setAttribute("src", image.toString());
+		this.getElement().setAttribute("slot", "item-icon");
+	}
+
 	public void setIcon(String icon) {
 		this.getElement().setAttribute("icon", icon);
 		this.getElement().setAttribute("slot", "item-icon");

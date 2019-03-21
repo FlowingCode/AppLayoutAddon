@@ -1,5 +1,7 @@
 package com.flowingcode.addons.applayout;
 
+import java.net.URL;
+
 /*-
  * #%L
  * App Layout Addon
@@ -23,6 +25,7 @@ package com.flowingcode.addons.applayout;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;
@@ -37,26 +40,39 @@ import com.vaadin.flow.component.html.Div;
 public class CollapseButton extends Component implements HasComponents {
 	
 	public CollapseButton(String label, PaperItem[] items) {
-		this(label, null, items);
+		this(label, null, null, items);
 	}
 
+	public CollapseButton(String label, URL image, Component...items) {
+		this(label, null, image, items);
+	}
+	
 	public CollapseButton(String label, String icon, Component...items) {
-		if (icon==null) {
+		this(label,icon,null,items);
+	}
+	
+	public CollapseButton(String label, String icon, URL image, Component...items) {
+		if (icon==null && image==null) {
 			PaperItem pi = new PaperItem(label);
-			pi.getElement().setAttribute("slot", "collapse-trigger");
-			pi.setWidth("100%");
-			this.add(pi);			
-		} else {
+			configureAndAddItem(pi);
+		} else if(image!=null) {
+			PaperIconItem pi = new PaperIconItem(label, image);
+			configureAndAddItem(pi);
+		} else if(icon!=null) {
 			PaperIconItem pi = new PaperIconItem(label, icon);
-			pi.getElement().setAttribute("slot", "collapse-trigger");
-			pi.setWidth("100%");
-			this.add(pi);			
+			configureAndAddItem(pi);
 		}
 		Div div = new Div();
 		div.getElement().setAttribute("slot", "collapse-content");
 		div.setClassName("sub-menu");
 		div.add(items);
 		this.add(div);
+	}
+
+	private <T extends Component & HasSize> void configureAndAddItem(T pi) {
+		pi.getElement().setAttribute("slot", "collapse-trigger");
+		pi.setWidth("100%");
+		this.add(pi);			
 	}
 
 }
