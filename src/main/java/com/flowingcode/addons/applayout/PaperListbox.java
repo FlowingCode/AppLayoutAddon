@@ -1,5 +1,3 @@
-package com.flowingcode.addons.applayout;
-
 /*-
  * #%L
  * App Layout Addon
@@ -19,6 +17,8 @@ package com.flowingcode.addons.applayout;
  * limitations under the License.
  * #L%
  */
+package com.flowingcode.addons.applayout;
+
 
 
 import java.util.List;
@@ -40,7 +40,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 public class PaperListbox extends Component implements HasComponents {
 	
 	public PaperListbox(List<Component> components) {
-		components.stream().forEach(c->this.add(c));
+		components.stream().forEach(this::add);
 	}
 
 	public PaperListbox(String label, PaperItem...items) {

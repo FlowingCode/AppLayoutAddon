@@ -136,6 +136,7 @@
 				<version>1.14</version>
 				<configuration>
 				  <licenseName>apache_v2</licenseName>
+				  <addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
 				</configuration>
 			</plugin>
 	

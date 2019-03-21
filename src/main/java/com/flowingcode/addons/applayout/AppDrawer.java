@@ -1,5 +1,3 @@
-package com.flowingcode.addons.applayout;
-
 /*-
  * #%L
  * App Layout Addon
@@ -19,10 +17,12 @@ package com.flowingcode.addons.applayout;
  * limitations under the License.
  * #L%
  */
+package com.flowingcode.addons.applayout;
+
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
@@ -43,7 +43,7 @@ import com.vaadin.flow.component.html.H4;
 @HtmlImport("bower_components/app-layout/app-drawer/app-drawer.html")
 public class AppDrawer extends Component implements HasComponents {
 	
-	private PaperListbox pm = new PaperListbox(Arrays.asList(new Component[] {}));
+	private PaperListbox pm = new PaperListbox(Collections.emptyList());
 	private Component header;
 
     public AppDrawer(String title) {

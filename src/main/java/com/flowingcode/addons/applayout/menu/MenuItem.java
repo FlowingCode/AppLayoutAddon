@@ -1,7 +1,3 @@
-package com.flowingcode.addons.applayout.menu;
-
-import java.net.URL;
-
 /*-
  * #%L
  * App Layout Addon
@@ -21,8 +17,11 @@ import java.net.URL;
  * limitations under the License.
  * #L%
  */
+package com.flowingcode.addons.applayout.menu;
 
 
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -130,7 +129,7 @@ public class MenuItem {
 	 * @return true if this item has sub menu items
 	 */
 	public boolean isSubMenuFolder() {
-		return getSubMenuItems().size() > 0;
+		return !getSubMenuItems().isEmpty();
 	}
 
 	/**

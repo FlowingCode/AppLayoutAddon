@@ -1,7 +1,3 @@
-package com.flowingcode.addons.applayout;
-
-import java.net.URL;
-
 /*-
  * #%L
  * App Layout Addon
@@ -21,7 +17,11 @@ import java.net.URL;
  * limitations under the License.
  * #L%
  */
+package com.flowingcode.addons.applayout;
 
+
+
+import java.net.URL;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasSize;

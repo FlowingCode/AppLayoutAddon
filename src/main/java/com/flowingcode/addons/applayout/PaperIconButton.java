@@ -1,5 +1,3 @@
-package com.flowingcode.addons.applayout;
-
 /*-
  * #%L
  * App Layout Addon
@@ -19,6 +17,8 @@ package com.flowingcode.addons.applayout;
  * limitations under the License.
  * #L%
  */
+package com.flowingcode.addons.applayout;
+
 
 
 import com.vaadin.flow.component.Component;
@@ -44,9 +44,7 @@ public class PaperIconButton extends Component implements HasEnabled {
 
     public PaperIconButton(String icon, Command command) {
     	this.setIcon(icon);
-		this.getElement().addEventListener("click", e->{
-			command.execute();
-		});
+		this.getElement().addEventListener("click", e->command.execute());
     }
 
     public void setIcon(String icon) {
