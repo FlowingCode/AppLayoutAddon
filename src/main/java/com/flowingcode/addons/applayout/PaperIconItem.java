@@ -29,7 +29,6 @@ import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dependency.HtmlImport;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -44,7 +43,6 @@ import com.vaadin.flow.server.Command;
 public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 	
 	private IronIcon ironIcon;
-	private Image image;
 	private Text text;
 	
 	public PaperIconItem(String title, String icon) {
@@ -71,7 +69,7 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 		this(title, null, image, command, appDrawer);
 	}
 
-	public PaperIconItem(String title, String icon, URL image, Command command, AppDrawer appDrawer) {
+	private PaperIconItem(String title, String icon, URL image, Command command, AppDrawer appDrawer) {
 		this.setText("");
 		if (image!=null) {
 			this.ironIcon = new IronIcon(image);
@@ -91,7 +89,6 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 		}
 	}
 	
-	
 	public void setTitle(String title) {
 		this.text.setText(title);
 	}
@@ -100,8 +97,8 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 		this.ironIcon.setIcon(icon);
 	}
 	
-	public void setImage(Image image) {
-		this.image = image;
+	public void setImage(URL image) {
+		this.ironIcon.setImage(image);
 	}
-
+	
 }

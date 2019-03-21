@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.List;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
-import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
@@ -61,7 +60,7 @@ public class AppDrawer extends Component implements HasComponents {
     	this.add(headerComponent);
     	this.add(pm);
     	
-    	Registration r[] = new Registration[1];
+    	Registration[] r = new Registration[1];
     	r[0] = getElement().addEventListener("app-drawer-transitioned", ev->{
     		//need to adjust the height after the drawer has been rendered
     		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$1.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header, pm));

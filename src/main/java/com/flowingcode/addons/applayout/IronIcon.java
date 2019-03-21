@@ -49,11 +49,13 @@ public class IronIcon extends Component implements HasText, HasSize {
 	}
 	
 	public void setImage(URL image) {
+		this.getElement().removeAttribute("icon");
 		this.getElement().setAttribute("src", image.toString());
 		this.getElement().setAttribute("slot", "item-icon");
 	}
 
 	public void setIcon(String icon) {
+		this.getElement().removeAttribute("src");
 		this.getElement().setAttribute("icon", icon);
 		this.getElement().setAttribute("slot", "item-icon");
 	}
