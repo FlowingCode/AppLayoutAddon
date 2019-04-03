@@ -36,6 +36,7 @@ To see the demo, navigate to http://localhost:8080/
 - **Version 1.0.3** Added support for changing the label and icon of a MenuItem dinamically.
 - **Version 1.0.4** Added support for: placing a logo in the application header, changing icons in the toolbar, setting a custom component to the menu header (such as logged-in user account details), setting visibility of side menu and button and dynamically clearing menu items.
 - **Version 1.0.5** Added support for: setting the header title and height, and configuring the header behavior on scroll, the drawer swipe-open behavior, and disabling menu items.
+- **Version 1.0.6** Added support for: making the menu list scrollable and support for image-based icons. API enhancements and fixes. 
 
 ## Roadmap
 
