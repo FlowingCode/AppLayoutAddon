@@ -21,8 +21,6 @@ package com.flowingcode.addons.applayout;
 
 
 import java.util.ArrayList;
-
-
 import java.util.Arrays;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
@@ -47,8 +45,8 @@ import com.vaadin.flow.server.PageConfigurator;
 @HtmlImport("frontend://styles/applayout-styles.html")
 public class AppLayout extends Div implements PageConfigurator {
 
-	AppDrawer drawer;
-	AppHeader header;
+	private AppDrawer drawer;
+	private AppHeader header;
 	
 	public AppLayout(String title) {
 		drawer = new AppDrawer(title);
@@ -124,4 +122,5 @@ public class AppLayout extends Div implements PageConfigurator {
 	public void setSwipeOpen(boolean swipeOpen) {
 		drawer.setSwipeOpen(swipeOpen);
 	}
+	
 }

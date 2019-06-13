@@ -24,6 +24,7 @@ package com.flowingcode.addons.applayout;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
@@ -31,6 +32,7 @@ import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.server.Command;
 import com.vaadin.flow.shared.Registration;
 
 /**
@@ -52,7 +54,7 @@ public class AppDrawer extends Component implements HasComponents {
     	this(new H4(title));
     	header.getElement().setAttribute("style", "text-align:center");
     }
-    
+   
     public AppDrawer(Component headerComponent) {
     	this.header = headerComponent;
     	getElement().setAttribute("id", "drawer");
@@ -66,8 +68,9 @@ public class AppDrawer extends Component implements HasComponents {
     		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$1.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header, pm));
     		r[0].remove();
     	});
+    	
     }
-    
+    	
     public void setSwipeOpen(boolean swipeOpen) {
     	getElement().setAttribute("swipe-open", swipeOpen);
 	}
@@ -81,40 +84,41 @@ public class AppDrawer extends Component implements HasComponents {
 	private Component[] createComponents(List<MenuItem> menuItems) {
 		List<Component> components = new ArrayList<>();
     	for (MenuItem menuItem : menuItems) {
-    		if (menuItem.isSubMenuFolder()) {
-    			components.add(collectMenus(menuItem));
+    		MenuItemComponent mi;
+    		if (!menuItem.getSubMenuItems().isEmpty()) {
+    			List<MenuItem> submenuItems = menuItem.getSubMenuItems();
+    			Component[] children = createComponents(submenuItems);
+    	    	mi = new SubMenuComponent(menuItem);
+    	    	((SubMenuComponent)mi).add(children);    	    	
     		} else {
-    			if (menuItem.getIcon()==null && menuItem.getImageURL()==null) {
-    				PaperItem pi = new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this);
-    				pi.setEnabled(menuItem.isEnabled());
-    				components.add(pi);
-    				menuItem.setRefreshCallback(()->pi.setText(menuItem.getLabel()));
-    			} else {
-    				PaperIconItem pi;
-    				if (menuItem.getImageURL()!=null) {
-    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getImageURL() ,menuItem.getCommand(), this);
-    				} else {
-    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getIcon() ,menuItem.getCommand(), this);
+    			mi = new MenuItemComponent(menuItem);
+    			mi.addMouseClickEvent(ev->{    				
+    				switch (ev.getButton()) {
+						case LEFT:
+							Optional.ofNullable(menuItem.getCommand()).ifPresent(Command::execute);
+							close();
+							break;
+						case MIDDLE:
+							Optional.ofNullable(menuItem.getMiddleButtonCommand()).ifPresent(Command::execute);
+							close();
+							break;
+						case RIGHT:
+							Optional.ofNullable(menuItem.getRightButtonCommand()).ifPresent(Command::execute);
+							break;
     				}
-    				
-    				components.add(pi);
-    				pi.setEnabled(menuItem.isEnabled());
-    				menuItem.setRefreshCallback(()->{
-    					pi.setTitle(menuItem.getLabel());
-    					pi.setIcon(menuItem.getIcon());
-    				});
-    			}
-    		}
+    			});
+    		}    		    		
+    		
+	    	components.add(mi);
+	    	menuItem.setRefreshCallback(()->mi.configure(menuItem));
 		}
+    	
 		return components.toArray(new Component[] {});
 	}
-
-	private CollapseButton collectMenus(MenuItem topMenuItem) {
-		List<MenuItem> menuItems = topMenuItem.getSubMenuItems();
-    	Component[] components = createComponents(menuItems);
-    	CollapseButton collapseButton = new CollapseButton(topMenuItem.getLabel(), topMenuItem.getIcon(), topMenuItem.getImageURL(), components);
-    	collapseButton.setEnabled(topMenuItem.isEnabled());
-    	return collapseButton;
+	
+	/**Close the app-drawer.*/
+	public void close() {
+		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$0.close()", this));
 	}
-    
+	
 }

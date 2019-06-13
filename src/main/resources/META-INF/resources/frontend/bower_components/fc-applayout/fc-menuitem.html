@@ -1,0 +1,80 @@
+<!doctype html>
+
+<link rel="import" href="../vaadin-themable-mixin/vaadin-themable-mixin.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
+	
+<dom-module id="fc-menuitem">
+	<template>
+		<style>
+			:host {
+				cursor: pointer;
+				--paper-item-disabled-color: var(--lumo-disabled-text-color);
+			}
+			:host(:not([has-icon])) {
+				--paper-item-icon-width: 0;
+			}		
+			:host(.iron-selected) paper-icon-item {
+				font-weight: var(--paper-item-selected-weight, bold);
+			}
+		</style>		 
+		<paper-icon-item role="option" disabled="[[disabled]]">
+	  		<iron-icon src="[[image]]" icon="[[icon]]" slot="item-icon"></iron-icon>
+	  		<span>[[label]]</span>
+	  	</paper-icon-item>
+	</template>
+	
+	<script>
+		class MenuItem extends Vaadin.ThemableMixin(Polymer.Element) {
+	  		static get is() { return 'fc-menuitem'; }
+	  		
+	  		static get properties() {
+		  		return {
+		  			key: String,
+		  			label : String,
+					icon : String,
+					image : String,
+					/*--Command command;*/
+					/*--List<MenuItem> subMenuItems = new ArrayList<>();*/
+					disabled: Boolean,
+		  			hasIcon: {
+		  				type: Boolean,
+		  				reflectToAttribute: true,
+		  				computed: '__hasIcon()'
+		  			}
+		  		}
+	  		}
+	  		
+	  		constructor() {
+	  		    super();
+	  		  	this.addEventListener('focus', (event) => {	  		    	    
+	  		    	this.root.children[1].focus();
+	  		  	});
+		  		this.addEventListener('click', (event) => {	  		    	    
+	  		    	this.root.children[1].focus();	  		    	
+	  		  	});
+		  		this.addEventListener('mousedown', (event) => {
+		  			if (event.button==1) {
+		  				event.preventDefault();
+						return false;
+		  			}
+	    		});
+	    		this.addEventListener('mouseup', (event) => {
+	    			console.log('up '+event.button);
+	    			this.dispatchEvent(new CustomEvent('item-click', {bubbles: true, detail: event.button}));
+	    			event.preventDefault();
+					return false;
+	    		});
+	    		this.addEventListener('contextmenu', event => {
+			  		event.preventDefault();
+	    		});
+	  		}
+	  		
+	  		__hasIcon() {
+	  			return this.src || this.icon;
+	  		}
+
+		}
+		
+		customElements.define(MenuItem.is, MenuItem);
+	</script>
+</dom-module> 

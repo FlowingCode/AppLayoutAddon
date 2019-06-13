@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.function.SerializableRunnable;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -41,8 +42,11 @@ public class MenuItem {
 	private String icon;
 	private URL imageURL;
 	private Command command;
+	private Command middleButtonCommand;
+	private Command rightButtonCommand;
+	
 	private List<MenuItem> subMenuItems = new ArrayList<>();
-	private Runnable refreshCallback;
+	private SerializableRunnable refreshCallback;
 	private boolean enabled = true;
 
 	public MenuItem(String label, MenuItem... subMenuItems) {
@@ -93,9 +97,7 @@ public class MenuItem {
 
 	public void setLabel(String label) {
 		this.label = label;
-		if (refreshCallback!=null) {
-			this.refreshCallback.run();
-		}
+		refresh();
 	}
 
 	public Command getCommand() {
@@ -104,6 +106,7 @@ public class MenuItem {
 
 	public void setCommand(Command command) {
 		this.command = command;
+		refresh();
 	}
 
 	public String getIcon() {
@@ -112,9 +115,7 @@ public class MenuItem {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
-		if (refreshCallback!=null) {
-			this.refreshCallback.run();
-		}
+		refresh();
 	}
 
 	public List<MenuItem> getSubMenuItems() {
@@ -123,21 +124,16 @@ public class MenuItem {
 
 	public void setSubMenuItems(List<MenuItem> subMenuItems) {
 		this.subMenuItems = subMenuItems;
-	}
-
-	/**
-	 * @return true if this item has sub menu items
-	 */
-	public boolean isSubMenuFolder() {
-		return !getSubMenuItems().isEmpty();
+		refresh();
 	}
 
 	/**
 	 * This allows you to configure a callback that is called whenever you change the label and icon
 	 * @param refreshCallback
 	 */
-	public void setRefreshCallback(Runnable refreshCallback) {
+	public void setRefreshCallback(SerializableRunnable refreshCallback) {
 		this.refreshCallback = refreshCallback;
+		refresh();
 	}
 
 	public boolean isEnabled() {
@@ -146,6 +142,7 @@ public class MenuItem {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+		refresh();
 	}
 
 	public URL getImageURL() {
@@ -154,6 +151,31 @@ public class MenuItem {
 
 	public void setImageURL(URL imageURL) {
 		this.imageURL = imageURL;
+		refresh();
 	}
 
+	private void refresh() {
+		if (refreshCallback!=null) {
+			this.refreshCallback.run();
+		}		
+	}
+
+	public MenuItem setMiddleButtonCommand(Command middleButtonCommand) {
+		this.middleButtonCommand = middleButtonCommand;
+		return this;
+	}
+	
+	public MenuItem setRightButtonCommand(Command rightButtonCommand) {
+		this.rightButtonCommand = rightButtonCommand;
+		return this;
+	}
+	
+	public Command getMiddleButtonCommand() {
+		return middleButtonCommand;
+	}
+	
+	public Command getRightButtonCommand() {
+		return rightButtonCommand;
+	}
+	
 }

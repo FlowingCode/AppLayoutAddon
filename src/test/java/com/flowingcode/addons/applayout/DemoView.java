@@ -76,7 +76,7 @@ public class DemoView extends VerticalLayout {
 		
 		showHamletContent();
 	}
-
+	
 	//apply the current settings
 	private void applySettings() {
 		app.setMenuVisible(settings.isMenuVisible());
@@ -177,7 +177,10 @@ public class DemoView extends VerticalLayout {
 		toggleSettings.getCommand().execute();
 		
 		return new MenuItem[] {
-				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent()),
+				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
+					.setMiddleButtonCommand(()->{
+						getUI().ifPresent(ui->ui.getPage().executeJavaScript("window.open(window.location.href, '_blank')"));
+					}),
 				toggleSettings,
 				mi,
 				new MenuItem("About", "cloud", () -> showContent("About")),
@@ -225,7 +228,7 @@ public class DemoView extends VerticalLayout {
 		container.add(pc);
 	}
 	
-	private void showHamletContent() { 
+	private void showHamletContent() {		
 		InputStream in = this.getClass().getClassLoader().getResourceAsStream("hamlet");
 		String text = new BufferedReader(new InputStreamReader(in)).lines().collect(Collectors.joining("\n"));
 		

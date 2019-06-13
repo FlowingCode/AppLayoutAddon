@@ -81,7 +81,7 @@ public class AppToolbar extends Component implements HasComponents {
 	private static List<PaperIconButton> createToolbarIconButtons(MenuItem[] menuItems) {
         List<PaperIconButton> result = new ArrayList<>();
         for (MenuItem menuItem : menuItems) {
-                PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(),menuItem.getCommand());
+                PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(), menuItem.getCommand());
                	paperIconButton.setEnabled(menuItem.isEnabled());
                 menuItem.setRefreshCallback(() -> paperIconButton.setIcon(menuItem.getIcon()));
                 result.add(paperIconButton);
