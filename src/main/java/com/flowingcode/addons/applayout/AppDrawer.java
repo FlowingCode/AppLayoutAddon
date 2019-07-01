@@ -69,6 +69,7 @@ public class AppDrawer extends Component implements HasComponents {
     		r[0].remove();
     	});
     	
+    	getElement().getStyle().set("--fc-separator-background-color", "var(--app-drawer-content-container_-_background-color)");
     }
     	
     public void setSwipeOpen(boolean swipeOpen) {
