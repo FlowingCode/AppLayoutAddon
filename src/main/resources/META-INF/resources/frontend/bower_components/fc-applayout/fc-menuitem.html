@@ -19,7 +19,10 @@
 		</style>		 
 		<paper-icon-item role="option" disabled="[[disabled]]">
 	  		<iron-icon src="[[image]]" icon="[[icon]]" slot="item-icon"></iron-icon>
-	  		<span>[[label]]</span>
+	  		<template is="dom-if" if="[[label]]">
+	  			<span>[[label]]</span>
+	  		</template>
+	  		<slot></slot>
 	  	</paper-icon-item>
 	</template>
 	

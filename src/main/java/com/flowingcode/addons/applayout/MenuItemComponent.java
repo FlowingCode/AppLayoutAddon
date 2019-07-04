@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
@@ -14,8 +15,7 @@ import com.vaadin.flow.shared.Registration;
 @Tag("fc-menuitem")
 @HtmlImport("bower_components/fc-applayout/fc-menuitem.html")
 @SuppressWarnings("serial")
-public class MenuItemComponent extends Component implements HasEnabled {
-
+public class MenuItemComponent extends Component implements HasEnabled, HasComponents {
 	
 	public MenuItemComponent() { }
 	
