@@ -21,7 +21,6 @@ package com.flowingcode.addons.applayout;
 
 
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -77,44 +76,34 @@ public class AppDrawer extends Component implements HasComponents {
 	}
 
 	public void setMenuItems(List<MenuItem> menuItems) {
-    	Component[] components = createComponents(menuItems);
-    	pm.removeAll();
-    	pm.add(components);
+		pm.removeAll();
+    	menuItems.stream().map(this::createComponent).forEach(pm::add);
     }
 
-	private Component[] createComponents(List<MenuItem> menuItems) {
-		List<Component> components = new ArrayList<>();
-    	for (MenuItem menuItem : menuItems) {
-    		MenuItemComponent mi;
-    		if (!menuItem.getSubMenuItems().isEmpty()) {
-    			List<MenuItem> submenuItems = menuItem.getSubMenuItems();
-    			Component[] children = createComponents(submenuItems);
-    	    	mi = new SubMenuComponent(menuItem);
-    	    	((SubMenuComponent)mi).add(children);    	    	
-    		} else {
-    			mi = new MenuItemComponent(menuItem);
-    			mi.addMouseClickEvent(ev->{    				
-    				switch (ev.getButton()) {
-						case LEFT:
-							Optional.ofNullable(menuItem.getCommand()).ifPresent(Command::execute);
-							close();
-							break;
-						case MIDDLE:
-							Optional.ofNullable(menuItem.getMiddleButtonCommand()).ifPresent(Command::execute);
-							close();
-							break;
-						case RIGHT:
-							Optional.ofNullable(menuItem.getRightButtonCommand()).ifPresent(Command::execute);
-							break;
-    				}
-    			});
-    		}    		    		
-    		
-	    	components.add(mi);
-	    	menuItem.setRefreshCallback(()->mi.configure(menuItem));
-		}
-    	
-		return components.toArray(new Component[] {});
+	private MenuItemComponent createComponent(MenuItem menuItem) {
+		MenuItemComponent mi = new MenuItemComponent(menuItem);
+		menuItem.getSubMenuItems().stream().map(this::createComponent).forEach(mi::add);
+				
+		if (menuItem.getSubMenuItems().isEmpty()) {
+			mi.addMouseClickEvent(ev->{    				
+				switch (ev.getButton()) {
+					case LEFT:
+						Optional.ofNullable(menuItem.getCommand()).ifPresent(Command::execute);
+						close();
+						break;
+					case MIDDLE:
+						Optional.ofNullable(menuItem.getMiddleButtonCommand()).ifPresent(Command::execute);
+						close();
+						break;
+					case RIGHT:
+						Optional.ofNullable(menuItem.getRightButtonCommand()).ifPresent(Command::execute);
+						break;
+				}
+			});
+		}    		    		
+		    	
+    	menuItem.setRefreshCallback(()->mi.configure(menuItem));
+    	return mi; 
 	}
 	
 	/**Close the app-drawer.*/

@@ -2,6 +2,7 @@
 
 <link rel="import" href="../vaadin-themable-mixin/vaadin-themable-mixin.html">
 <link rel="import" href="../paper-item/paper-icon-item.html">
+<link rel="import" href="../iron-collapse-button/iron-collapse-button.html">	
 	
 <dom-module id="fc-menuitem">
 	<template>
@@ -16,14 +17,24 @@
 			:host(.iron-selected) paper-icon-item {
 				font-weight: var(--paper-item-selected-weight, bold);
 			}
-		</style>		 
-		<paper-icon-item role="option" disabled="[[disabled]]">
-	  		<iron-icon src="[[image]]" icon="[[icon]]" slot="item-icon"></iron-icon>
-	  		<template is="dom-if" if="[[label]]">
-	  			<span>[[label]]</span>
-	  		</template>
-	  		<slot></slot>
-	  	</paper-icon-item>
+			:host paper-icon-item {
+				width: 100%;
+			}
+		</style>
+			  	 
+		<iron-collapse-button id="iron" no-icons="true">
+	  		<paper-icon-item slot="collapse-trigger" role="option" disabled="[[disabled]]">
+		  		<iron-icon src="[[image]]" icon="[[icon]]" slot="item-icon"></iron-icon>
+		  		<template is="dom-if" if="[[label]]">
+		  			<span>[[label]]</span>
+		  		</template>
+		  		<slot id="slot"></slot>
+		  	</paper-icon-item>
+ 		  	<div slot="collapse-content" class="sub-menu">
+		  		<slot id="submenu" name="collapse-content"></slot>
+		  	</div>		  	
+	  	</iron-collapse-button>
+	  		
 	</template>
 	
 	<script>
@@ -36,13 +47,15 @@
 		  			label : String,
 					icon : String,
 					image : String,
-					/*--Command command;*/
-					/*--List<MenuItem> subMenuItems = new ArrayList<>();*/
 					disabled: Boolean,
 		  			hasIcon: {
 		  				type: Boolean,
 		  				reflectToAttribute: true,
-		  				computed: '__hasIcon()'
+		  				computed: '__hasIcon(src,icon)'
+		  			},
+		  			isSubmenu: {
+		  				type: Boolean,
+		  				reflectToAttribute: true,
 		  			}
 		  		}
 	  		}
@@ -61,8 +74,7 @@
 						return false;
 		  			}
 	    		});
-	    		this.addEventListener('mouseup', (event) => {
-	    			console.log('up '+event.button);
+	    		this.addEventListener('mouseup', (event) => {	    			
 	    			this.dispatchEvent(new CustomEvent('item-click', {bubbles: true, detail: event.button}));
 	    			event.preventDefault();
 					return false;
@@ -76,6 +88,24 @@
 	  			return this.src || this.icon;
 	  		}
 
+	 	    connectedCallback() {
+	  			super.connectedCallback();
+	  			this.$.slot.addEventListener('slotchange', this.__bindSubmenu.bind(this));
+    		}
+	 	    
+	 	    __bindSubmenu() {
+  				this.$.slot.assignedNodes().forEach( e => {
+  					if (e.tagName.toLowerCase()==MenuItem.is) {
+  						e.slot='collapse-content';
+  					}
+  				});
+  				this.isSubmenu=this.$.submenu.assignedNodes().length>0;
+  				if (this.isSubmenu) {
+  					this.$.iron.removeAttribute('no-icons');	  					
+  				} else {
+  					this.$.iron.setAttribute('no-icons','true');
+  				}
+  			}
 		}
 		
 		customElements.define(MenuItem.is, MenuItem);
