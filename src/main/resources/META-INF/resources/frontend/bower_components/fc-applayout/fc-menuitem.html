@@ -9,6 +9,7 @@
 		<style>
 			:host {
 				cursor: pointer;
+				display: block;
 				--paper-item-disabled-color: var(--lumo-disabled-text-color);
 			}
 			:host(:not([has-icon])) {
@@ -19,6 +20,9 @@
 			}
 			:host paper-icon-item {
 				width: 100%;
+			}
+			:host iron-collapse-button {
+				background: inherit;
 			}
 		</style>
 			  	 
