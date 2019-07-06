@@ -62,12 +62,11 @@
 	  		
 	  		constructor() {
 	  		    super();
-	  		  	this.addEventListener('focus', (event) => {	  		    	    
-	  		    	this.root.children[1].focus();
-	  		  	});
-		  		this.addEventListener('click', (event) => {	  		    	    
-	  		    	this.root.children[1].focus();	  		    	
-	  		  	});
+				var listener = (event) => {
+					this.$.iron.$.trigger.children[0].assignedNodes()[0].focus();
+				};
+				this.addEventListener('focus', listener);
+				this.addEventListener('click', listener);
 		  		this.addEventListener('mousedown', (event) => {
 		  			if (event.button==1) {
 		  				event.preventDefault();
