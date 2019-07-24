@@ -23,7 +23,6 @@ package com.flowingcode.addons.applayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.Div;

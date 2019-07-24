@@ -25,7 +25,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
+import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
+import com.flowingcode.vaadin.addons.ironicons.IronIcons;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -163,7 +164,7 @@ public class DemoView extends VerticalLayout {
 
 	private MenuItem[] createMenuItems() {
 		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
-		MenuItem toggleSettings = new MenuItem("", "settings");
+		MenuItem toggleSettings = new MenuItem().setIcon("settings");
 		toggleSettings.setCommand(() -> {
 			settings.setEnabled(!settings.isEnabled());
 			miSettings.setEnabled(settings.isEnabled());
@@ -177,14 +178,15 @@ public class DemoView extends VerticalLayout {
 		toggleSettings.getCommand().execute();
 		
 		return new MenuItem[] {
+				//icon as VaadinIcon enum
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
-					.setMiddleButtonCommand(()->{
+					.setCommand(MouseButton.MIDDLE, ()->{
 						getUI().ifPresent(ui->ui.getPage().executeJavaScript("window.open(window.location.href, '_blank')"));
 					}),
 				toggleSettings,
 				mi,
-				new MenuItem("About", "cloud", () -> showContent("About")),
-				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()), 
+				new MenuItem("About", "cloud", () -> showContent("About")), //icon as string
+				new MenuItem("Clear Items", IronIcons.CLEAR.getIconName(), () -> app.clearMenuItems()),  //icon from iron-icons addon
 				new MenuItem("Change Text & Icon", "cloud", () -> {
 					if (mi.getIcon().equals("star")) {
 						mi.setIcon("cloud");
@@ -194,13 +196,19 @@ public class DemoView extends VerticalLayout {
 						mi.setLabel("Say hello");
 					}
 				}),
-				new MenuItem("SubMenu", "build", 
+				
+				new MenuItem("SubMenu")
+					.setIcon("build")
+					.add( 
 						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
 						new MenuItem("And Again",()->showContent("And Again!")),
-						new MenuItem("SubMenu",
-								new MenuItem("Hello Again",()->showContent("Hello Again!")),
-								new MenuItem("And Again",()->showContent("And Again!")))
+						new MenuItem("SubMenu")
+							.add(new MenuItem("Hello Again",()->showContent("Hello Again!")))
+							.add(new MenuItem("And Again",()->showContent("And Again!")))
 						),
+					
+				new MenuItem("------"),
+				
 				new MenuItem("Item 1"),
 				new MenuItem("Item 2"),
 				new MenuItem("Item 3"),
@@ -223,7 +231,7 @@ public class DemoView extends VerticalLayout {
 		label.setSizeFull();
 		label.setText(content);
 		PaperCard pc = new PaperCard(label, new MenuItem("Delete", () -> Notification.show("Delete action from card")),
-				new MenuItem("Delete", "delete", () -> Notification.show("Delete action from card")));
+				new MenuItem("Delete", () -> Notification.show("Delete action from card")).setIcon("delete"));
 		pc.setWidth("100%");
 		container.add(pc);
 	}

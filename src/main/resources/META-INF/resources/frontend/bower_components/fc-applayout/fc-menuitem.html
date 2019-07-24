@@ -4,6 +4,12 @@
 <link rel="import" href="../paper-item/paper-icon-item.html">
 <link rel="import" href="../iron-collapse-button/iron-collapse-button.html">	
 	
+<style>
+	fc-menuitem.iron-selected > iron-collapse-button > .iron-collapse-button > paper-icon-item {			
+		font-weight: var(--paper-item-selected-weight, bold);
+	}
+</style>
+	
 <dom-module id="fc-menuitem">
 	<template>
 		<style>
@@ -15,7 +21,7 @@
 			:host(:not([has-icon])) {
 				--paper-item-icon-width: 0;
 			}		
-			:host(.iron-selected) paper-icon-item {
+			:host(.iron-selected) > iron-collapse-button > paper-icon-item {
 				font-weight: var(--paper-item-selected-weight, bold);
 			}
 			:host paper-icon-item {
@@ -35,7 +41,7 @@
 		  		<slot id="slot"></slot>
 		  	</paper-icon-item>
  		  	<div slot="collapse-content" class="sub-menu">
-		  		<slot id="submenu" name="collapse-content"></slot>
+		  		<slot id="submenu" name="submenu"></slot>
 		  	</div>		  	
 	  	</iron-collapse-button>
 	  		
@@ -90,18 +96,21 @@
 	  		__hasIcon() {
 	  			return this.src || this.icon;
 	  		}
-
-	 	    connectedCallback() {
-	  			super.connectedCallback();
-	  			this.$.slot.addEventListener('slotchange', this.__bindSubmenu.bind(this));
+	  		
+	 	    connectedCallback () {
+	 	    	super.connectedCallback ();
+	  			var handler = this.__bindSubmenu.bind(this);
+	  			this.$.slot.addEventListener('slotchange', handler);
+	  			setTimeout(handler);
     		}
 	 	    
 	 	    __bindSubmenu() {
   				this.$.slot.assignedNodes().forEach( e => {
   					if (e.tagName.toLowerCase()==MenuItem.is) {
-  						e.slot='collapse-content';
+  						e.slot='submenu';
   					}
   				});
+
   				this.isSubmenu=this.$.submenu.assignedNodes().length>0;
   				if (this.isSubmenu) {
   					this.$.iron.removeAttribute('no-icons');	  					

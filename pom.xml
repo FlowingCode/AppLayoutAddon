@@ -115,6 +115,14 @@
 		    <artifactId>iron-collapse-button</artifactId>
 		    <version>1.0.1</version>
 		</dependency>
+		
+		<!-- DEMO -->
+		<dependency>
+			<groupId>com.flowingcode.addons</groupId>
+    		<artifactId>iron-icons</artifactId>
+    		<version>1.0.1</version>
+    		<scope>test</scope>
+		</dependency>
     </dependencies>
 
     <build>

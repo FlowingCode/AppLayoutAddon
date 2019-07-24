@@ -23,15 +23,12 @@ package com.flowingcode.addons.applayout;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.html.H4;
-import com.vaadin.flow.server.Command;
 import com.vaadin.flow.shared.Registration;
 
 /**
@@ -58,9 +55,7 @@ public class AppDrawer extends Component implements HasComponents {
     	this.header = headerComponent;
     	getElement().setAttribute("id", "drawer");
     	setSwipeOpen(true);
-    	this.add(headerComponent);
-    	this.add(pm);
-    	
+    	    	
     	Registration[] r = new Registration[1];
     	r[0] = getElement().addEventListener("app-drawer-transitioned", ev->{
     		//need to adjust the height after the drawer has been rendered
@@ -69,43 +64,47 @@ public class AppDrawer extends Component implements HasComponents {
     	});
     	
     	getElement().getStyle().set("--fc-separator-background-color", "var(--app-drawer-content-container_-_background-color)");
+    	removeAll();
     }
     	
     public void setSwipeOpen(boolean swipeOpen) {
     	getElement().setAttribute("swipe-open", swipeOpen);
 	}
 
+    @Override
+    public void add(Component... components) {
+    	for (Component c : components) {
+    		if (c instanceof MenuItem) {
+    			pm.add(c);
+    		} else {
+    			HasComponents.super.add(components);    			
+    		}
+    	}
+    }  
+    
+    @Override
+    public void remove(Component... components) {
+    	for (Component c : components) {
+    		if (c instanceof MenuItem) {
+    			pm.removeAll();
+    		} else {
+    			HasComponents.super.remove(components);    			
+    		}
+    	}    	
+    }
+    
+    @Override
+    public void removeAll() {
+    	HasComponents.super.removeAll();
+    	this.add(header);
+    	this.add(pm);
+    }
+    
 	public void setMenuItems(List<MenuItem> menuItems) {
 		pm.removeAll();
-    	menuItems.stream().map(this::createComponent).forEach(pm::add);
+    	menuItems.stream().forEach(pm::add);
     }
 
-	private MenuItemComponent createComponent(MenuItem menuItem) {
-		MenuItemComponent mi = new MenuItemComponent(menuItem);
-		menuItem.getSubMenuItems().stream().map(this::createComponent).forEach(mi::add);
-				
-		if (menuItem.getSubMenuItems().isEmpty()) {
-			mi.addMouseClickEvent(ev->{    				
-				switch (ev.getButton()) {
-					case LEFT:
-						Optional.ofNullable(menuItem.getCommand()).ifPresent(Command::execute);
-						close();
-						break;
-					case MIDDLE:
-						Optional.ofNullable(menuItem.getMiddleButtonCommand()).ifPresent(Command::execute);
-						close();
-						break;
-					case RIGHT:
-						Optional.ofNullable(menuItem.getRightButtonCommand()).ifPresent(Command::execute);
-						break;
-				}
-			});
-		}    		    		
-		    	
-    	menuItem.setRefreshCallback(()->mi.configure(menuItem));
-    	return mi; 
-	}
-	
 	/**Close the app-drawer.*/
 	public void close() {
 		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$0.close()", this));
