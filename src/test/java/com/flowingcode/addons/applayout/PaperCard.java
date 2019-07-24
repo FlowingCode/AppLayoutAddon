@@ -24,7 +24,6 @@ package com.flowingcode.addons.applayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
