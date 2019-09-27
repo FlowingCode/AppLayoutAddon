@@ -22,6 +22,7 @@ package com.flowingcode.addons.applayout;
 
 
 import java.net.URL;
+import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -43,15 +44,19 @@ public class CollapseButton extends Component implements HasComponents {
 		this(label, null, null, items);
 	}
 
+	/** @deprecated (for removal) */
+	@Deprecated
 	public CollapseButton(String label, URL image, Component...items) {
-		this(label, null, image, items);
+		this(label, null, Optional.ofNullable(image).map(URL::toExternalForm).orElse(null), items);
 	}
 	
+	/** @deprecated (for removal) */
+	@Deprecated
 	public CollapseButton(String label, String icon, Component...items) {
 		this(label,icon,null,items);
 	}
 	
-	public CollapseButton(String label, String icon, URL image, Component...items) {
+	public CollapseButton(String label, String icon, String image, Component...items) {		
 		if (icon==null && image==null) {
 			PaperItem pi = new PaperItem(label);
 			configureAndAddItem(pi);
@@ -74,5 +79,5 @@ public class CollapseButton extends Component implements HasComponents {
 		pi.setWidth("100%");
 		this.add(pi);			
 	}
-
+	
 }

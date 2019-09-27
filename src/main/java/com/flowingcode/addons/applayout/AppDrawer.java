@@ -81,20 +81,20 @@ public class AppDrawer extends Component implements HasComponents {
 	private Component[] createComponents(List<MenuItem> menuItems) {
 		List<Component> components = new ArrayList<>();
     	for (MenuItem menuItem : menuItems) {
-    		if (menuItem.isSubMenuFolder()) {
+    		if (!menuItem.getSubMenuItems().isEmpty()) {
     			components.add(collectMenus(menuItem));
     		} else {
-    			if (menuItem.getIcon()==null && menuItem.getImageURL()==null) {
+    			if (menuItem.getIcon()==null && menuItem.getImage()==null) {
     				PaperItem pi = new PaperItem(menuItem.getLabel(),menuItem.getCommand(), this);
     				pi.setEnabled(menuItem.isEnabled());
     				components.add(pi);
     				menuItem.setRefreshCallback(()->pi.setText(menuItem.getLabel()));
     			} else {
     				PaperIconItem pi;
-    				if (menuItem.getImageURL()!=null) {
-    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getImageURL() ,menuItem.getCommand(), this);
+    				if (menuItem.getImage()!=null) {
+    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getImage(), menuItem.getCommand(), this);
     				} else {
-    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getIcon() ,menuItem.getCommand(), this);
+    					pi = new PaperIconItem(menuItem.getLabel(), menuItem.getIcon(), menuItem.getCommand(), this);
     				}
     				
     				components.add(pi);
@@ -112,7 +112,7 @@ public class AppDrawer extends Component implements HasComponents {
 	private CollapseButton collectMenus(MenuItem topMenuItem) {
 		List<MenuItem> menuItems = topMenuItem.getSubMenuItems();
     	Component[] components = createComponents(menuItems);
-    	CollapseButton collapseButton = new CollapseButton(topMenuItem.getLabel(), topMenuItem.getIcon(), topMenuItem.getImageURL(), components);
+    	CollapseButton collapseButton = new CollapseButton(topMenuItem.getLabel(), topMenuItem.getIcon(), topMenuItem.getImage(), components);
     	collapseButton.setEnabled(topMenuItem.isEnabled());
     	return collapseButton;
 	}

@@ -163,7 +163,7 @@ public class DemoView extends VerticalLayout {
 
 	private MenuItem[] createMenuItems() {
 		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
-		MenuItem toggleSettings = new MenuItem("", "settings");
+		MenuItem toggleSettings = new MenuItem().setIcon("settings");
 		toggleSettings.setCommand(() -> {
 			settings.setEnabled(!settings.isEnabled());
 			miSettings.setEnabled(settings.isEnabled());
@@ -177,6 +177,7 @@ public class DemoView extends VerticalLayout {
 		toggleSettings.getCommand().execute();
 		
 		return new MenuItem[] {
+				//icon as VaadinIcon enum
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent()),
 				toggleSettings,
 				mi,
@@ -191,10 +192,10 @@ public class DemoView extends VerticalLayout {
 						mi.setLabel("Say hello");
 					}
 				}),
-				new MenuItem("SubMenu", "build", 
+				new MenuItem("SubMenu").setIcon("build").add(
 						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
 						new MenuItem("And Again",()->showContent("And Again!")),
-						new MenuItem("SubMenu",
+						new MenuItem("SubMenu").add(
 								new MenuItem("Hello Again",()->showContent("Hello Again!")),
 								new MenuItem("And Again",()->showContent("And Again!")))
 						),
