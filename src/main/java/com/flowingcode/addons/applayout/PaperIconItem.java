@@ -42,7 +42,7 @@ import com.vaadin.flow.server.Command;
 @Tag("paper-icon-item")
 public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 	
-	private IronIcon ironIcon;
+	private com.vaadin.flow.component.icon.IronIcon ironIcon;
 	private Text text;
 	
 	public PaperIconItem(String title, String icon) {
@@ -71,13 +71,14 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 
 	private PaperIconItem(String title, String icon, URL image, Command command, AppDrawer appDrawer) {
 		this.setText("");
+		this.ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
+		ironIcon.getElement().setAttribute("slot", "item-icon");
 		if (image!=null) {
-			this.ironIcon = new IronIcon(image);
-			add(ironIcon);
+			setImage(image);
 		} else {
-			this.ironIcon = new IronIcon(icon);
-			add(ironIcon);
+			setIcon(icon);
 		}
+		add(ironIcon);
 		this.text = new Text(title);
 		add(text);
 		if (command!=null) {
@@ -94,11 +95,13 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 	}
 	
 	public void setIcon(String icon) {
-		this.ironIcon.setIcon(icon);
+		ironIcon.getElement().removeAttribute("src");
+		ironIcon.getElement().setAttribute("icon", icon);
 	}
 	
 	public void setImage(URL image) {
-		this.ironIcon.setImage(image);
+		ironIcon.getElement().removeAttribute("icon");
+		ironIcon.getElement().setAttribute("src", image.toString());
 	}
 	
 }

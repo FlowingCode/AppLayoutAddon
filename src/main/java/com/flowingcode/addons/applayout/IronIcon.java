@@ -33,11 +33,12 @@ import com.vaadin.flow.component.dependency.HtmlImport;
  * Component that renders a paper-item
  * 
  * @author mlopez
- *
+ * @deprecated Use {@link com.vaadin.flow.component.icon.IronIcon}
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/iron-icon/iron-icon.html")
 @Tag("iron-icon")
+@Deprecated
 public class IronIcon extends Component implements HasText, HasSize {
 	
 	public IronIcon(String icon) {
