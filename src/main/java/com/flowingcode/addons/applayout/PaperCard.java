@@ -39,11 +39,12 @@ import com.vaadin.flow.dom.Element;
  * Component that renders a paper-card
  * 
  * @author mlopez
- *
+ * @deprecated This component will be removed in a future version. 
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-card/paper-card.html")
 @Tag("paper-card")
+@Deprecated
 public class PaperCard extends Component implements HasSize, HasStyle, ThemableLayout {
 
     private final Div cardContentDiv = new Div();

@@ -213,6 +213,7 @@ public class DemoView extends VerticalLayout {
 			};
 	}
 
+	@SuppressWarnings("deprecation")
 	private void showContent(String content) {
 		container.setClassName("");
 		container.removeAll();
@@ -225,6 +226,7 @@ public class DemoView extends VerticalLayout {
 		container.add(pc);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void showHamletContent() { 
 		InputStream in = this.getClass().getClassLoader().getResourceAsStream("hamlet");
 		String text = new BufferedReader(new InputStreamReader(in)).lines().collect(Collectors.joining("\n"));
