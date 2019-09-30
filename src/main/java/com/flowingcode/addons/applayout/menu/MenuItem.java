@@ -86,13 +86,18 @@ public class MenuItem {
 		this.setCommand(command);
 	}
 
-	/** Create a new instance of {@code MenuItem} with a label, an icon, and left-button command. */
+	/** Create a new instance of {@code MenuItem} with a label, an icon, and left-button command. 
+	    @deprecated (for removal) Use fluent API */
+	@Deprecated
 	public MenuItem(String label, String icon, Command command) {
 		setLabel(label);
 		setCommand(command);
 		setIcon(icon);
 	}
 
+	/** Create a new instance of {@code MenuItem} with a label, an image, and left-button command.
+	 *  @deprecated (for removal) Use fluent API */
+	@Deprecated
 	public MenuItem(String label, URL image, Command command) {
 		this.label = label;
 		this.command = command;

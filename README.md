@@ -38,6 +38,7 @@ To see the demo, navigate to http://localhost:8080/
 - **Version 1.0.5** Added support for: setting the header title and height, and configuring the header behavior on scroll, the drawer swipe-open behavior, and disabling menu items.
 - **Version 1.0.6** Added support for: making the menu list scrollable and support for image-based icons. API enhancements and fixes. 
 - **Version 1.0.7** Added abstract RouterLayout and style mouse pointer as a hand.
+- **Version 1.0.8** Deprecate methods for removal in future releases.
 
 ## Roadmap
 
