@@ -21,6 +21,7 @@ package com.flowingcode.addons.applayout;
 
 
 import java.net.URL;
+import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -84,8 +85,7 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 		if (command!=null) {
 			this.getElement().addEventListener("click", e->{
 				command.execute();
-				if (appDrawer!=null)
-					appDrawer.getUI().ifPresent(ui->ui.getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()"));
+				Optional.ofNullable(appDrawer).ifPresent(AppDrawer::toggle);
 			});
 		}
 	}

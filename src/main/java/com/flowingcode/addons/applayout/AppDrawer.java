@@ -63,7 +63,7 @@ public class AppDrawer extends Component implements HasComponents {
     	Registration[] r = new Registration[1];
     	r[0] = getElement().addEventListener("app-drawer-transitioned", ev->{
     		//need to adjust the height after the drawer has been rendered
-    		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$1.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header, pm));
+    		pm.getElement().executeJs("this.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header);
     		r[0].remove();
     	});
     }
@@ -116,5 +116,8 @@ public class AppDrawer extends Component implements HasComponents {
     	collapseButton.setEnabled(topMenuItem.isEnabled());
     	return collapseButton;
 	}
-    
+
+	void toggle() {
+		this.getElement().executeJs("this.toggle()");
+	}
 }

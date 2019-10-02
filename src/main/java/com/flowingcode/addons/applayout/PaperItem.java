@@ -21,6 +21,8 @@ package com.flowingcode.addons.applayout;
 
 
 
+import java.util.Optional;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.HasSize;
@@ -53,8 +55,9 @@ public class PaperItem extends Component implements HasEnabled, HasText, HasSize
 		if (command!=null) {
 			this.getElement().addEventListener("click", e->{
 				command.execute();
+				Optional.ofNullable(appDrawer).ifPresent(AppDrawer::toggle);
 				if (appDrawer!=null)
-					appDrawer.getUI().ifPresent(ui->ui.getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()"));
+					appDrawer.getElement().executeJs("this.toggle()");
 			});
 		}
 	}
