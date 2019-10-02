@@ -48,12 +48,11 @@ import com.vaadin.flow.router.Route;
 @SuppressWarnings("serial")
 @Route("")
 @HtmlImport("frontend://styles/shared-styles.html")
-@HtmlImport("frontend://bower_components/vaadin-icons/vaadin-icons.html")
 @CssImport("./styles/shared-styles.css")
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
-	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 10 Demo");
+	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
 	private final MenuItem miSettings = new MenuItem("Settings", this::openSettings).setIcon("settings");
 	
 	private final DemoSettings settings = new DemoSettings();
