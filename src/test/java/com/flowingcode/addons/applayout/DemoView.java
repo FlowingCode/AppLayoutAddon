@@ -29,6 +29,7 @@ import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
@@ -48,6 +49,7 @@ import com.vaadin.flow.router.Route;
 @Route("")
 @HtmlImport("frontend://styles/shared-styles.html")
 @HtmlImport("frontend://bower_components/vaadin-icons/vaadin-icons.html")
+@CssImport("./styles/shared-styles.css")
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();

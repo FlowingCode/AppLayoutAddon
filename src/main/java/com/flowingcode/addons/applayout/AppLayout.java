@@ -21,13 +21,14 @@ package com.flowingcode.addons.applayout;
 
 
 import java.util.ArrayList;
-
-
 import java.util.Arrays;
 
 import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.InitialPageSettings;
@@ -41,12 +42,18 @@ import com.vaadin.flow.server.PageConfigurator;
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/font-roboto/roboto.html")
-@HtmlImport("bower_components/iron-icons/iron-icons.html")
 @HtmlImport("bower_components/app-layout/app-scroll-effects/app-scroll-effects.html")
-@HtmlImport("bower_components/app-layout/app-toolbar/app-toolbar.html")
 @HtmlImport("frontend://styles/applayout-styles.html")
+@NpmPackage(value = "@polymer/app-layout", version=AppLayout.NPM_VERSION)
+@NpmPackage(value = "@polymer/font-roboto", version="3")
+@JsModule("@polymer/app-layout/app-drawer/app-drawer.js")
+@JsModule("@polymer/app-layout/app-scroll-effects/app-scroll-effects.js")
+@JsModule("@polymer/font-roboto/roboto.js")
+@CssImport("./styles/applayout-styles.css")
 public class AppLayout extends Div implements PageConfigurator {
 
+	final static String NPM_VERSION = "3.0.2";
+	
 	AppDrawer drawer;
 	AppHeader header;
 	

@@ -29,6 +29,8 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 
@@ -39,8 +41,13 @@ import com.vaadin.flow.component.html.Image;
  *
  */
 @SuppressWarnings("serial")
-@Tag("app-toolbar")
 @HtmlImport("bower_components/app-layout/app-toolbar/app-toolbar.html")
+@HtmlImport("bower_components/iron-icons/iron-icons.html")
+@NpmPackage(value = "@polymer/app-layout", version= AppLayout.NPM_VERSION)
+@NpmPackage(value = "@polymer/iron-icons", version = "^3.0.0")
+@JsModule("@polymer/app-layout/app-toolbar/app-toolbar.js")
+@JsModule("@polymer/iron-icons/iron-icons.js")
+@Tag("app-toolbar")
 public class AppToolbar extends Component implements HasComponents {
 	
 	private PaperIconButton menu;
