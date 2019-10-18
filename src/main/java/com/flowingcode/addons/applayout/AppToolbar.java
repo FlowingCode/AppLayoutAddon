@@ -60,7 +60,7 @@ public class AppToolbar extends Component implements HasComponents {
 
     public AppToolbar(Image logo, String title, AppDrawer drawer) {
     	menu = new PaperIconButton("menu");
-    	menu.getElement().setAttribute("onclick", "" + drawer.getId().get() + ".toggle()");
+    	drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
     	this.add(menu);
     	if (logo!=null) {
     		ctitle = logo;

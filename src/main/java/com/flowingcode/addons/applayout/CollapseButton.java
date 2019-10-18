@@ -41,14 +41,15 @@ public class CollapseButton extends Component implements HasComponents {
 		this(label, null, null, items);
 	}
 
+	@SuppressWarnings("squid:S2589")
 	public CollapseButton(String label, String icon, String image, Component...items) {		
 		if (icon==null && image==null) {
 			PaperItem pi = new PaperItem(label);
 			configureAndAddItem(pi);
-		} else if(image!=null) {
+		} else if (image!=null) {
 			PaperIconItem pi = new PaperIconItem(label, image);
 			configureAndAddItem(pi);
-		} else if(icon!=null) {
+		} else if (icon!=null) {
 			PaperIconItem pi = new PaperIconItem(label, icon);
 			configureAndAddItem(pi);
 		}

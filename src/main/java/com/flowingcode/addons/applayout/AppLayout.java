@@ -52,7 +52,7 @@ import com.vaadin.flow.server.PageConfigurator;
 @CssImport("./styles/applayout-styles.css")
 public class AppLayout extends Div implements PageConfigurator {
 
-	final static String NPM_VERSION = "3.0.2";
+	static final String NPM_VERSION = "3.0.2";
 	
 	AppDrawer drawer;
 	AppHeader header;
