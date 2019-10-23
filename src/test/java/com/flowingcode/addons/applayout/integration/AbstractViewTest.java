@@ -1,4 +1,4 @@
-package org.vaadin.ext.javier;
+package com.flowingcode.addons.applayout.integration;
 
 import org.junit.Before;
 import org.junit.Rule;
