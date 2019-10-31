@@ -21,10 +21,7 @@ package com.flowingcode.addons.applayout.menu;
 
 
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -57,56 +54,17 @@ public class MenuItem {
 		this.setLabel(label);
 	}
 
-	/** @deprecated (for removal) Use fluent API. */
-	@Deprecated
-	public MenuItem(String label, MenuItem... subMenuItems) {
-		this.label = label;
-		this.subMenuItems = Arrays.asList(subMenuItems);
-	}
-	
-	/** @deprecated (for removal) Use fluent API. */
-	@Deprecated
-	public MenuItem(String label, String icon, MenuItem... subMenuItems) {
-		this.label = label;
-		this.icon = icon;
-		this.subMenuItems = Arrays.asList(subMenuItems);
-	}
-
-	/** @deprecated (for removal) Use fluent API */
-	@Deprecated
-	public MenuItem(String label, URL image, MenuItem... subMenuItems) {
-		this.label = label;
-		this.setImageURL(image);
-		this.subMenuItems = Arrays.asList(subMenuItems);
-	}
-
 	/** Create a new instance of {@code MenuItem} with a label and left-button command. */
 	public MenuItem(String label, Command command) {
 		this.setLabel(label);
 		this.setCommand(command);
 	}
 
-	/** Create a new instance of {@code MenuItem} with a label, an icon, and left-button command. 
-	    @deprecated (for removal) Use fluent API */
-	@Deprecated
-	public MenuItem(String label, String icon, Command command) {
-		setLabel(label);
-		setCommand(command);
-		setIcon(icon);
-	}
-
-	/** Create a new instance of {@code MenuItem} with a label, an image, and left-button command.
-	 *  @deprecated (for removal) Use fluent API */
-	@Deprecated
-	public MenuItem(String label, URL image, Command command) {
-		this.label = label;
-		this.command = command;
-		this.setImageURL(image);
-	}
-	
 	/** Create a new instance of {@code MenuItem} with a label, a {@code VaadinIcon}, and left-button command. */
 	public MenuItem(String label, VaadinIcon icon, Command command) {
-		this(label, getIconName(icon), command);
+		this.label = label;
+		this.command = command;
+		setIcon(getIconName(icon));
 	}
 	
 	/**Adds the given menu items as children of this component.*/
@@ -161,15 +119,6 @@ public class MenuItem {
 	}
 
 	/**
-	 * @return true if this item has sub menu items
-	 * @deprecated (for removal)
-	 */
-	@Deprecated
-	public boolean isSubMenuFolder() {
-		return !getSubMenuItems().isEmpty();
-	}
-
-	/**
 	 * This allows you to configure a callback that is called whenever you change the label and icon
 	 * @param refreshCallback
 	 */
@@ -192,26 +141,6 @@ public class MenuItem {
 	public MenuItem setImage(String image) {
 		this.image = image;
 		return this;
-	}
-	
-	/** @deprecated (for removal) Use {@link #getImage}*/
-	@Deprecated
-	public URL getImageURL() {
-		if (this.image!=null) {
-			try {
-				return new URL(image);
-			} catch (MalformedURLException e) {
-				throw new IllegalStateException();
-			}
-		} else {
-			return null;
-		}
-	}
-
-	/** @deprecated (for removal) Use {@link #setImage(String)}*/
-	@Deprecated
-	public void setImageURL(URL imageURL) {
-		this.image = Optional.ofNullable(imageURL).map(URL::toExternalForm).orElse(null);
 	}
 
 }

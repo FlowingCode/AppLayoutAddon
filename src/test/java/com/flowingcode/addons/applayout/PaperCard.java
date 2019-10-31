@@ -31,6 +31,8 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.ThemableLayout;
 import com.vaadin.flow.dom.Element;
@@ -39,18 +41,19 @@ import com.vaadin.flow.dom.Element;
  * Component that renders a paper-card
  * 
  * @author mlopez
- * @deprecated This component will be removed in a future version. 
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-card/paper-card.html")
+@NpmPackage(value = "@polymer/paper-card", version = "3.0.1")
+@JsModule("@polymer/paper-card/paper-card.js")
 @Tag("paper-card")
-@Deprecated
 public class PaperCard extends Component implements HasSize, HasStyle, ThemableLayout {
 
     private final Div cardContentDiv = new Div();
 
     private final Div cardActionsDiv = new Div();
     
+    @SuppressWarnings("squid:S1604")
     private final HasComponents hasComponentsVersion = new HasComponents() {
 		@Override
 		public Element getElement() {
@@ -58,7 +61,7 @@ public class PaperCard extends Component implements HasSize, HasStyle, ThemableL
 		}
     };
 
-    protected PaperCard() {
+    public PaperCard() {
         this(null);
     }
 

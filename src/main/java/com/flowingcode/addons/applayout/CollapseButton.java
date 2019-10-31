@@ -21,14 +21,12 @@ package com.flowingcode.addons.applayout;
 
 
 
-import java.net.URL;
-import java.util.Optional;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 
 /**
@@ -36,7 +34,11 @@ import com.vaadin.flow.component.html.Div;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/iron-collapse-button/iron-collapse-button.html")
+//@NpmPackage(value="@polymer/iron-flex-layout")
+//@NpmPackage(value="@polymer/iron-iconset-svg")
+@NpmPackage(value="@polymer/iron-icon", version = "^3.0.1")
+@NpmPackage(value="@polymer/iron-collapse", version = "^3.0.1")
+@JsModule("./iron-collapse-button/iron-collapse-button.js")
 @Tag("iron-collapse-button")
 public class CollapseButton extends Component implements HasComponents {
 	
@@ -44,26 +46,15 @@ public class CollapseButton extends Component implements HasComponents {
 		this(label, null, null, items);
 	}
 
-	/** @deprecated (for removal) */
-	@Deprecated
-	public CollapseButton(String label, URL image, Component...items) {
-		this(label, null, Optional.ofNullable(image).map(URL::toExternalForm).orElse(null), items);
-	}
-	
-	/** @deprecated (for removal) */
-	@Deprecated
-	public CollapseButton(String label, String icon, Component...items) {
-		this(label,icon,null,items);
-	}
-	
+	@SuppressWarnings("squid:S2589")
 	public CollapseButton(String label, String icon, String image, Component...items) {		
 		if (icon==null && image==null) {
 			PaperItem pi = new PaperItem(label);
 			configureAndAddItem(pi);
-		} else if(image!=null) {
+		} else if (image!=null) {
 			PaperIconItem pi = new PaperIconItem(label, image);
 			configureAndAddItem(pi);
-		} else if(icon!=null) {
+		} else if (icon!=null) {
 			PaperIconItem pi = new PaperIconItem(label, icon);
 			configureAndAddItem(pi);
 		}

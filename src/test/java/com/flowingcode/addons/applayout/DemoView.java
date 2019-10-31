@@ -29,6 +29,7 @@ import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
@@ -47,12 +48,12 @@ import com.vaadin.flow.router.Route;
 @SuppressWarnings("serial")
 @Route("")
 @HtmlImport("frontend://styles/shared-styles.html")
-@HtmlImport("frontend://bower_components/vaadin-icons/vaadin-icons.html")
+@CssImport("./styles/shared-styles.css")
 public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
-	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 10 Demo");
-	private final MenuItem miSettings = new MenuItem("Settings", "settings", this::openSettings);
+	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
+	private final MenuItem miSettings = new MenuItem("Settings", this::openSettings).setIcon("settings");
 	
 	private final DemoSettings settings = new DemoSettings();
 	
@@ -162,7 +163,7 @@ public class DemoView extends VerticalLayout {
 	}
 
 	private MenuItem[] createMenuItems() {
-		MenuItem mi = new MenuItem("Say hello", "star", () -> showContent("Hello!"));
+		MenuItem mi = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
 		MenuItem toggleSettings = new MenuItem().setIcon("settings");
 		toggleSettings.setCommand(() -> {
 			settings.setEnabled(!settings.isEnabled());
@@ -181,9 +182,9 @@ public class DemoView extends VerticalLayout {
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent()),
 				toggleSettings,
 				mi,
-				new MenuItem("About", "cloud", () -> showContent("About")),
-				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()), 
-				new MenuItem("Change Text & Icon", "cloud", () -> {
+				new MenuItem("About", () -> showContent("About")).setIcon("cloud"),
+				new MenuItem("Clear Items", () -> app.clearMenuItems()).setIcon("clear"), 
+				new MenuItem("Change Text & Icon", () -> {
 					if (mi.getIcon().equals("star")) {
 						mi.setIcon("cloud");
 						mi.setLabel("Say hello modified");
@@ -191,9 +192,9 @@ public class DemoView extends VerticalLayout {
 						mi.setIcon("star");
 						mi.setLabel("Say hello");
 					}
-				}),
+				}).setIcon("cloud"),
 				new MenuItem("SubMenu").setIcon("build").add(
-						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
+						new MenuItem("Hello Again", ()->showContent("Hello Again!")).setIcon("inbox"),
 						new MenuItem("And Again",()->showContent("And Again!")),
 						new MenuItem("SubMenu").add(
 								new MenuItem("Hello Again",()->showContent("Hello Again!")),
@@ -222,7 +223,7 @@ public class DemoView extends VerticalLayout {
 		label.setSizeFull();
 		label.setText(content);
 		PaperCard pc = new PaperCard(label, new MenuItem("Delete", () -> Notification.show("Delete action from card")),
-				new MenuItem("Delete", "delete", () -> Notification.show("Delete action from card")));
+				new MenuItem("Delete", () -> Notification.show("Delete action from card")).setIcon("delete"));
 		pc.setWidth("100%");
 		container.add(pc);
 	}

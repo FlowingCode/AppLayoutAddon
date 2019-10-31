@@ -4,7 +4,7 @@
 
 # App Layout Add-on
 
-Vaadin 10 Java integration of https://github.com/PolymerElements/app-layout
+Vaadin Flow Java integration of https://github.com/PolymerElements/app-layout
 This addon is particularly usefull if you want to create a new application with some initial support for responsiveness.
 
 ## Features

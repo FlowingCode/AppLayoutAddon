@@ -27,6 +27,8 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 
 /**
  * Component that renders a paper-listbox
@@ -36,6 +38,8 @@ import com.vaadin.flow.component.dependency.HtmlImport;
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-listbox/paper-listbox.html")
+@NpmPackage(value = "@polymer/paper-listbox", version = "3.0.1")
+@JsModule("@polymer/paper-listbox/paper-listbox.js")
 @Tag("paper-listbox")
 public class PaperListbox extends Component implements HasOrderedComponents<PaperListbox> {
 	

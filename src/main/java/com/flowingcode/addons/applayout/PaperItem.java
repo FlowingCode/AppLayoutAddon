@@ -21,12 +21,16 @@ package com.flowingcode.addons.applayout;
 
 
 
+import java.util.Optional;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -37,6 +41,8 @@ import com.vaadin.flow.server.Command;
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-item/paper-item.html")
+@NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
+@JsModule("@polymer/paper-item/paper-item.js")
 @Tag("paper-item")
 public class PaperItem extends Component implements HasEnabled, HasText, HasSize {
 
@@ -53,8 +59,9 @@ public class PaperItem extends Component implements HasEnabled, HasText, HasSize
 		if (command!=null) {
 			this.getElement().addEventListener("click", e->{
 				command.execute();
+				Optional.ofNullable(appDrawer).ifPresent(AppDrawer::toggle);
 				if (appDrawer!=null)
-					appDrawer.getUI().ifPresent(ui->ui.getPage().executeJavaScript("" + appDrawer.getId().get() + ".toggle()"));
+					appDrawer.getElement().executeJs("this.toggle()");
 			});
 		}
 	}

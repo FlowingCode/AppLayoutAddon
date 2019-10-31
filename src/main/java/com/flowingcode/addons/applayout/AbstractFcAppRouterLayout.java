@@ -21,7 +21,6 @@ package com.flowingcode.addons.applayout;
 
 import java.util.Optional;
 
-import com.flowingcode.addons.applayout.AppLayout;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.html.Div;
@@ -73,7 +72,7 @@ public abstract class AbstractFcAppRouterLayout extends Div implements RouterLay
 		RouterLayout.super.showRouterLayoutContent(content);
 	}
 
-	private String getCaption(HasElement content) {
+	private static String getCaption(HasElement content) {
 		if (content instanceof HasDynamicTitle) {
 			return ((HasDynamicTitle)content).getPageTitle();
 		} else {

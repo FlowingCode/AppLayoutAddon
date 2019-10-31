@@ -30,6 +30,8 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.shared.Registration;
 
@@ -43,6 +45,8 @@ import com.vaadin.flow.shared.Registration;
 @Tag("app-drawer")
 @HtmlImport("bower_components/app-layout/app-drawer/app-drawer.html")
 @HtmlImport("bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html")
+@NpmPackage(value = "@polymer/app-layout", version= AppLayout.NPM_VERSION)
+@JsModule("@polymer/app-layout/app-drawer/app-drawer.js")
 public class AppDrawer extends Component implements HasComponents {
 	
 	private final PaperListbox pm = new PaperListbox(Collections.emptyList());
@@ -63,7 +67,7 @@ public class AppDrawer extends Component implements HasComponents {
     	Registration[] r = new Registration[1];
     	r[0] = getElement().addEventListener("app-drawer-transitioned", ev->{
     		//need to adjust the height after the drawer has been rendered
-    		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$1.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header, pm));
+    		pm.getElement().executeJs("this.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header);
     		r[0].remove();
     	});
     }
@@ -116,5 +120,8 @@ public class AppDrawer extends Component implements HasComponents {
     	collapseButton.setEnabled(topMenuItem.isEnabled());
     	return collapseButton;
 	}
-    
+
+	void toggle() {
+		this.getElement().executeJs("this.toggle()");
+	}
 }
