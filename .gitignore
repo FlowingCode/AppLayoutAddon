@@ -5,3 +5,8 @@
 /node_modules
 /webpack.generated.js
 /node
+/drivers
+/package-lock.json
+/webpack.config.js
+/package.json
+/error-screenshots
