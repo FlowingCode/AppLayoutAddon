@@ -32,6 +32,10 @@ img.applogo {
 	height: 22px;
 }
 
+.hamlet {
+	user-select: none;
+}
+
 .hamlet paper-card {
 	max-width: 600px;
 	min-width: 200px;
