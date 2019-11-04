@@ -63,7 +63,7 @@ Contributions are welcome, but there are no guarantees that they are accepted as
 
 Add-on is distributed under Apache License 2.0. For license terms, see LICENSE.txt.
 
-FilterableLayout is written by Flowing Code S.A.
+AppLayout is written by Flowing Code S.A.
 
 # Developer Guide
 
