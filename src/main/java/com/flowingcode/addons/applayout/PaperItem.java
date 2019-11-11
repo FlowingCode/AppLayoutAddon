@@ -60,8 +60,6 @@ public class PaperItem extends Component implements HasEnabled, HasText, HasSize
 			this.getElement().addEventListener("click", e->{
 				command.execute();
 				Optional.ofNullable(appDrawer).ifPresent(AppDrawer::toggle);
-				if (appDrawer!=null)
-					appDrawer.getElement().executeJs("this.toggle()");
 			});
 		}
 	}
