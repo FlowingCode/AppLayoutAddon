@@ -17,13 +17,14 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.addons.applayout;
+package com.flowingcode.addons.applayout.menu;
 
 
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.flowingcode.addons.applayout.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
@@ -82,9 +83,9 @@ public class PaperCard extends Component implements HasSize, HasStyle, ThemableL
             final List<Component> buttons = new ArrayList<>();
             for (final MenuItem menuItem : cardActions) {
                 if (menuItem.getIcon() != null) {
-                    buttons.add(new PaperIconButton(menuItem.getIcon(), menuItem.getCommand()));
+                    buttons.add(menuItem);
                 } else {
-                    buttons.add(new PaperButton(menuItem.getLabel(), menuItem.getCommand()));
+                    buttons.add(menuItem);
                 }
             }
             final Div inner = new Div();

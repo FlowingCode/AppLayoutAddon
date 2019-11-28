@@ -17,12 +17,12 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.addons.applayout;
+package com.flowingcode.addons.applayout.menu;
 
 
-import java.net.URL;
 import java.util.Optional;
 
+import com.flowingcode.addons.applayout.AppDrawer;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
@@ -32,6 +32,7 @@ import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -45,51 +46,22 @@ import com.vaadin.flow.server.Command;
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @JsModule("@polymer/paper-item/paper-icon-item.js")
 @Tag("paper-icon-item")
-public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
+class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 
 	private com.vaadin.flow.component.icon.IronIcon ironIcon;
 	private Text text;
 
-	public PaperIconItem(String title, String icon) {
-		this(title, icon, null, null ,null);
-	}
-
-	public PaperIconItem(String title, String icon, Command command) {
-		this(title, icon, null, command, null);
-	}
-
-	public PaperIconItem(String title, String icon, Command command, AppDrawer appDrawer) {
-		this(title, icon, null, command, appDrawer);
-	}
-
-	public PaperIconItem(String title, URL image) {
-		this(title, null, image, null ,null);
-	}
-
-	public PaperIconItem(String title, URL image, Command command) {
-		this(title, null, image, command, null);
-	}
-
-	public PaperIconItem(String title, URL image, Command command, AppDrawer appDrawer) {
-		this(title, null, image, command, appDrawer);
-	}
-
-	private PaperIconItem(String title, String icon, URL image, Command command, AppDrawer appDrawer) {
+	public PaperIconItem(String title) {
 		this.setText("");
-		this.ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
-		ironIcon.getElement().setAttribute("slot", "item-icon");
-		if (image!=null) {
-			setImage(image);
-		} else {
-			setIcon(icon);
-		}
-		add(ironIcon);
 		this.text = new Text(title);
 		add(text);
+	}
+
+	public void addCommand(Command command) {
 		if (command!=null) {
 			this.getElement().addEventListener("click", e->{
 				command.execute();
-				Optional.ofNullable(appDrawer).ifPresent(AppDrawer::close);
+				findAppDrawer(this).ifPresent(AppDrawer::close);
 			});
 		}
 	}
@@ -99,13 +71,45 @@ public class PaperIconItem extends Component implements HasComponents, HasText, 
 	}
 
 	public void setIcon(String icon) {
-		ironIcon.getElement().removeAttribute("src");
-		ironIcon.getElement().setAttribute("icon", icon);
+		withIronIcon(icon!=null).ifPresent(e->{
+			e.removeAttribute("src");
+			e.setAttribute("icon", icon);
+		});
 	}
 
-	public void setImage(URL image) {
-		ironIcon.getElement().removeAttribute("icon");
-		ironIcon.getElement().setAttribute("src", image.toString());
+	public void setImage(String image) {
+		withIronIcon(image!=null).ifPresent(e->{;
+			e.removeAttribute("icon");
+			e.setAttribute("src", image);
+		});
+	}
+
+	private Optional<Element> withIronIcon(boolean create) {
+		if (create) {
+			if (this.ironIcon==null) {
+				this.ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
+				ironIcon.getElement().setAttribute("slot", "item-icon");
+				add(ironIcon);
+			}
+			return Optional.of(ironIcon.getElement());
+		} else {
+			if (this.ironIcon!=null) {
+				remove(ironIcon);
+				this.ironIcon = null;
+			}
+			return Optional.empty();
+		}
+	}
+
+	private static Optional<AppDrawer> findAppDrawer(Component component) {
+		while (component!=null) {
+			if (component instanceof AppDrawer) {
+				return Optional.of((AppDrawer)component);
+			} else {
+				component = component.getParent().orElse(null);
+			}
+		}
+		return Optional.empty();
 	}
 
 }

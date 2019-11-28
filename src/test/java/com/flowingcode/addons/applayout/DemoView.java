@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
+import com.flowingcode.addons.applayout.menu.PaperCard;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -53,7 +54,8 @@ public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
 	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
-	private final MenuItem miSettings = new MenuItem("Settings", this::openSettings).setIcon("settings");
+	private final PaperIconButton miSettings = new PaperIconButton("settings", this::openSettings);
+	//private final MenuItem miSettings = new MenuItem("settings", this::openSettings);
 
 	private final DemoSettings settings = new DemoSettings();
 
@@ -161,23 +163,25 @@ public class DemoView extends VerticalLayout {
 		container.add(img,h4);
 		return container;
 	}
+	
+	private void toggleSettings(MenuItem toggleSettings) {
+		settings.setEnabled(!settings.isEnabled());
+		miSettings.setEnabled(settings.isEnabled());
+		app.setToolbarIconButtons(miSettings);
+		if (settings.isEnabled())  {
+			toggleSettings.setLabel("Disable settings");
+		} else {
+			toggleSettings.setLabel("Enable settings");
+		}		
+	}
 
 	private MenuItem[] createMenuItems() {
 
 		MenuItem mi = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
 
-		MenuItem toggleSettings = new MenuItem().setIcon("settings");
-		toggleSettings.setCommand(() -> {
-			settings.setEnabled(!settings.isEnabled());
-			miSettings.setEnabled(settings.isEnabled());
-			app.setToolbarIconButtons(miSettings);
-			if (settings.isEnabled())  {
-				toggleSettings.setLabel("Disable settings");
-			} else {
-				toggleSettings.setLabel("Enable settings");
-			}
-		});
-		toggleSettings.getCommand().execute();
+		MenuItem miToggleSettings = new MenuItem().setIcon("settings");
+		miToggleSettings.setCommand(() -> toggleSettings(miToggleSettings));
+		toggleSettings(miToggleSettings);
 
 		return new MenuItem[] {
 				//icon as VaadinIcon enum
@@ -185,7 +189,7 @@ public class DemoView extends VerticalLayout {
 					.setCommand(MouseButton.MIDDLE, ()->{
 						getUI().ifPresent(ui->ui.getPage().executeJs("window.open(window.location.href, '_blank')"));
 					}),
-				toggleSettings,
+					miToggleSettings,
 				mi,
 				new MenuItem("About", "cloud", () -> showContent("About")), //icon as string
 				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()),

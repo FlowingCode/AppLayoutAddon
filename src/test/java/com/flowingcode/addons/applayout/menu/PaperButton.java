@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,12 +17,11 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.addons.applayout;
+package com.flowingcode.addons.applayout.menu;
 
 
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -30,31 +29,30 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.server.Command;
 
 /**
- * Component that renders a paper-icon-button
- * 
+ * Component that renders a paper-button
+ *
  * @author mlopez
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-icon-button/paper-icon-button.html")
-@NpmPackage(value = "@polymer/paper-icon-button", version = "3.0.2")
-@JsModule("@polymer/paper-icon-button/paper-icon-button.js")
-@Tag("paper-icon-button")
-public class PaperIconButton extends Component implements HasEnabled {
+@HtmlImport("bower_components/paper-button/paper-button.html")
+@NpmPackage(value = "@polymer/paper-button", version = "3.0.1")
+@JsModule("@polymer/paper-button/paper-button.js")
+@Tag("paper-button")
+class PaperButton extends Component {
 
-    public PaperIconButton(String icon) {
-    	this.setIcon(icon);
+    public PaperButton(String label) {
+    	setLabel(label);
     }
 
-    public PaperIconButton(String icon, Command command) {
-    	this.setIcon(icon);
+    public PaperButton(String label, Command command) {
+    	this.setLabel(label);
 		this.getElement().addEventListener("click", e->command.execute());
     }
 
-    public void setIcon(String icon) {
-    	this.getElement().setAttribute("icon", icon);
-    
+    public void setLabel(String label) {
+    	this.getElement().setText(label);
     }
-    
-    
+
+
 }

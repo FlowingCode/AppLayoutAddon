@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,9 +20,6 @@
 package com.flowingcode.addons.applayout;
 
 
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -35,7 +32,7 @@ import com.vaadin.flow.component.html.Image;
 
 /**
  * Component that renders the app toolbar
- * 
+ *
  * @author mlopez
  *
  */
@@ -48,17 +45,17 @@ import com.vaadin.flow.component.html.Image;
 @JsModule("@polymer/iron-icons/iron-icons.js")
 @Tag("app-toolbar")
 public class AppToolbar extends Component implements HasComponents {
-	
-	private PaperIconButton menu;
+
+	private ToolbarIconButton menu;
 	private Component ctitle;
 	private Div divTitle;
-	
+
     public AppToolbar(String title, AppDrawer drawer) {
     	this(null,title, drawer);
     }
 
     public AppToolbar(Image logo, String title, AppDrawer drawer) {
-    	menu = new PaperIconButton("menu");
+    	menu = new ToolbarIconButton().setIcon("menu");    	
     	drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
     	this.add(menu);
     	if (logo!=null) {
@@ -75,29 +72,17 @@ public class AppToolbar extends Component implements HasComponents {
     	divTitle.setText(title);
     }
 
-	public void setToolbarIconButtons(MenuItem[] menuItems) {		
+	public void setToolbarIconButtons(Component... components) {
 		this.removeAll();
 		this.add(menu);
 		if (ctitle!=null) this.add(ctitle);
 		if (divTitle!=null) this.add(divTitle);
-		this.add(menuItems);
+		this.add(components);
 	}
 	
-	/*
-	private static List<PaperIconButton> createToolbarIconButtons(MenuItem[] menuItems) {
-		
-        List<PaperIconButton> result = new ArrayList<>();
-        for (MenuItem menuItem : menuItems) {
-                PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(), menuItem.getCommand());
-               	paperIconButton.setEnabled(menuItem.isEnabled());
-                result.add(paperIconButton);
-        }
-        return result;
-	}*/
-
 	public void setMenuIconVisible(boolean visible) {
 		menu.setVisible(visible);
 	}
 
-    
+
 }

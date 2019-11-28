@@ -93,8 +93,8 @@ public class AppLayout extends Div implements PageConfigurator {
 		drawer.setMenuItems(new ArrayList<MenuItem>());
 	}
 	
-	public void setToolbarIconButtons(MenuItem... menuItems) {
-		header.setToolbarIconButtons(menuItems);
+	public void setToolbarIconButtons(Component... components) {
+		header.setToolbarIconButtons(components);
 	}
 	
 	public void setMenuVisible(boolean visible) {

@@ -21,8 +21,9 @@ package com.flowingcode.addons.applayout;
 
 
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+import java.util.Optional;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -104,14 +105,24 @@ public class AppDrawer extends Component implements HasComponents {
     	this.add(pm);
     }
     
-	public void setMenuItems(List<MenuItem> menuItems) {
+	public void setMenuItems(Collection<MenuItem> menuItems) {
 		pm.removeAll();
     	menuItems.stream().forEach(pm::add);
     }
 
 	/**Close the app-drawer.*/
 	public void close() {
-		getUI().ifPresent(ui->ui.getPage().executeJavaScript("$0.close()", this));
+		getUI().ifPresent(ui->ui.getPage().executeJs("$0.close()", this));
 	}
-	
+
+	static Optional<AppDrawer> findAppDrawer(Component component) {
+		while (component!=null) {
+			if (component instanceof AppDrawer) {
+				return Optional.of((AppDrawer)component);
+			} else {
+				component = component.getParent().orElse(null);
+			}
+		}
+		return Optional.empty();
+	}
 }
