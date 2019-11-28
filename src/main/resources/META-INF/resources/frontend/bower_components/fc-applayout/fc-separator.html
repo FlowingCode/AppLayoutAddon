@@ -1,0 +1,61 @@
+<!doctype html>
+
+<link rel="import" href="../vaadin-themable-mixin/vaadin-themable-mixin.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
+
+<!--
+Styles: 
+	--fc-separator-background-color 
+	--fc-separator-border-color	
+	--fc-separator-text-padding
+-->	
+<dom-module id="fc-separator">
+	<!-- 
+	Based on https://stackoverflow.com/a/28434792/1297272
+	(C) 2015 CC-BY-SA https://stackoverflow.com/users/677418/sleek-geek
+	-->
+	<template>
+		<style>
+			:host {
+			    display: flex;
+    			justify-content: center;
+    		}
+			:host div {
+				width: 100%;
+				text-align: center;
+				position: relative;
+				background-color: var(--fc-separator-background-color, white);
+			}
+			
+			:host div:after {
+				content: '';
+				width: 100%;
+				border-bottom: solid 1px var(--fc-separator-border-color, black);
+				position: absolute;
+				left: 0;
+				top: 50%;
+				z-index: 1;
+			}
+			
+			:host span {
+				background-color: var(--fc-separator-background-color, white);
+				width: auto;
+				display: inline-block;
+				z-index: 3;
+				padding: 0 var(--fc-separator-text-padding, 8px) 0 var(--fc-separator-text-padding, 8px);
+				position: relative;
+			}
+		</style>
+		<div>
+			<span><slot></slot></span>
+		</div>
+	</template>
+	
+	<script>
+		class MenuSeparator extends Vaadin.ThemableMixin(Polymer.Element) {
+	  		static get is() { return 'fc-separator'; }
+		}
+		
+		customElements.define(MenuSeparator.is, MenuSeparator);
+	</script>
+</dom-module> 

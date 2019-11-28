@@ -20,36 +20,17 @@
 
 
 <custom-style>
-    <!-- This is where your App's styling should go. You can use .css files too. -->
+
     <style>
-		.sub-menu{
-			background-color: var(--lumo-primary-color-10pct);
-		}
-		
 		app-toolbar {
 		  background-color: #4285f4;
-		      color: #fff;
+          color: #fff;
 		}
-		
-		paper-icon-button + [main-title] {
-		  margin-left: 24px;
-		}
-		
-		paper-icon-button {
-			--paper-icon-button-disabled-text: var(--lumo-disabled-text-color);
-		}
-		
-		paper-progress {
-		  display: block;
-		      width: 100%;
-		      --paper-progress-active-color: rgba(255, 255, 255, 0.5);
-		      --paper-progress-container-color: transparent;
-		}
-		
+			
 		app-header {
 		  position: var(--layout-fixed-top_-_position); top: var(--layout-fixed-top_-_top); left: var(--layout-fixed-top_-_left); right: var(--layout-fixed-top_-_right);
-		      color: #fff;
-		      --app-header-background-rear-layer_-_background-color:  #ef6c00;;
+		  color: #fff;
+		  --app-header-background-rear-layer_-_background-color: #ef6c00;
 		  z-index: 1000;
 		}
 		
@@ -58,15 +39,24 @@
 			z-index: 1000;
 		}
 		
+		app-drawer fc-separator {
+			margin: 0 8px;
+		}
+			
 		app-drawer paper-listbox {
 			overflow-y: auto;
+			scroll-snap-type: y mandatory;
 		}
 
-		app-drawer paper-item, 
-		app-drawer paper-icon-item,
-		app-drawer iron-collapse-button {
-			cursor: pointer;
+		app-drawer paper-listbox > * {
+	  		scroll-snap-align: start;
+	  		scroll-snap-stop: always;
+	  		display: block;
+		}		
+
+		fc-menuitem fc-menuitem {
+			background-color: var(--lumo-primary-color-10pct);
 		}
-		
-    </style>
+    </style>    
 </custom-style>
+

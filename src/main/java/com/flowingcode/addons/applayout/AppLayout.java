@@ -23,7 +23,6 @@ package com.flowingcode.addons.applayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.HtmlImport;
@@ -54,8 +53,8 @@ public class AppLayout extends Div implements PageConfigurator {
 
 	static final String NPM_VERSION = "3.0.2";
 	
-	AppDrawer drawer;
-	AppHeader header;
+	private AppDrawer drawer;
+	private AppHeader header;
 	
 	public AppLayout(String title) {
 		drawer = new AppDrawer(title);
@@ -131,4 +130,5 @@ public class AppLayout extends Div implements PageConfigurator {
 	public void setSwipeOpen(boolean swipeOpen) {
 		drawer.setSwipeOpen(swipeOpen);
 	}
+	
 }

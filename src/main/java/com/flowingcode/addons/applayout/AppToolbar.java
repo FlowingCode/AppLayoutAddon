@@ -24,7 +24,6 @@ package com.flowingcode.addons.applayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
@@ -76,25 +75,25 @@ public class AppToolbar extends Component implements HasComponents {
     	divTitle.setText(title);
     }
 
-	public void setToolbarIconButtons(MenuItem[] menuItems) {
-		List<PaperIconButton> toolbarIconButtons = createToolbarIconButtons(menuItems);
+	public void setToolbarIconButtons(MenuItem[] menuItems) {		
 		this.removeAll();
 		this.add(menu);
 		if (ctitle!=null) this.add(ctitle);
 		if (divTitle!=null) this.add(divTitle);
-		toolbarIconButtons.forEach(this::add);
+		this.add(menuItems);
 	}
-
+	
+	/*
 	private static List<PaperIconButton> createToolbarIconButtons(MenuItem[] menuItems) {
+		
         List<PaperIconButton> result = new ArrayList<>();
         for (MenuItem menuItem : menuItems) {
-                PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(),menuItem.getCommand());
+                PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(), menuItem.getCommand());
                	paperIconButton.setEnabled(menuItem.isEnabled());
-                menuItem.setRefreshCallback(() -> paperIconButton.setIcon(menuItem.getIcon()));
                 result.add(paperIconButton);
         }
         return result;
-}
+	}*/
 
 	public void setMenuIconVisible(boolean visible) {
 		menu.setVisible(visible);
