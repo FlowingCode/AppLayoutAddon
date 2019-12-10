@@ -38,6 +38,10 @@ app-drawer {
     z-index: 1000;
 }
 
+fc-separator {
+  --fc-separator-border-color: rgba(0,0,20,0.6);
+}
+
 app-drawer paper-listbox {
     overflow-y: auto;
 }

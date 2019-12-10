@@ -67,8 +67,7 @@ public class AppDrawer extends Component implements HasComponents {
     		pm.getElement().executeJs("this.style.height='calc(100% - '+($0.scrollHeight+16)+'px)'", header);
     		r[0].remove();
     	});
-    	
-    	getElement().getStyle().set("--fc-separator-background-color", "var(--app-drawer-content-container_-_background-color)");
+    	    	
     	removeAll();
     }
     	
@@ -105,7 +104,7 @@ public class AppDrawer extends Component implements HasComponents {
     	this.add(pm);
     }
     
-	public void setMenuItems(Collection<MenuItem> menuItems) {
+	public void setMenuItems(Collection<? extends Component> menuItems) {
 		pm.removeAll();
     	menuItems.stream().forEach(pm::add);
     }

@@ -85,7 +85,7 @@ public class AppLayout extends Div implements PageConfigurator {
 		header.setHeight(height);
 	}
 
-	public void setMenuItems(MenuItem... menuitems) {
+	public void setMenuItems(Component... menuitems) {
 		drawer.setMenuItems(Arrays.asList(menuitems));
 	}
 	

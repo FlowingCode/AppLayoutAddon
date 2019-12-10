@@ -68,7 +68,7 @@ public class DemoView extends VerticalLayout {
 		this.setMargin(false);
 
 		app.setMenuItems(createMenuItems());
-
+		
 		app.setToolbarIconButtons(miSettings);
 		this.add(app, container);
 
@@ -175,7 +175,7 @@ public class DemoView extends VerticalLayout {
 		}		
 	}
 
-	private MenuItem[] createMenuItems() {
+	private Component[] createMenuItems() {
 
 		MenuItem mi = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
 
@@ -183,7 +183,7 @@ public class DemoView extends VerticalLayout {
 		miToggleSettings.setCommand(() -> toggleSettings(miToggleSettings));
 		toggleSettings(miToggleSettings);
 
-		return new MenuItem[] {
+		return new Component[] {
 				//icon as VaadinIcon enum
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
 					.setCommand(MouseButton.MIDDLE, ()->{
@@ -212,7 +212,7 @@ public class DemoView extends VerticalLayout {
 							.add(new MenuItem("And Again",()->showContent("And Again!")))
 						),
 
-				new MenuItem("------"),
+				new MenuSeparator(),
 
 				new MenuItem("Item 1"),
 				new MenuItem("Item 2"),
