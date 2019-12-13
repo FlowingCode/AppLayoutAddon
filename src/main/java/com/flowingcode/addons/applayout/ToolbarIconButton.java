@@ -21,7 +21,9 @@ package com.flowingcode.addons.applayout;
 
 
 
+import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.icon.IconFactory;
@@ -32,36 +34,32 @@ import com.vaadin.flow.server.Command;
  * 
  */
 @SuppressWarnings("serial")
-//@NpmPackage(value="@polymer/iron-icon", version = "^3.0.1")
-@NpmPackage(value="@polymer/iron-collapse", version = "^3.0.1")
-@JsModule("./iron-collapse-button/iron-collapse-button.js")
-@JsModule("./fc-applayout/fc-menuitem.js")
+@HtmlImport("bower_components/paper-icon-button/paper-icon-button.html")
+@NpmPackage(value = "@polymer/paper-icon-button", version = "3.0.2")
+@JsModule("@polymer/paper-icon-button/paper-icon-button.js")
 @Tag("paper-icon-button")
-public class ToolbarIconButton extends SlottedMenuItem implements HasMenuItemCommands<ToolbarIconButton>, HasMenuItemIcon<ToolbarIconButton> {
+public class ToolbarIconButton extends SlottedMenuItem implements 
+	HasEnabled, HasMenuItemCommands<ToolbarIconButton>, HasMenuItemIcon<ToolbarIconButton> {
 
 	/** No argument constructor */
 	public ToolbarIconButton() {}
-		
-	/** Create a new instance of {@code MenuItem} with a title. */
-	public ToolbarIconButton(String title) {
-		this.setTitle(title);
-	}
-
-	/** Create a new instance of {@code MenuItem} with a title and left-button command. */
-	public ToolbarIconButton(String title, Command command) {
-		this.setTitle(title);
+	
+	/** Create a new instance of {@code MenuItem} with a left-button command. */
+	public ToolbarIconButton(Command command) {
 		this.setCommand(command);
 	}
 
 	/** Create a new instance of {@code MenuItem} with a title, an {@code IconFactory}, and left-button command. */
 	public ToolbarIconButton(String title, IconFactory icon, Command command) {
-		this(title, command);
+		this(command);
+		setTitle(title);
 		setIcon(icon.create().getElement().getAttribute("icon"));
 	}
 	
 	/** Create a new instance of {@code MenuItem} with a title, an icon, and left-button command. */
 	public ToolbarIconButton(String title, String icon, Command command) {
-		this(title, command);
+		this(command);
+		setTitle(title);
 		setIcon(icon);
 	}
 

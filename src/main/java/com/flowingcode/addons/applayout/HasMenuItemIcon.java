@@ -11,7 +11,7 @@ interface HasMenuItemIcon<T extends HasMenuItemIcon<T>> extends HasElement {
 	public default T setIcon(String icon) {
 		if (icon!=null) {
 			getElement().setAttribute("icon", icon);
-			getElement().removeAttribute("image");
+			getElement().removeAttribute("src");
 		} else {
 			getElement().removeAttribute("icon");
 		}
@@ -22,15 +22,15 @@ interface HasMenuItemIcon<T extends HasMenuItemIcon<T>> extends HasElement {
 	}
 
 	public default String getImage() {
-		return getElement().getAttribute("image");
+		return getElement().getAttribute("src");
 	}
 
 	public default T setImage(String imageUrl) {
 		if (imageUrl!=null) {
-			getElement().setAttribute("image", imageUrl);
+			getElement().setAttribute("src", imageUrl);
 			getElement().removeAttribute("icon");
 		} else {
-			getElement().removeAttribute("image");
+			getElement().removeAttribute("src");
 		}
 		
 		@SuppressWarnings("unchecked")

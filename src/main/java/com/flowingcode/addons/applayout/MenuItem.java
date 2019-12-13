@@ -21,6 +21,8 @@ package com.flowingcode.addons.applayout;
 
 
 
+import java.util.function.Consumer;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
@@ -37,6 +39,7 @@ import com.vaadin.flow.server.Command;
  */
 @SuppressWarnings("serial")
 @NpmPackage(value="@polymer/iron-collapse", version = "^3.0.1")
+@NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @JsModule("./iron-collapse-button/iron-collapse-button.js")
 @JsModule("./fc-applayout/fc-menuitem.js")
 @Tag("fc-menuitem")
@@ -53,19 +56,31 @@ public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<Me
 	/** Create a new instance of {@code MenuItem} with a label and left-button command. */
 	public MenuItem(String label, Command command) {
 		this.setLabel(label);
-		this.setCommand(command);
+		this.setCommand(command);	
+	}
+	
+	/** Create a new instance of {@code MenuItem} with a label and an icon. */
+	public MenuItem(String label, String icon) {
+		this(label);
+		setIcon(icon);
 	}
 
+	/** Create a new instance of {@code MenuItem} with a label and an {@code IconFactory}. */
+	public MenuItem(String label, IconFactory icon) {
+		this(label);
+		setIcon(icon.create().getElement().getAttribute("icon"));
+	}
+	
 	/** Create a new instance of {@code MenuItem} with a label, an {@code IconFactory}, and left-button command. */
 	public MenuItem(String label, IconFactory icon, Command command) {
-		this(label, command);
-		setIcon(icon.create().getElement().getAttribute("icon"));
+		this(label, icon);
+		this.setCommand(command);
 	}
 	
 	/** Create a new instance of {@code MenuItem} with a label, an icon, and left-button command. */
 	public MenuItem(String label, String icon, Command command) {
-		this(label, command);
-		setIcon(icon);
+		this(label, icon);
+		this.setCommand(command);
 	}
 	
 	/**Adds the given menu items as children of this component.*/
@@ -95,6 +110,15 @@ public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<Me
 	public MenuItem setLabel(String label) {
 		getElement().setAttribute("label", label);
 		return this;
+	}
+
+	public MenuItem configure(Consumer<MenuItem> consumer) {
+		consumer.accept(this);
+		return this;
+	}
+
+	public void setIconSpacing(boolean value) {
+		setIcon("fc-menuitem-icons:empty");
 	}
 	
 }

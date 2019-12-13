@@ -58,3 +58,7 @@ img.applogo {
 	padding: 8px;
 	text-align: center;
 }
+
+menu-item vcf-toggle-button {
+	padding-bottom: 2px;
+}

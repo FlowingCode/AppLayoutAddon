@@ -16,24 +16,31 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 				display: block;
 				--paper-item-disabled-color: var(--lumo-disabled-text-color);
 			}
-			:host(:not([has-icon])) {
-				--paper-item-icon-width: 0;
-			}		
-			:host(.iron-selected) > iron-collapse-button > paper-icon-item {
+			:host(.iron-selected) #item {
 				font-weight: var(--paper-item-selected-weight, bold);
 			}
-			:host paper-icon-item {
+			:host #item {
 				width: 100%;
+				display: flex;
 			}
-			:host iron-collapse-button {
+			:host > iron-collapse-button {
 				background: inherit;
 			}
+			:host #label {
+				flex-grow: 1
+			}
 		</style>
-		
+	         	
+	    <iron-iconset-svg name="fc-menuitem-icons" size="24">
+			<svg><defs>
+			<g id="empty"></g>
+			</defs></svg>
+		</iron-iconset-svg>
+	
 		<iron-collapse-button no-icons="true">
-			<paper-icon-item slot="collapse-trigger" role="option" disabled="[[disabled]]">
-				<iron-icon src="[[image]]" icon="[[icon]]" slot="item-icon"></iron-icon>
-				<span>[[label]]</span>
+			<paper-icon-item id="item" slot="collapse-trigger" role="option" disabled="[[disabled]]">
+				<iron-icon src="[[src]]" icon="[[icon]]" slot="item-icon"></iron-icon>
+				<span id="label">[[label]]</span>
 				<slot></slot>
 			</paper-icon-item>
 			<div slot="collapse-content" class="sub-menu">
@@ -46,13 +53,20 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 		return {
 			key: String,
 			label : String,
-			icon  : String,
-			image : String,
+			src : {
+				type: String,
+				reflectToAttribute: true
+			},
+			icon  : {
+				type: String,
+				reflectToAttribute: true
+			},
 			disabled: Boolean,
 			hasIcon: {
 				type: Boolean,
 				reflectToAttribute: true,
-				computed: '__hasIcon(src,icon)'
+				computed: '__hasIcon(src,icon)',
+				observer: '__hasIconChanged'
 			},
 			isSubmenu: {
 				type: Boolean,
@@ -76,7 +90,6 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 			}
 		});
 		this.addEventListener('mouseup', (event) => {
-			this.dispatchEvent(new CustomEvent('item-click', {bubbles: true, detail: event.button}));
 			event.preventDefault();
 			return false;
 		});
@@ -84,17 +97,21 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 			event.preventDefault();
 		});
 	}
-	
+
+	__hasIconChanged(hasIcon) {
+		this.$.item.$.contentIcon.style.display=hasIcon?'flex':'none';
+	}
 	__hasIcon() {
 		return !!(this.src || this.icon);
 	}
-		
+
 	connectedCallback () {
 		super.connectedCallback ();
 		var slot = this.shadowRoot.querySelector("slot[name='menu-item']");
-		var handler = this.__bindSubmenu.bind(this);	
+		var handler = this.__bindSubmenu.bind(this);
 		slot.addEventListener('slotchange', handler);
-		setTimeout(handler);
+		handler();
+		this.__hasIconChanged(this.hasIcon);
 	}
 	
 	__bindSubmenu() {

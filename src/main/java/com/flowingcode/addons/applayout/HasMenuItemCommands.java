@@ -29,10 +29,10 @@ interface HasMenuItemCommands<T extends Component & HasMenuItemCommands<T>> exte
 						
 		data.commands.remove(button);
 		if (command!=null) {
-			Registration registration = getElement().addEventListener("item-click", ev->{
+			Registration registration = getElement().addEventListener("mouseup", ev->{
 				command.execute();
 				AppDrawer.findAppDrawer((Component)this).ifPresent(AppDrawer::close);
-			}).setFilter("event.detail=="+button.ordinal());
+			}).setFilter("event.button=="+button.ordinal());
 			data.commands.put(button, Pair.of(command, registration));			
 		}
 		

@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.PaperCard;
+import com.vaadin.componentfactory.ToggleButton;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -54,8 +55,7 @@ public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
 	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
-	private final PaperIconButton miSettings = new PaperIconButton("settings", this::openSettings);
-	//private final MenuItem miSettings = new MenuItem("settings", this::openSettings);
+	private final ToolbarIconButton miSettings = new ToolbarIconButton("Settings", "settings", this::openSettings);
 
 	private final DemoSettings settings = new DemoSettings();
 
@@ -177,29 +177,49 @@ public class DemoView extends VerticalLayout {
 
 	private Component[] createMenuItems() {
 
-		MenuItem mi = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
+		MenuItem miHello = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
 
 		MenuItem miToggleSettings = new MenuItem().setIcon("settings");
 		miToggleSettings.setCommand(() -> toggleSettings(miToggleSettings));
 		toggleSettings(miToggleSettings);
 
+		this.getElement().getStyle().set("--icon-spacing", "normal");
+		
 		return new Component[] {
+				
+				//left, middle and right commands
+				new MenuItem("Click", VaadinIcon.POINTER)
+					.setCommand(MouseButton.LEFT, ()->Notification.show("LEFT click"))
+					.setCommand(MouseButton.MIDDLE, ()->Notification.show("MIDDLE click"))
+					.setCommand(MouseButton.RIGHT, ()->Notification.show("RIGHT click")),
+				
+				new MenuItem("No icon"),
+				
+				new MenuItem("No icon, spaced").configure(mi->mi.setIconSpacing(true)),
+				
+				//menu item with custom content
+				new MenuItem("Toggle").configure(mi->mi.add(new ToggleButton())),
+					
+				new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi->mi.add(new ToggleButton())),
+				
+				new MenuItem("Toggle", "fc-menuitem-icons:empty").configure(mi->mi.add(new ToggleButton())),
+				
 				//icon as VaadinIcon enum
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
 					.setCommand(MouseButton.MIDDLE, ()->{
 						getUI().ifPresent(ui->ui.getPage().executeJs("window.open(window.location.href, '_blank')"));
 					}),
 					miToggleSettings,
-				mi,
+				miHello,
 				new MenuItem("About", "cloud", () -> showContent("About")), //icon as string
 				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()),
 				new MenuItem("Change Text & Icon", "cloud", () -> {
-					if (mi.getIcon().equals("star")) {
-						mi.setIcon("cloud");
-						mi.setLabel("Say hello modified");
+					if (miHello.getIcon().equals("star")) {
+						miHello.setIcon("cloud");
+						miHello.setLabel("Say hello modified");
 					} else {
-						mi.setIcon("star");
-						mi.setLabel("Say hello");
+						miHello.setIcon("star");
+						miHello.setLabel("Say hello");
 					}
 				}),
 				new MenuItem("SubMenu")
@@ -211,7 +231,7 @@ public class DemoView extends VerticalLayout {
 							.add(new MenuItem("Hello Again",()->showContent("Hello Again!")))
 							.add(new MenuItem("And Again",()->showContent("And Again!")))
 						),
-
+					
 				new MenuSeparator(),
 
 				new MenuItem("Item 1"),

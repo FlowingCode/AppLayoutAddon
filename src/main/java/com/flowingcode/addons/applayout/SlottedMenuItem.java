@@ -28,7 +28,7 @@ import com.vaadin.flow.component.Component;
  * Menu item component.
  */
 @SuppressWarnings("serial")
-public class SlottedMenuItem extends Component {
+public abstract class SlottedMenuItem extends Component {
 
 	@Override
 	protected void onAttach(AttachEvent attachEvent) {

@@ -94,6 +94,12 @@
             </exclusions>
         </dependency>
         <dependency>
+   			<groupId>com.vaadin.componentfactory</groupId>
+   			<artifactId>togglebutton</artifactId>
+   			<version>1.0.0</version>
+   			<scope>test</scope>
+		</dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <scope>test</scope>
