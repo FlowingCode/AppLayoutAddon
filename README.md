@@ -5,17 +5,20 @@
 # App Layout Add-on
 
 Vaadin Flow Java integration of https://github.com/PolymerElements/app-layout
-This addon is particularly usefull if you want to create a new application with some initial support for responsiveness.
+This addon is particularly useful if you want to create a new application with some initial support for responsiveness.
 
 ## Features
 
-* Left side menu with hamburguer button, and now with support for sub-menus and icons
-* Toolbar icons
-* Paper-cards with icons
-
+* Left side menu with hamburguer button
+* Hierarchical menus with icons
+* Application header with logo, title and toolbar icons.
+* Menu separator
+* Support for left, middle and right click listeners.
+* Menu items accepts arbitrary content (such as checkboxes, or buttons)
+ 
 ## Online demo
 
-[Online demo here](http://addonsv10.flowingcode.com/applayout)
+[Online demo here](http://addonsv14.flowingcode.com/applayout)
 
 ## Download release
 
@@ -40,9 +43,9 @@ To see the demo, navigate to http://localhost:8080/
 - **Version 1.0.7** Added abstract RouterLayout and style mouse pointer as a hand.
 - **Version 1.0.8** Deprecate methods for removal in future releases.
 
-## Roadmap
-
-* Support for app-grid
+- **Version 2.1.0**
+ The `MenuItem` class in package `com.flowingcode.addons.applayout.menu` was replaced by a `MenuItem` component (in package `com.flowingcode.addons.applayout`), which renders an item in the lateral menu, and `ToolbarIconButton`, which is a clickable icon (without label) suitable for use in the AppToolbar part. Some custom CSS selectors that depended on the internal menu item structure may need to be rewritten.
+ Classes and methods deprecated in version 2.0 have been removed.
 
 ## Issue tracking
 
@@ -77,26 +80,21 @@ Adding menu items with sub-menus & icons:
 ```
 		app.setMenuItems(new MenuItem("Say hello", "star", () -> showContent("Hello!")),
 				new MenuItem("About", "cloud", () -> showContent("About")),
-				new MenuItem("SubMenu", "build", 
+				new MenuItem("SubMenu").setIcon("build").add( 
 						new MenuItem("Hello Again", "inbox",()->showContent("Hello Again!")),
 						new MenuItem("And Again",()->showContent("And Again!")),
-						new MenuItem("SubMenu",
+						new MenuItem("SubMenu").add(
 								new MenuItem("Hello Again",()->showContent("Hello Again!")),
-								new MenuItem("And Again",()->showContent("And Again!")))
-						));
+								new MenuItem("And Again",()->showContent("And Again!"))
+						)
+				)
+		);
 ```
 Toolbar icons:
 ```
-    	app.setToolbarIconButtons(new MenuItem("Delete", "delete", ()->Notification.show("Delete action")),
-    			new MenuItem("Search", "search", ()->Notification.show("Search action")),
-    			new MenuItem("Close", "close", ()->Notification.show("Close action"))
-    			);
-```
-Using paper-cards:
-```
-    	H3 label = new H3();
-    	label.setSizeFull();
-    	label.setText(content);
-    	PaperCard pc = new PaperCard(label,new MenuItem("Delete", "delete", ()->Notification.show("Delete action from card")));
-    	pc.setWidth("100%");
+    	app.setToolbarIconButtons(
+				new ToolbarIconButton("Delete", "delete", ()->Notification.show("Delete action")),
+    			new ToolbarIconButton("Search", "search", ()->Notification.show("Search action")),
+    			new ToolbarIconButton("Close", "close", ()->Notification.show("Close action"))
+    	);
 ```
