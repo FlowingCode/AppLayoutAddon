@@ -26,7 +26,7 @@ import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
-import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.icon.IconFactory;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -56,8 +56,8 @@ public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<Me
 		this.setCommand(command);
 	}
 
-	/** Create a new instance of {@code MenuItem} with a label, a {@code VaadinIcon}, and left-button command. */
-	public MenuItem(String label, VaadinIcon icon, Command command) {
+	/** Create a new instance of {@code MenuItem} with a label, an {@code IconFactory}, and left-button command. */
+	public MenuItem(String label, IconFactory icon, Command command) {
 		this(label, command);
 		setIcon(icon.create().getElement().getAttribute("icon"));
 	}
