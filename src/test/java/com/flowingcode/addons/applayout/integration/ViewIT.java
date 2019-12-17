@@ -28,6 +28,8 @@ public class ViewIT extends AbstractViewTest {
 		@Override
 		protected boolean matchesSafely(TestBenchElement item, Description mismatchDescription) {
 			String script = "let s=arguments[0].shadowRoot; return !!(s&&s.childElementCount)";
+			if (!item.getTagName().contains("-"))
+				return true;
 			if ((Boolean)item.getCommandExecutor().executeScript(script, item)) 
 				return true;
 			else {				
