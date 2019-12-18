@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.PaperCard;
-import com.vaadin.componentfactory.ToggleButton;
+import com.flowingcode.addons.applayout.menu.PaperToggle;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -177,7 +177,7 @@ public class DemoView extends VerticalLayout {
 
 	private Component[] createMenuItems() {
 
-		MenuItem miHello = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
+		MenuItem miHello = new MenuItem("More content", () -> showContent("Hello!")).setIcon("settings");
 
 		MenuItem miToggleSettings = new MenuItem().setIcon("settings");
 		miToggleSettings.setCommand(() -> toggleSettings(miToggleSettings));
@@ -198,11 +198,11 @@ public class DemoView extends VerticalLayout {
 				new MenuItem("No icon, spaced").configure(mi->mi.setIconSpacing(true)),
 				
 				//menu item with custom content
-				new MenuItem("Toggle").configure(mi->mi.add(new ToggleButton())),
+				new MenuItem("Toggle").configure(mi->mi.add(new PaperToggle())),
 					
-				new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi->mi.add(new ToggleButton())),
+				new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi->mi.add(new PaperToggle())),
 				
-				new MenuItem("Toggle", "fc-menuitem-icons:empty").configure(mi->mi.add(new ToggleButton())),
+				new MenuItem("Toggle", "fc-menuitem-icons:empty").configure(mi->mi.add(new PaperToggle())),
 				
 				//icon as VaadinIcon enum
 				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
