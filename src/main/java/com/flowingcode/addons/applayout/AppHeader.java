@@ -64,8 +64,12 @@ public class AppHeader extends Component implements HasComponents {
     	return appToolbar;
     }
 
-	public void setToolbarIconButtons(Component[] components) {
-		appToolbar.setToolbarIconButtons(components);
+    public void addToolbarIconButtons(Component... components) {
+		appToolbar.addToolbarIconButtons(components);
+	}
+	
+	public void clearToolbarIconButtons(Component... components) {
+		appToolbar.addToolbarIconButtons(components);
 	}
 
 	public void setMenuIconVisible(boolean visible) {

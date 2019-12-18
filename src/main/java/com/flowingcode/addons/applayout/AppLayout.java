@@ -94,7 +94,16 @@ public class AppLayout extends Div implements PageConfigurator {
 	}
 	
 	public void setToolbarIconButtons(Component... components) {
-		header.setToolbarIconButtons(components);
+		header.clearToolbarIconButtons();
+		header.addToolbarIconButtons(components);		
+	}
+	
+	public void addToolbarIconButtons(Component... components) {
+		header.addToolbarIconButtons(components);
+	}
+	
+	public void clearToolbarIconButtons() {
+		header.clearToolbarIconButtons();
 	}
 	
 	public void setMenuVisible(boolean visible) {

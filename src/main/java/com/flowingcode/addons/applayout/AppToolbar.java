@@ -57,27 +57,29 @@ public class AppToolbar extends Component implements HasComponents {
     public AppToolbar(Image logo, String title, AppDrawer drawer) {
     	menu = new ToolbarIconButton().setIcon("menu");    	
     	drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
-    	this.add(menu);
     	if (logo!=null) {
     		ctitle = logo;
-    		this.add(ctitle);
     	}
     	divTitle = new Div();
-    	divTitle.getElement().setAttribute("main-title", true);
-    	this.add(divTitle);
+    	divTitle.getElement().setAttribute("main-title", true);    	
     	setTitle(title);
+    	
+    	clearToolbarIconButtons();
     }
 
     public void setTitle(String title) {
     	divTitle.setText(title);
     }
 
-	public void setToolbarIconButtons(Component... components) {
+	public void clearToolbarIconButtons() {
 		this.removeAll();
 		this.add(menu);
 		if (ctitle!=null) this.add(ctitle);
 		if (divTitle!=null) this.add(divTitle);
-		this.add(components);
+	}
+	
+	public void addToolbarIconButtons(Component... components) {
+		this.add(components);		
 	}
 	
 	public void setMenuIconVisible(boolean visible) {
