@@ -11,6 +11,12 @@ class MenuSeparator extends ThemableMixin(PolymerElement) {
 	static get template() {
 
 		return html`
+		<style>
+			:host ::slotted(*) {
+				font-size: 80%;
+    			padding-left: 8px;
+			}
+		</style>		
 		<paper-divider></paper-divider>
 		<div><slot name="label"></slot></div>
 	`;}

@@ -1,9 +1,5 @@
-.sub-menu{
+fc-menuitem fc-menuitem {
   background-color: var(--lumo-primary-color-10pct);
-}
-
-fc-menuitem.iron-selected > iron-collapse-button > .iron-collapse-button > paper-icon-item {            
-  font-weight: var(--paper-item-selected-weight, bold);
 }
 
 app-toolbar {
@@ -38,16 +34,6 @@ app-drawer {
     z-index: 1000;
 }
 
-fc-separator {
-  --fc-separator-border-color: rgba(0,0,20,0.6);
-}
-
 app-drawer paper-listbox {
     overflow-y: auto;
-}
-
-app-drawer paper-item, 
-app-drawer paper-icon-item,
-app-drawer iron-collapse-button {
-    cursor: pointer;
 }
