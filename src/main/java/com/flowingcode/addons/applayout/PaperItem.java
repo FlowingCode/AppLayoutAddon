@@ -37,13 +37,14 @@ import com.vaadin.flow.server.Command;
  * Component that renders a paper-item
  * 
  * @author mlopez
- *
+ * @deprecated For removal.
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-item/paper-item.html")
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @JsModule("@polymer/paper-item/paper-item.js")
 @Tag("paper-item")
+@Deprecated
 public class PaperItem extends Component implements HasEnabled, HasText, HasSize {
 
 	public PaperItem(String title) {

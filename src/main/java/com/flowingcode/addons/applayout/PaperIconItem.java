@@ -38,13 +38,14 @@ import com.vaadin.flow.server.Command;
  * Component that renders a paper-item
  * 
  * @author mlopez
- *
+ * @deprecated For removal.
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-item/paper-icon-item.html")
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @JsModule("@polymer/paper-item/paper-icon-item.js")
 @Tag("paper-icon-item")
+@Deprecated
 public class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 	
 	private com.vaadin.flow.component.icon.IronIcon ironIcon;

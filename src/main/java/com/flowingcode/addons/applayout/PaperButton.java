@@ -32,13 +32,14 @@ import com.vaadin.flow.server.Command;
  * Component that renders a paper-button
  * 
  * @author mlopez
- *
+ * @deprecated For removal.
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-button/paper-button.html")
 @NpmPackage(value = "@polymer/paper-button", version = "3.0.1")
 @JsModule("@polymer/paper-button/paper-button.js")
 @Tag("paper-button")
+@Deprecated
 public class PaperButton extends Component {
 	
     public PaperButton(String label) {

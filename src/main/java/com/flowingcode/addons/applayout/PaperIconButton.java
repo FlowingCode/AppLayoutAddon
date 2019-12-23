@@ -33,13 +33,14 @@ import com.vaadin.flow.server.Command;
  * Component that renders a paper-icon-button
  * 
  * @author mlopez
- *
+ * @deprecated For removal.
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-icon-button/paper-icon-button.html")
 @NpmPackage(value = "@polymer/paper-icon-button", version = "3.0.2")
 @JsModule("@polymer/paper-icon-button/paper-icon-button.js")
 @Tag("paper-icon-button")
+@Deprecated
 public class PaperIconButton extends Component implements HasEnabled {
 
     public PaperIconButton(String icon) {

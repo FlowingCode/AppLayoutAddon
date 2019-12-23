@@ -31,7 +31,7 @@ import com.vaadin.flow.component.html.Div;
 
 /**
  * @author mlope
- *
+ * @deprecated For removal.
  */
 @SuppressWarnings("serial")
 //@NpmPackage(value="@polymer/iron-flex-layout")
@@ -40,6 +40,7 @@ import com.vaadin.flow.component.html.Div;
 @NpmPackage(value="@polymer/iron-collapse", version = "^3.0.1")
 @JsModule("./iron-collapse-button/iron-collapse-button.js")
 @Tag("iron-collapse-button")
+@Deprecated
 public class CollapseButton extends Component implements HasComponents {
 	
 	public CollapseButton(String label, PaperItem[] items) {
