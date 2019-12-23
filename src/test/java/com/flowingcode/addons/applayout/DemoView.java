@@ -232,7 +232,7 @@ public class DemoView extends VerticalLayout {
 							.add(new MenuItem("And Again",()->showContent("And Again!")))
 						),
 					
-				new MenuSeparator(),
+				new MenuSeparator("Separator"),
 
 				new MenuItem("Item 1"),
 				new MenuItem("Item 2"),
@@ -240,6 +240,9 @@ public class DemoView extends VerticalLayout {
 				new MenuItem("Item 4"),
 				new MenuItem("Item 5"),
 				new MenuItem("Item 6"),
+				
+				new MenuSeparator(),
+				
 				new MenuItem("Item 7"),
 				new MenuItem("Item 8"),
 				new MenuItem("Item 9"),
