@@ -1,6 +1,5 @@
 package com.flowingcode.addons.applayout;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.HasElement;
 
 public class AbstractLayoutDemo extends AbstractFcAppRouterLayout{
