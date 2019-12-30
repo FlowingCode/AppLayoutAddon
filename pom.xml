@@ -94,6 +94,13 @@
             </exclusions>
         </dependency>
         
+ 
+        <dependency>
+	        <groupId>com.github.mdre</groupId>
+		    <artifactId>flowquickpopup</artifactId>
+		    <version>1.0.1-SNAPSHOT</version>
+        </dependency>
+        
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>

@@ -70,6 +70,7 @@ public class DemoView extends VerticalLayout {
 		app.setMenuItems(createMenuItems());
 		
 		app.setToolbarIconButtons(miSettings);
+		app.addToolbarIconButtons(new ToolbarIconWithDropdown());
 		this.add(app, container);
 
 		settings.setSwipeOpen(true);
