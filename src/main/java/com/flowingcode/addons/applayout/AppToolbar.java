@@ -22,13 +22,14 @@ package com.flowingcode.addons.applayout;
 
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.dom.Element;
 
 /**
  * Component that renders the app toolbar
@@ -44,27 +45,65 @@ import com.vaadin.flow.component.html.Image;
 @JsModule("@polymer/app-layout/app-toolbar/app-toolbar.js")
 @JsModule("@polymer/iron-icons/iron-icons.js")
 @Tag("app-toolbar")
-public class AppToolbar extends Component implements HasComponents {
+public class AppToolbar extends Component {
 
 	private ToolbarIconButton menu;
-	private Component ctitle;
 	private Div divTitle;
+	private int index;
+
+	private HasOrderedComponents<AppToolbar> hasOrderedComponents = new HasOrderedComponents<AppToolbar>() {
+		@Override
+		public Element getElement() {
+			return AppToolbar.this.getElement();
+		}
+
+		@Override
+		public int getComponentCount() {
+			return (int) getChildren().count();
+		};
+
+		@Override
+		public Component getComponentAt(int index) {
+	        if (index < 0) {
+	            throw new IllegalArgumentException(
+	                    "The 'index' argument should be greater than or equal to 0. It was: "
+	                            + index);
+	        }
+	        return getChildren().sequential().skip(index).findFirst()
+	                .orElseThrow(() -> new IllegalArgumentException(
+	                        "The 'index' argument should not be greater than or equals to the number of children components. It was: "
+	                                + index));
+	    };
+
+	};
 
     public AppToolbar(String title, AppDrawer drawer) {
     	this(null,title, drawer);
     }
 
     public AppToolbar(Image logo, String title, AppDrawer drawer) {
-    	menu = new ToolbarIconButton().setIcon("menu");    	
+    	menu = new ToolbarIconButton().setIcon("menu");
+    	add(menu);
+
     	drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
     	if (logo!=null) {
-    		ctitle = logo;
+    		add(logo);
     	}
+
     	divTitle = new Div();
-    	divTitle.getElement().setAttribute("main-title", true);    	
+    	divTitle.getElement().setAttribute("main-title", true);
     	setTitle(title);
-    	
-    	clearToolbarIconButtons();
+    	add(divTitle);
+
+    	index = hasOrderedComponents.getComponentCount();
+    }
+
+    private void add(Component... components) {
+    	hasOrderedComponents.add(components);
+    }
+
+    private void addComponentAtIndex(int index, Component component) {
+    	hasOrderedComponents.addComponentAtIndex(index, component);
     }
 
     public void setTitle(String title) {
@@ -72,19 +111,21 @@ public class AppToolbar extends Component implements HasComponents {
     }
 
 	public void clearToolbarIconButtons() {
-		this.removeAll();
-		this.add(menu);
-		if (ctitle!=null) this.add(ctitle);
-		if (divTitle!=null) this.add(divTitle);
+		while (hasOrderedComponents.getComponentCount()>index) {
+			hasOrderedComponents.remove(hasOrderedComponents.getComponentAt(index));
+		}
 	}
-	
-	public void addToolbarIconButtons(Component... components) {
-		this.add(components);		
-	}
-	
+
 	public void setMenuIconVisible(boolean visible) {
 		menu.setVisible(visible);
 	}
 
+	public void addToolbarIconButtons(Component... components) {
+		this.add(components);
+	}
+
+	public void addToolbarIconButtonAsFirst(Component component) {
+		this.addComponentAtIndex(index, component);
+	}
 
 }

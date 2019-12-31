@@ -64,18 +64,6 @@ public class AppHeader extends Component implements HasComponents {
     	return appToolbar;
     }
 
-    public void addToolbarIconButtons(Component... components) {
-		appToolbar.addToolbarIconButtons(components);
-	}
-	
-	public void clearToolbarIconButtons(Component... components) {
-		appToolbar.addToolbarIconButtons(components);
-	}
-
-	public void setMenuIconVisible(boolean visible) {
-		appToolbar.setMenuIconVisible(visible);
-	}
-
 	/**Mantains the header fixed at the top so it never moves away.*/
 	public void setFixed(boolean fixed) {
 		this.getElement().setAttribute("fixed", fixed);
