@@ -2,14 +2,14 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2019 Flowing Code
+ * Copyright (C) 2018 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,22 +21,19 @@ package com.flowingcode.addons.applayout;
 
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.dom.Element;
 
 /**
  * Component that renders the app toolbar
- * 
+ *
  * @author mlopez
  *
  */
@@ -48,57 +45,87 @@ import com.vaadin.flow.component.html.Image;
 @JsModule("@polymer/app-layout/app-toolbar/app-toolbar.js")
 @JsModule("@polymer/iron-icons/iron-icons.js")
 @Tag("app-toolbar")
-public class AppToolbar extends Component implements HasComponents {
-	
-	private PaperIconButton menu;
-	private Component ctitle;
+public class AppToolbar extends Component {
+
+	private ToolbarIconButton menu;
 	private Div divTitle;
-	
+	private int index;
+
+	private HasOrderedComponents<AppToolbar> hasOrderedComponents = new HasOrderedComponents<AppToolbar>() {
+		@Override
+		public Element getElement() {
+			return AppToolbar.this.getElement();
+		}
+
+		@Override
+		public int getComponentCount() {
+			return (int) getChildren().count();
+		};
+
+		@Override
+		public Component getComponentAt(int index) {
+	        if (index < 0) {
+	            throw new IllegalArgumentException(
+	                    "The 'index' argument should be greater than or equal to 0. It was: "
+	                            + index);
+	        }
+	        return getChildren().sequential().skip(index).findFirst()
+	                .orElseThrow(() -> new IllegalArgumentException(
+	                        "The 'index' argument should not be greater than or equals to the number of children components. It was: "
+	                                + index));
+	    };
+
+	};
+
     public AppToolbar(String title, AppDrawer drawer) {
     	this(null,title, drawer);
     }
 
     public AppToolbar(Image logo, String title, AppDrawer drawer) {
-    	menu = new PaperIconButton("menu");
+    	menu = new ToolbarIconButton().setIcon("menu");
+    	add(menu);
+
     	drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
-    	this.add(menu);
     	if (logo!=null) {
-    		ctitle = logo;
-    		this.add(ctitle);
+    		add(logo);
     	}
+
     	divTitle = new Div();
     	divTitle.getElement().setAttribute("main-title", true);
-    	this.add(divTitle);
     	setTitle(title);
+    	add(divTitle);
+
+    	index = hasOrderedComponents.getComponentCount();
+    }
+
+    private void add(Component... components) {
+    	hasOrderedComponents.add(components);
+    }
+
+    private void addComponentAtIndex(int index, Component component) {
+    	hasOrderedComponents.addComponentAtIndex(index, component);
     }
 
     public void setTitle(String title) {
     	divTitle.setText(title);
     }
 
-	public void setToolbarIconButtons(MenuItem[] menuItems) {
-		List<PaperIconButton> toolbarIconButtons = createToolbarIconButtons(menuItems);
-		this.removeAll();
-		this.add(menu);
-		if (ctitle!=null) this.add(ctitle);
-		if (divTitle!=null) this.add(divTitle);
-		toolbarIconButtons.forEach(this::add);
+	public void clearToolbarIconButtons() {
+		while (hasOrderedComponents.getComponentCount()>index) {
+			hasOrderedComponents.remove(hasOrderedComponents.getComponentAt(index));
+		}
 	}
-
-	private static List<PaperIconButton> createToolbarIconButtons(MenuItem[] menuItems) {
-        List<PaperIconButton> result = new ArrayList<>();
-        for (MenuItem menuItem : menuItems) {
-                PaperIconButton paperIconButton = new PaperIconButton(menuItem.getIcon(),menuItem.getCommand());
-               	paperIconButton.setEnabled(menuItem.isEnabled());
-                menuItem.setRefreshCallback(() -> paperIconButton.setIcon(menuItem.getIcon()));
-                result.add(paperIconButton);
-        }
-        return result;
-}
 
 	public void setMenuIconVisible(boolean visible) {
 		menu.setVisible(visible);
 	}
 
-    
+	public void addToolbarIconButtons(Component... components) {
+		this.add(components);
+	}
+
+	public void addToolbarIconButtonAsFirst(Component component) {
+		this.addComponentAtIndex(index, component);
+	}
+
 }

@@ -1,0 +1,80 @@
+<!--
+  #%L
+  App Layout Addon
+  %%
+  Copyright (C) 2018 - 2020 Flowing Code
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  #L%
+  -->
+<!doctype html>
+
+<link rel="import" href="../vaadin-themable-mixin/vaadin-themable-mixin.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
+
+<!--
+Styles: 
+	--fc-separator-background-color 
+	--fc-separator-border-color	
+	--fc-separator-text-padding
+-->	
+<dom-module id="fc-separator">
+	<!-- 
+	Based on https://stackoverflow.com/a/28434792/1297272
+	(C) 2015 CC-BY-SA https://stackoverflow.com/users/677418/sleek-geek
+	-->
+	<template>
+		<style>
+			:host {
+			    display: flex;
+    			justify-content: center;
+    		}
+			:host div {
+				width: 100%;
+				text-align: center;
+				position: relative;
+				background-color: var(--fc-separator-background-color, white);
+			}
+			
+			:host div:after {
+				content: '';
+				width: 100%;
+				border-bottom: solid 1px var(--fc-separator-border-color, black);
+				position: absolute;
+				left: 0;
+				top: 50%;
+				z-index: 1;
+			}
+			
+			:host span {
+				background-color: var(--fc-separator-background-color, white);
+				width: auto;
+				display: inline-block;
+				z-index: 3;
+				padding: 0 var(--fc-separator-text-padding, 8px) 0 var(--fc-separator-text-padding, 8px);
+				position: relative;
+			}
+		</style>
+		<div>
+			<span><slot></slot></span>
+		</div>
+	</template>
+	
+	<script>
+		class MenuSeparator extends Vaadin.ThemableMixin(Polymer.Element) {
+	  		static get is() { return 'fc-separator'; }
+		}
+		
+		customElements.define(MenuSeparator.is, MenuSeparator);
+	</script>
+</dom-module> 

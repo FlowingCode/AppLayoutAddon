@@ -2,7 +2,7 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2019 Flowing Code
+ * Copyright (C) 2018 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ package com.flowingcode.addons.applayout;
 
 
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
@@ -64,14 +63,6 @@ public class AppHeader extends Component implements HasComponents {
     public AppToolbar getAppToolbar() {
     	return appToolbar;
     }
-
-	public void setToolbarIconButtons(MenuItem[] menuItems) {
-		appToolbar.setToolbarIconButtons(menuItems);
-	}
-
-	public void setMenuIconVisible(boolean visible) {
-		appToolbar.setMenuIconVisible(visible);
-	}
 
 	/**Mantains the header fixed at the top so it never moves away.*/
 	public void setFixed(boolean fixed) {

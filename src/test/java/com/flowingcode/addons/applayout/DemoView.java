@@ -2,14 +2,14 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2019 Flowing Code
+ * Copyright (C) 2018 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
+import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
+import com.flowingcode.addons.applayout.menu.PaperCard;
+import com.flowingcode.addons.applayout.menu.PaperToggle;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
@@ -53,10 +55,10 @@ public class DemoView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
 	private final AppLayout app = new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
-	private final MenuItem miSettings = new MenuItem("Settings", this::openSettings).setIcon("settings");
-	
+	private final ToolbarIconButton miSettings = new ToolbarIconButton("Settings", "settings", this::openSettings);
+
 	private final DemoSettings settings = new DemoSettings();
-	
+
 	public DemoView() {
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 		container.setSizeFull();
@@ -64,17 +66,17 @@ public class DemoView extends VerticalLayout {
 		this.setPadding(false);
 		this.setSpacing(false);
 		this.setMargin(false);
-	
-		app.setMenuItems(createMenuItems());			
+
+		app.setMenuItems(createMenuItems());
 		
 		app.setToolbarIconButtons(miSettings);
 		this.add(app, container);
-		
+
 		settings.setSwipeOpen(true);
 		settings.setMenuVisible(true);
 		settings.setReveals(true);
 		applySettings();
-		
+
 		showHamletContent();
 	}
 
@@ -84,7 +86,7 @@ public class DemoView extends VerticalLayout {
 		app.setSwipeOpen(settings.isSwipeOpen());
 		app.setFixed(settings.isFixed());
 		app.setReveals(settings.isReveals());
-		
+
 		if (settings.isCompact()) {
 			app.addClassName("compact");
 			app.setHeight("32px");
@@ -93,25 +95,25 @@ public class DemoView extends VerticalLayout {
 			app.setHeight("64px");
 		}
 	}
-	
+
 	private void openSettings() {
 		Dialog dialog = new Dialog();
 		H3 title = new H3("Demo settings");
 		title.getStyle().set("margin-top", "0");
 		dialog.add(title);
-		
+
 		Checkbox cbMenuVisible = new Checkbox("Menu visible");
 		Checkbox cbSwipeOpen = new Checkbox("Swipe Open");
 		Checkbox cbFixed = new Checkbox("Fixed");
 		Checkbox cbReveals = new Checkbox("Reveals");
 		Checkbox cbCompact = new Checkbox("Compact");
-		
+
 		cbMenuVisible.getElement().setAttribute("title", "Toggle visibility of the hamburguer icon.");
 		cbSwipeOpen.getElement().setAttribute("title", "When enabled, you can open the menu by swiping the left border of the screen.");
 		cbFixed.getElement().setAttribute("title", "When enabled, the header is fixed at the top so it never moves away.");
 		cbReveals.getElement().setAttribute("title", "When enabled, the header slides back when scrolling back up.");
 		cbCompact.getElement().setAttribute("title", "When enabled, the height of the header is set to 32px.");
-		
+
 		Binder<DemoSettings> binder = new Binder<>();
 		binder.forField(cbMenuVisible).bind(DemoSettings::isMenuVisible, DemoSettings::setMenuVisible);
 		binder.forField(cbSwipeOpen).bind(DemoSettings::isSwipeOpen, DemoSettings::setSwipeOpen);
@@ -121,26 +123,26 @@ public class DemoView extends VerticalLayout {
 		binder.setBean(this.settings);
 
 		VerticalLayout content = new VerticalLayout(
-				cbMenuVisible, 
+				cbMenuVisible,
 				cbSwipeOpen,
 				cbFixed,
 				cbReveals,
 				cbCompact);
 		content.setSpacing(false);
-		
+
 		HorizontalLayout buttons = new HorizontalLayout();
 		Button btnOk = new Button("OK",ev -> {
-			applySettings();			
+			applySettings();
 			dialog.close();
 		});
-		
+
 		Button btnCancel = new Button("Cancel", ev -> dialog.close());
 		btnOk.getElement().setAttribute("theme", "primary");
 		buttons.setSpacing(true);
 		buttons.add(btnOk, btnCancel);
 		buttons.setSpacing(true);
-		
-		dialog.add(content, buttons);			
+
+		dialog.add(content, buttons);
 		dialog.setSizeUndefined();
 		dialog.open();
 	}
@@ -150,7 +152,7 @@ public class DemoView extends VerticalLayout {
 		img.addClassName("applogo");
 		return img;
 	}
-	
+
 	private Component createAvatarComponent() {
 		Div container = new Div();
 		container.getElement().setAttribute("style", "text-align: center;");
@@ -161,51 +163,86 @@ public class DemoView extends VerticalLayout {
 		container.add(img,h4);
 		return container;
 	}
+	
+	private void toggleSettings(MenuItem toggleSettings) {
+		settings.setEnabled(!settings.isEnabled());
+		miSettings.setEnabled(settings.isEnabled());
+		app.setToolbarIconButtons(miSettings);
+		if (settings.isEnabled())  {
+			toggleSettings.setLabel("Disable settings");
+		} else {
+			toggleSettings.setLabel("Enable settings");
+		}		
+	}
 
-	private MenuItem[] createMenuItems() {
-		MenuItem mi = new MenuItem("Say hello", () -> showContent("Hello!")).setIcon("settings");
-		MenuItem toggleSettings = new MenuItem().setIcon("settings");
-		toggleSettings.setCommand(() -> {
-			settings.setEnabled(!settings.isEnabled());
-			miSettings.setEnabled(settings.isEnabled());
-			app.setToolbarIconButtons(miSettings);
-			if (settings.isEnabled())  {
-				toggleSettings.setLabel("Disable settings");
-			} else {
-				toggleSettings.setLabel("Enable settings");
-			}
-		});
-		toggleSettings.getCommand().execute();
+	private Component[] createMenuItems() {
+
+		MenuItem miHello = new MenuItem("More content", () -> showContent("Hello!")).setIcon("settings");
+
+		MenuItem miToggleSettings = new MenuItem().setIcon("settings");
+		miToggleSettings.setCommand(() -> toggleSettings(miToggleSettings));
+		toggleSettings(miToggleSettings);
+
+		this.getElement().getStyle().set("--icon-spacing", "normal");
 		
-		return new MenuItem[] {
+		return new Component[] {
+				
+				//left, middle and right commands
+				new MenuItem("Click", VaadinIcon.POINTER)
+					.setCommand(MouseButton.LEFT, ()->Notification.show("LEFT click"))
+					.setCommand(MouseButton.MIDDLE, ()->Notification.show("MIDDLE click"))
+					.setCommand(MouseButton.RIGHT, ()->Notification.show("RIGHT click")),
+				
+				new MenuItem("No icon"),
+				
+				new MenuItem("No icon, spaced").configure(mi->mi.setIconSpacing(true)),
+				
+				//menu item with custom content
+				new MenuItem("Toggle").configure(mi->mi.add(new PaperToggle())),
+					
+				new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi->mi.add(new PaperToggle())),
+				
+				new MenuItem("Toggle", "fc-menuitem-icons:empty").configure(mi->mi.add(new PaperToggle())),
+				
 				//icon as VaadinIcon enum
-				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent()),
-				toggleSettings,
-				mi,
-				new MenuItem("About", () -> showContent("About")).setIcon("cloud"),
-				new MenuItem("Clear Items", () -> app.clearMenuItems()).setIcon("clear"), 
-				new MenuItem("Change Text & Icon", () -> {
-					if (mi.getIcon().equals("star")) {
-						mi.setIcon("cloud");
-						mi.setLabel("Say hello modified");
+				new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
+					.setCommand(MouseButton.MIDDLE, ()->{
+						getUI().ifPresent(ui->ui.getPage().executeJs("window.open(window.location.href, '_blank')"));
+					}),
+					miToggleSettings,
+				miHello,
+				new MenuItem("About", "cloud", () -> showContent("About")), //icon as string
+				new MenuItem("Clear Items", "clear", () -> app.clearMenuItems()),
+				new MenuItem("Change Text & Icon", "cloud", () -> {
+					if (miHello.getIcon().equals("star")) {
+						miHello.setIcon("cloud");
+						miHello.setLabel("Say hello modified");
 					} else {
-						mi.setIcon("star");
-						mi.setLabel("Say hello");
+						miHello.setIcon("star");
+						miHello.setLabel("Say hello");
 					}
-				}).setIcon("cloud"),
-				new MenuItem("SubMenu").setIcon("build").add(
-						new MenuItem("Hello Again", ()->showContent("Hello Again!")).setIcon("inbox"),
+				}),
+				new MenuItem("SubMenu")
+					.setIcon("build")
+					.add(
+						new MenuItem("Hello Again", "inbox", ()->showContent("Hello Again!")),
 						new MenuItem("And Again",()->showContent("And Again!")),
-						new MenuItem("SubMenu").add(
-								new MenuItem("Hello Again",()->showContent("Hello Again!")),
-								new MenuItem("And Again",()->showContent("And Again!")))
+						new MenuItem("SubMenu")
+							.add(new MenuItem("Hello Again",()->showContent("Hello Again!")))
+							.add(new MenuItem("And Again",()->showContent("And Again!")))
 						),
+					
+				new MenuSeparator("Separator"),
+
 				new MenuItem("Item 1"),
 				new MenuItem("Item 2"),
 				new MenuItem("Item 3"),
 				new MenuItem("Item 4"),
 				new MenuItem("Item 5"),
 				new MenuItem("Item 6"),
+				
+				new MenuSeparator(),
+				
 				new MenuItem("Item 7"),
 				new MenuItem("Item 8"),
 				new MenuItem("Item 9"),
@@ -215,7 +252,6 @@ public class DemoView extends VerticalLayout {
 			};
 	}
 
-	@SuppressWarnings("deprecation")
 	private void showContent(String content) {
 		container.setClassName("");
 		container.removeAll();
@@ -227,26 +263,25 @@ public class DemoView extends VerticalLayout {
 		pc.setWidth("100%");
 		container.add(pc);
 	}
-	
-	@SuppressWarnings("deprecation")
-	private void showHamletContent() { 
+
+	private void showHamletContent() {
 		InputStream in = this.getClass().getClassLoader().getResourceAsStream("hamlet");
 		String text = new BufferedReader(new InputStreamReader(in)).lines().collect(Collectors.joining("\n"));
-		
+
 		container.removeAll();
 		container.setClassName("hamlet");
 		for (String block : text.split("\n\n")) {
 			if (block.startsWith("$")) {
-				
+
 			} else if (block.startsWith("[")) {
 				PaperCard card = new PaperCard();
 				card.setCardContent(new Span(block.substring(1, block.indexOf("]"))));
 				card.getElement().setAttribute("elevation", "0");
 				container.add(card);
 			} else {
-				PaperCard card = new PaperCard();				
+				PaperCard card = new PaperCard();
 				String ss[] = block.split("\\.",2);
-				card.setCardContent(new Div(new H5(ss[0]), new Span(ss[1])));				
+				card.setCardContent(new Div(new H5(ss[0]), new Span(ss[1])));
 				if (ss[0].equals("Claudius")) {
 					container.setHorizontalComponentAlignment(Alignment.END, card);
 					card.addClassName("claudius");
@@ -255,7 +290,8 @@ public class DemoView extends VerticalLayout {
 				}
 				container.add(card);
 			}
-		}		
+		}
 	}
 
 }
+

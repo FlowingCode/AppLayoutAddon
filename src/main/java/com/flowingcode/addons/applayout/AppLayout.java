@@ -2,7 +2,7 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2019 Flowing Code
+ * Copyright (C) 2018 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ package com.flowingcode.addons.applayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.flowingcode.addons.applayout.menu.MenuItem;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.HtmlImport;
@@ -54,8 +53,8 @@ public class AppLayout extends Div implements PageConfigurator {
 
 	static final String NPM_VERSION = "3.0.2";
 	
-	AppDrawer drawer;
-	AppHeader header;
+	private AppDrawer drawer;
+	private AppHeader header;
 	
 	public AppLayout(String title) {
 		drawer = new AppDrawer(title);
@@ -86,7 +85,7 @@ public class AppLayout extends Div implements PageConfigurator {
 		header.setHeight(height);
 	}
 
-	public void setMenuItems(MenuItem... menuitems) {
+	public void setMenuItems(Component... menuitems) {
 		drawer.setMenuItems(Arrays.asList(menuitems));
 	}
 	
@@ -94,13 +93,26 @@ public class AppLayout extends Div implements PageConfigurator {
 		drawer.setMenuItems(new ArrayList<MenuItem>());
 	}
 	
-	public void setToolbarIconButtons(MenuItem... menuItems) {
-		header.setToolbarIconButtons(menuItems);
+	public void setToolbarIconButtons(Component... components) {
+		header.getAppToolbar().clearToolbarIconButtons();
+		header.getAppToolbar().addToolbarIconButtons(components);
+	}
+	
+	public void addToolbarIconButtons(Component... components) {
+		header.getAppToolbar().addToolbarIconButtons(components);
+	}
+
+	public void addToolbarIconButtonAsFirst(Component component) {
+		header.getAppToolbar().addToolbarIconButtonAsFirst(component);
+	}
+
+	public void clearToolbarIconButtons() {
+		header.getAppToolbar().clearToolbarIconButtons();
 	}
 	
 	public void setMenuVisible(boolean visible) {
 		drawer.setVisible(visible);
-		header.setMenuIconVisible(visible);
+		header.getAppToolbar().setMenuIconVisible(visible);
 	}
 	
 	public boolean isMenuVisible() {
@@ -131,4 +143,5 @@ public class AppLayout extends Div implements PageConfigurator {
 	public void setSwipeOpen(boolean swipeOpen) {
 		drawer.setSwipeOpen(swipeOpen);
 	}
+	
 }

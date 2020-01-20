@@ -19,21 +19,26 @@
  */
 package com.flowingcode.addons.applayout;
 
-import com.vaadin.flow.component.HasElement;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.ComponentEvent;
 
-public class AbstractLayoutDemo extends AbstractFcAppRouterLayout{
+public class MouseClickEvent<T extends Component> extends ComponentEvent<T> {
 
-	@Override
-	protected void configure(AppLayout app) {
-		app.setMenuItems(
-			new MenuItem("Item 1"),
-			new MenuItem("Item 2")
-		);		
-	}
+	private static final long serialVersionUID = 1L;
 
-	@Override
-	public void showRouterLayoutContent(AppLayout app, HasElement content) {
-		super.showRouterLayoutContent(app, content);
+	public enum MouseButton {
+        LEFT, MIDDLE, RIGHT;
+    }
+
+	private MouseButton button;
+		
+	public MouseClickEvent(T source, MouseButton button, boolean fromClient) {
+		super(source, fromClient);
+    	this.button = button;
 	}
 	
+	public MouseButton getButton() {
+		return button;
+	}
+
 }

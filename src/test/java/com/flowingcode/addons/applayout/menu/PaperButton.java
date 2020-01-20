@@ -2,14 +2,14 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2019 Flowing Code
+ * Copyright (C) 2018 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,7 +17,7 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.addons.applayout;
+package com.flowingcode.addons.applayout.menu;
 
 
 
@@ -30,18 +30,17 @@ import com.vaadin.flow.server.Command;
 
 /**
  * Component that renders a paper-button
- * 
+ *
  * @author mlopez
- * @deprecated For removal.
+ *
  */
 @SuppressWarnings("serial")
 @HtmlImport("bower_components/paper-button/paper-button.html")
 @NpmPackage(value = "@polymer/paper-button", version = "3.0.1")
 @JsModule("@polymer/paper-button/paper-button.js")
 @Tag("paper-button")
-@Deprecated
-public class PaperButton extends Component {
-	
+class PaperButton extends Component {
+
     public PaperButton(String label) {
     	setLabel(label);
     }
@@ -54,6 +53,6 @@ public class PaperButton extends Component {
     public void setLabel(String label) {
     	this.getElement().setText(label);
     }
-    
-    
+
+
 }

@@ -2,7 +2,7 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2019 Flowing Code
+ * Copyright (C) 2018 - 2020 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,11 +40,13 @@ public abstract class AbstractFcAppRouterLayout extends Div implements RouterLay
 	private AppLayout app;
 
 	public AbstractFcAppRouterLayout() {
-		setSizeFull();
+		getElement().getStyle().set("width", "100%");
+		getElement().getStyle().set("height", "100vh");
 		getElement().getStyle().set("display", "flex");
 		getElement().getStyle().set("flex-direction", "column");
 		app = new AppLayout("");
 		app.setHeight("32px");
+		app.getElement().getStyle().set("flex-shrink", "0");
 		app.addClassName("compact");
 		app.setFixed(true);
 		app.setSwipeOpen(false);
