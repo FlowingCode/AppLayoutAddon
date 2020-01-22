@@ -13,9 +13,9 @@ This addon is particularly useful if you want to create a new application with s
 * Header with toolbar icons.
 * Hierarchical menus with icons (infinite level of submenus).
 * Application header with logo, title and toolbar icons.
-* Menu separator.
+* Menu separator with optional label.
 * Support for left, middle and right click listeners.
-* Menu items accepts arbitrary content (such as checkboxes, or buttons)
+* Menu items accept arbitrary content (such as checkboxes, or buttons)
 
 ## Online demo
 
