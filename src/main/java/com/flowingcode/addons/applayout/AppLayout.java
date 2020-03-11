@@ -44,7 +44,7 @@ import com.vaadin.flow.server.PageConfigurator;
 @HtmlImport("bower_components/app-layout/app-scroll-effects/app-scroll-effects.html")
 @HtmlImport("frontend://styles/applayout-styles.html")
 @NpmPackage(value = "@polymer/app-layout", version=AppLayout.NPM_VERSION)
-@NpmPackage(value = "@polymer/font-roboto", version="3")
+@NpmPackage(value = "@polymer/font-roboto", version="^3.0")
 @JsModule("@polymer/app-layout/app-drawer/app-drawer.js")
 @JsModule("@polymer/app-layout/app-scroll-effects/app-scroll-effects.js")
 @JsModule("@polymer/font-roboto/roboto.js")
