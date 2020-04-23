@@ -17,8 +17,9 @@
  * limitations under the License.
  * #L%
  */
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
+
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 import "@polymer/paper-item/paper-icon-item.js";

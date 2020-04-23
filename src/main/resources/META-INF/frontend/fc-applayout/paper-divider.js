@@ -38,8 +38,7 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
