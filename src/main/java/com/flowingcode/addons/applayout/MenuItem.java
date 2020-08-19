@@ -29,6 +29,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.icon.IconFactory;
+import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.Command;
 
 /**
@@ -58,7 +59,12 @@ public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<Me
 		this.setLabel(label);
 		this.setCommand(command);	
 	}
-	
+
+	/** Create a new instance of {@code MenuItem} with a label for the given navigation target. */
+	public MenuItem(String label, Class<? extends Component> navigationTarget) {
+		setLink(new RouterLink(label, navigationTarget));
+	}
+
 	/** Create a new instance of {@code MenuItem} with a label and an icon. */
 	public MenuItem(String label, String icon) {
 		this(label);
@@ -109,6 +115,17 @@ public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<Me
 
 	public MenuItem setLabel(String label) {
 		getElement().setAttribute("label", label);
+		return this;
+	}
+
+	public MenuItem setLink(RouterLink link) {
+		setLabel(link.getText());
+		setHref(link.getHref());
+		return this;
+	}
+
+	public MenuItem setHref(String href) {
+		getElement().setProperty("href", href);
 		return this;
 	}
 
