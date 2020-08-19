@@ -34,5 +34,3 @@ public class DemoView extends VerticalLayout implements BeforeEnterObserver {
 	}
 
 }
-
-
