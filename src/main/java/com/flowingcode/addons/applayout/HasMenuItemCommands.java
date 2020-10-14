@@ -19,6 +19,7 @@
  */
 package com.flowingcode.addons.applayout;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -32,7 +33,8 @@ import com.vaadin.flow.shared.Registration;
 
 interface HasMenuItemCommands<T extends Component & HasMenuItemCommands<T>> extends HasElement {
 
-	class Data {
+	class Data implements Serializable {
+		private static final long serialVersionUID = 1L;
 		private final EnumMap<MouseButton, Pair<Command, Registration>> commands = new EnumMap<>(MouseButton.class);
 	}
 		
