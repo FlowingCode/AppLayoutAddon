@@ -122,6 +122,12 @@ class MenuItem extends ThemableMixin(PolymerElement) {
 		};
 		this.addEventListener('focus', listener);
 		this.addEventListener('click', listener);
+		this.addEventListener('click', (event) => {
+			//https://stackoverflow.com/a/39245638/1297272
+			//this won't work if the browser doesn't supply path information (IE11)
+			var path = event.path || (event.composedPath && event.composedPath());
+			if (this.href && path && path[0].id!="label") this.shadowRoot.querySelector("a#label").click();
+		});
 		this.addEventListener('mousedown', (event) => {
 			if (event.button==1) {
 				event.preventDefault();
