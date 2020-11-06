@@ -44,6 +44,8 @@ app-drawer paper-listbox {
 
 img.applogo {
 	margin-right: 8px;
+	width:  48px;
+	height: 48px;	
 }
 
 .compact img.applogo {
@@ -81,3 +83,4 @@ img.applogo {
 menu-item vcf-toggle-button {
 	padding-bottom: 2px;
 }
+
