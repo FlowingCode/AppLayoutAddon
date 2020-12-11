@@ -172,14 +172,14 @@ public class ApplayoutDemoView extends VerticalLayout {
 
 				new MenuItem("No icon"),
 
-				new MenuItem("No icon, spaced").configure(mi -> mi.setIconSpacing(true)),
+				new MenuItem("No icon, spaced").configure(mi -> mi.setIconBlank()),
 
 				// menu item with custom content
 				new MenuItem("Toggle").configure(mi -> mi.add(new PaperToggle())),
 
 				new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi -> mi.add(new PaperToggle())),
 
-				new MenuItem("Toggle", "fc-menuitem-icons:empty").configure(mi -> mi.add(new PaperToggle())),
+				new MenuItem("Toggle", MenuItem.BLANK).configure(mi -> mi.add(new PaperToggle())),
 
 				new MenuItem("External link").setHref("http://www.google.com"),
 

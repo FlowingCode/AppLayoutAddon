@@ -46,6 +46,8 @@ import com.vaadin.flow.server.Command;
 @Tag("fc-menuitem")
 public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<MenuItem>, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
 
+	static final String BLANK = "fc-menuitem-icons:empty";
+
 	/** No argument constructor */
 	public MenuItem() {}
 		
@@ -134,9 +136,16 @@ public class MenuItem extends SlottedMenuItem implements HasOrderedComponents<Me
 		return this;
 	}
 
+	/**
+	 * @deprecated This method ignores the parameter. Use {@link #setIconBlank()}.
+	 */
+	@Deprecated
 	public void setIconSpacing(boolean value) {
-		setIcon("fc-menuitem-icons:empty");
+		setIcon(MenuItem.BLANK);
 	}
 	
+	public void setIconBlank() {
+		setIcon(MenuItem.BLANK);
+	}
 }
 
