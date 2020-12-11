@@ -60,7 +60,7 @@ public class AppToolbar extends Component {
 		@Override
 		public int getComponentCount() {
 			return (int) getChildren().count();
-		};
+		}
 
 		@Override
 		public Component getComponentAt(int index) {
@@ -73,7 +73,7 @@ public class AppToolbar extends Component {
 	                .orElseThrow(() -> new IllegalArgumentException(
 	                        "The 'index' argument should not be greater than or equals to the number of children components. It was: "
 	                                + index));
-	    };
+	    }
 
 	};
 

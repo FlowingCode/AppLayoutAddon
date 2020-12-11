@@ -89,7 +89,7 @@ public class AppLayout extends Div implements PageConfigurator {
 	}
 	
 	public void clearMenuItems() {
-		drawer.setMenuItems(new ArrayList<MenuItem>());
+		drawer.setMenuItems(new ArrayList<>());
 	}
 	
 	public void setToolbarIconButtons(Component... components) {
