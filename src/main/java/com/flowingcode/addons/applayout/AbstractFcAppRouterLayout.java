@@ -39,7 +39,7 @@ public abstract class AbstractFcAppRouterLayout extends Div implements RouterLay
 	
 	private AppLayout app;
 
-	public AbstractFcAppRouterLayout() {
+	protected AbstractFcAppRouterLayout() {
 		getElement().getStyle().set("width", "100%");
 		getElement().getStyle().set("height", "100vh");
 		getElement().getStyle().set("display", "flex");
