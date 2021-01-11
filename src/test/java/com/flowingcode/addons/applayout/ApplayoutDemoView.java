@@ -23,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
+
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.PaperCard;
 import com.flowingcode.addons.applayout.menu.PaperToggle;
@@ -30,7 +31,6 @@ import com.flowingcode.vaadin.addons.DemoLayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
@@ -48,7 +48,6 @@ import com.vaadin.flow.router.Route;
 
 @SuppressWarnings("serial")
 @Route(value = "applayout", layout = DemoLayout.class)
-@HtmlImport("frontend://styles/shared-styles.html")
 @StyleSheet("context://frontend/styles/app-layout/demo-styles.css")
 public class ApplayoutDemoView extends VerticalLayout {
 

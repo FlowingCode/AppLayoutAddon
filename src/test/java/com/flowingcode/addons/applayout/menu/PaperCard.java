@@ -30,7 +30,6 @@ import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasStyle;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
@@ -43,7 +42,6 @@ import com.vaadin.flow.dom.Element;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-card/paper-card.html")
 @NpmPackage(value = "@polymer/paper-card", version = "3.0.1")
 @JsModule("@polymer/paper-card/paper-card.js")
 @Tag("paper-card")

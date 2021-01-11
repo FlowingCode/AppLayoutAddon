@@ -25,7 +25,6 @@ import java.util.Arrays;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
@@ -40,9 +39,6 @@ import com.vaadin.flow.server.PageConfigurator;
  *
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/font-roboto/roboto.html")
-@HtmlImport("bower_components/app-layout/app-scroll-effects/app-scroll-effects.html")
-@HtmlImport("frontend://styles/applayout-styles.html")
 @NpmPackage(value = "@polymer/app-layout", version=AppLayout.NPM_VERSION)
 @NpmPackage(value = "@polymer/font-roboto", version="^3.0")
 @JsModule("@polymer/app-layout/app-scroll-effects/app-scroll-effects.js")
