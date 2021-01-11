@@ -22,7 +22,6 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.H4;
@@ -38,8 +37,6 @@ import java.util.Optional;
  */
 @SuppressWarnings("serial")
 @Tag("app-drawer")
-@HtmlImport("bower_components/app-layout/app-drawer/app-drawer.html")
-@HtmlImport("bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html")
 @NpmPackage(value = "@polymer/app-layout", version = AppLayout.NPM_VERSION)
 @JsModule("@polymer/app-layout/app-drawer/app-drawer.js")
 public class AppDrawer extends Component implements HasComponents {

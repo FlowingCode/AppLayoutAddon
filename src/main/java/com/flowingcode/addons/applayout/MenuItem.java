@@ -40,10 +40,7 @@ import java.util.function.Consumer;
 @JsModule("./iron-collapse-button/iron-collapse-button.js")
 @JsModule("./fc-applayout/fc-menuitem.js")
 @Tag("fc-menuitem")
-public class MenuItem extends SlottedMenuItem
-    implements HasOrderedComponents<MenuItem>,
-        HasMenuItemCommands<MenuItem>,
-        HasMenuItemIcon<MenuItem> {
+public class MenuItem extends SlottedMenuItem implements HasOrderedComponents, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
 
   static final String BLANK = "fc-menuitem-icons:empty";
 

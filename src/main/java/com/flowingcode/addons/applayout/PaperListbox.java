@@ -22,7 +22,6 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import java.util.List;
@@ -33,11 +32,10 @@ import java.util.List;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-listbox/paper-listbox.html")
 @NpmPackage(value = "@polymer/paper-listbox", version = "3.0.1")
 @JsModule("@polymer/paper-listbox/paper-listbox.js")
 @Tag("paper-listbox")
-class PaperListbox extends Component implements HasOrderedComponents<PaperListbox> {
+class PaperListbox extends Component implements HasOrderedComponents {
 
   public PaperListbox(List<Component> components) {
     components.stream().forEach(this::add);

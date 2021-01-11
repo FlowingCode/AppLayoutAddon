@@ -22,7 +22,6 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Image;
@@ -33,7 +32,6 @@ import com.vaadin.flow.component.html.Image;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/app-layout/app-header/app-header.html")
 @NpmPackage(value = "@polymer/app-layout", version = AppLayout.NPM_VERSION)
 @JsModule("@polymer/app-layout/app-header/app-header.js")
 @Tag("app-header")
