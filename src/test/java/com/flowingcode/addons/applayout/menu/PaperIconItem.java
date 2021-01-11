@@ -26,7 +26,6 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.dom.Element;
@@ -39,7 +38,6 @@ import java.util.Optional;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/paper-item/paper-icon-item.html")
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @JsModule("@polymer/paper-item/paper-icon-item.js")
 @Tag("paper-icon-item")

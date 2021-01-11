@@ -19,10 +19,11 @@
  */
 package com.flowingcode.addons.applayout;
 
+import java.util.stream.Stream;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
@@ -35,8 +36,6 @@ import com.vaadin.flow.dom.Element;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@HtmlImport("bower_components/app-layout/app-toolbar/app-toolbar.html")
-@HtmlImport("bower_components/iron-icons/iron-icons.html")
 @NpmPackage(value = "@polymer/app-layout", version = AppLayout.NPM_VERSION)
 @NpmPackage(value = "@polymer/iron-icons", version = "^3.0.0")
 @JsModule("@polymer/app-layout/app-toolbar/app-toolbar.js")
@@ -48,36 +47,18 @@ public class AppToolbar extends Component {
   private Div divTitle;
   private int index;
 
-  private HasOrderedComponents<AppToolbar> hasOrderedComponents =
-      new HasOrderedComponents<AppToolbar>() {
-        @Override
-        public Element getElement() {
-          return AppToolbar.this.getElement();
-        }
+	private HasOrderedComponents hasOrderedComponents = new HasOrderedComponents() {
+		@Override
+		public Element getElement() {
+			return AppToolbar.this.getElement();
+		}
 
-        @Override
-        public int getComponentCount() {
-          return (int) getChildren().count();
-        }
+		@Override
+		public Stream<Component> getChildren() {
+			return ((Component) AppToolbar.this).getChildren();
+		}
 
-        @Override
-        public Component getComponentAt(int index) {
-          if (index < 0) {
-            throw new IllegalArgumentException(
-                "The 'index' argument should be greater than or equal to 0. It was: " + index);
-          }
-          return getChildren()
-              .sequential()
-              .skip(index)
-              .findFirst()
-              .orElseThrow(
-                  () ->
-                      new IllegalArgumentException(
-                          "The 'index' argument should not be greater than or equals to the number of children components. It was: "
-                              + index));
-        }
-      };
-
+	};
   public AppToolbar(String title, AppDrawer drawer) {
     this(null, title, drawer);
   }
