@@ -37,9 +37,9 @@ import java.util.function.Consumer;
 @SuppressWarnings("serial")
 @NpmPackage(value = "@polymer/iron-collapse", version = "^3.0.1")
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
-@JsModule("./iron-collapse-button/iron-collapse-button.js")
-@JsModule("./fc-applayout/fc-menuitem.js")
 @Tag("fc-menuitem")
+@JsModule("@flowingcode/fc-menuitem/src/fc-menuitem.ts")
+@NpmPackage(value = "@flowingcode/fc-menuitem", version = "~0.9.2")
 public class MenuItem extends SlottedMenuItem implements HasOrderedComponents, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
 
   static final String BLANK = "fc-menuitem-icons:empty";
