@@ -10,3 +10,7 @@
 /webpack.config.js
 /package.json
 /error-screenshots
+/pnpm-lock.yaml
+/pnpmfile.js
+/tsconfig.json
+/types.d.ts
