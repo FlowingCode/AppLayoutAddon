@@ -19,7 +19,6 @@
  */
 package com.flowingcode.addons.applayout;
 
-
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.PaperCard;
 import com.flowingcode.addons.applayout.menu.PaperToggle;

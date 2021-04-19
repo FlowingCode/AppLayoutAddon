@@ -40,7 +40,8 @@ import java.util.function.Consumer;
 @Tag("fc-menuitem")
 @JsModule("@flowingcode/fc-menuitem/src/fc-menuitem.ts")
 @NpmPackage(value = "@flowingcode/fc-menuitem", version = "~0.9.5")
-public class MenuItem extends SlottedMenuItem implements HasOrderedComponents, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
+public class MenuItem extends SlottedMenuItem
+    implements HasOrderedComponents, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
 
   static final String BLANK = "fc-menuitem-icons:empty";
 
