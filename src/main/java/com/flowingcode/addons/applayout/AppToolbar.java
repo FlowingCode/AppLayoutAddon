@@ -19,10 +19,6 @@
  */
 package com.flowingcode.addons.applayout;
 
-
-
-import java.util.stream.Stream;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
@@ -31,87 +27,86 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.dom.Element;
+import java.util.stream.Stream;
 
 /**
  * Component that renders the app toolbar
  *
  * @author mlopez
- *
  */
 @SuppressWarnings("serial")
-@NpmPackage(value = "@polymer/app-layout", version= AppLayout.NPM_VERSION)
+@NpmPackage(value = "@polymer/app-layout", version = AppLayout.NPM_VERSION)
 @NpmPackage(value = "@polymer/iron-icons", version = "^3.0.0")
 @JsModule("@polymer/app-layout/app-toolbar/app-toolbar.js")
 @JsModule("@polymer/iron-icons/iron-icons.js")
 @Tag("app-toolbar")
 public class AppToolbar extends Component {
 
-	private ToolbarIconButton menu;
-	private Div divTitle;
-	private int index;
+  private ToolbarIconButton menu;
+  private Div divTitle;
+  private int index;
 
-	private HasOrderedComponents hasOrderedComponents = new HasOrderedComponents() {
-		@Override
-		public Element getElement() {
-			return AppToolbar.this.getElement();
-		}
+  private HasOrderedComponents hasOrderedComponents =
+      new HasOrderedComponents() {
+        @Override
+        public Element getElement() {
+          return AppToolbar.this.getElement();
+        }
 
-		@Override
-		public Stream<Component> getChildren() {
-			return ((Component) AppToolbar.this).getChildren();
-		}
+        @Override
+        public Stream<Component> getChildren() {
+          return ((Component) AppToolbar.this).getChildren();
+        }
+      };
 
-	};
+  public AppToolbar(String title, AppDrawer drawer) {
+    this(null, title, drawer);
+  }
 
-    public AppToolbar(String title, AppDrawer drawer) {
-    	this(null,title, drawer);
+  public AppToolbar(Image logo, String title, AppDrawer drawer) {
+    menu = new ToolbarIconButton().setIcon("menu");
+    add(menu);
+
+    drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
+    if (logo != null) {
+      add(logo);
     }
 
-    public AppToolbar(Image logo, String title, AppDrawer drawer) {
-    	menu = new ToolbarIconButton().setIcon("menu");
-    	add(menu);
+    divTitle = new Div();
+    divTitle.getElement().setAttribute("main-title", true);
+    setTitle(title);
+    add(divTitle);
 
-    	drawer.getId().ifPresent(id -> menu.getElement().setAttribute("onclick", id + ".toggle()"));
-    	if (logo!=null) {
-    		add(logo);
-    	}
+    index = hasOrderedComponents.getComponentCount();
+  }
 
-    	divTitle = new Div();
-    	divTitle.getElement().setAttribute("main-title", true);
-    	setTitle(title);
-    	add(divTitle);
+  private void add(Component... components) {
+    hasOrderedComponents.add(components);
+  }
 
-    	index = hasOrderedComponents.getComponentCount();
+  private void addComponentAtIndex(int index, Component component) {
+    hasOrderedComponents.addComponentAtIndex(index, component);
+  }
+
+  public void setTitle(String title) {
+    divTitle.setText(title);
+  }
+
+  public void clearToolbarIconButtons() {
+    while (hasOrderedComponents.getComponentCount() > index) {
+      hasOrderedComponents.remove(hasOrderedComponents.getComponentAt(index));
     }
+  }
 
-    private void add(Component... components) {
-    	hasOrderedComponents.add(components);
-    }
+  public void setMenuIconVisible(boolean visible) {
+    menu.setVisible(visible);
+  }
 
-    private void addComponentAtIndex(int index, Component component) {
-    	hasOrderedComponents.addComponentAtIndex(index, component);
-    }
+  public void addToolbarIconButtons(Component... components) {
+    this.add(components);
+  }
 
-    public void setTitle(String title) {
-    	divTitle.setText(title);
-    }
-
-	public void clearToolbarIconButtons() {
-		while (hasOrderedComponents.getComponentCount()>index) {
-			hasOrderedComponents.remove(hasOrderedComponents.getComponentAt(index));
-		}
-	}
-
-	public void setMenuIconVisible(boolean visible) {
-		menu.setVisible(visible);
-	}
-
-	public void addToolbarIconButtons(Component... components) {
-		this.add(components);
-	}
-
-	public void addToolbarIconButtonAsFirst(Component component) {
-		this.addComponentAtIndex(index, component);
-	}
-
+  public void addToolbarIconButtonAsFirst(Component component) {
+    this.addComponentAtIndex(index, component);
+  }
 }
