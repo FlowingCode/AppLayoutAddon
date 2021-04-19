@@ -19,8 +19,6 @@
  */
 package com.flowingcode.addons.applayout;
 
-import java.util.stream.Stream;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasOrderedComponents;
 import com.vaadin.flow.component.Tag;
@@ -29,6 +27,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.dom.Element;
+import java.util.stream.Stream;
 
 /**
  * Component that renders the app toolbar
@@ -47,18 +46,22 @@ public class AppToolbar extends Component {
   private Div divTitle;
   private int index;
 
-	private HasOrderedComponents hasOrderedComponents = new HasOrderedComponents() {
-		@Override
-		public Element getElement() {
-			return AppToolbar.this.getElement();
-		}
+  private HasOrderedComponents hasOrderedComponents =
+      new HasOrderedComponents() {
+        @Override
+        public Element getElement() {
+          return AppToolbar.this.getElement();
+        }
 
-		@Override
-		public Stream<Component> getChildren() {
-			return ((Component) AppToolbar.this).getChildren();
-		}
+        @Override
+        public Stream<Component> getChildren() {
+          return ((Component) AppToolbar.this).getChildren();
+        }
+      };
 
-	};
+  public AppToolbar(String title, AppDrawer drawer) {
+    this(null, title, drawer);
+  }
   public AppToolbar(String title, AppDrawer drawer) {
     this(null, title, drawer);
   }
