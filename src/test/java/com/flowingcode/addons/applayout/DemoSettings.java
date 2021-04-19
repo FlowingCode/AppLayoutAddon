@@ -7,9 +7,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,68 +19,65 @@
  */
 package com.flowingcode.addons.applayout;
 
-
-
 public class DemoSettings {
 
-	private boolean enabled;
-	
-	private boolean menuVisible;
-	
-	private boolean swipeOpen;
-	
-	private boolean fixed;
-	
-	private boolean reveals;
-	
-	private boolean compact;
+  private boolean enabled;
 
-	public boolean isEnabled() {
-		return enabled;
-	}
-	
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-	
-	public boolean isMenuVisible() {
-		return menuVisible;
-	}
+  private boolean menuVisible;
 
-	public void setMenuVisible(boolean menuVisible) {
-		this.menuVisible = menuVisible;
-	}
+  private boolean swipeOpen;
 
-	public boolean isSwipeOpen() {
-		return swipeOpen;
-	}
+  private boolean fixed;
 
-	public void setSwipeOpen(boolean swipeOpen) {
-		this.swipeOpen = swipeOpen;
-	}
+  private boolean reveals;
 
-	public boolean isFixed() {
-		return fixed;
-	}
+  private boolean compact;
 
-	public void setFixed(boolean fixed) {
-		this.fixed = fixed;
-	}
+  public boolean isEnabled() {
+    return enabled;
+  }
 
-	public boolean isReveals() {
-		return reveals;
-	}
+  public void setEnabled(boolean enabled) {
+    this.enabled = enabled;
+  }
 
-	public void setReveals(boolean reveals) {
-		this.reveals = reveals;
-	}
+  public boolean isMenuVisible() {
+    return menuVisible;
+  }
 
-	public boolean isCompact() {
-		return compact;
-	}
+  public void setMenuVisible(boolean menuVisible) {
+    this.menuVisible = menuVisible;
+  }
 
-	public void setCompact(boolean compact) {
-		this.compact = compact;
-	}
-	
+  public boolean isSwipeOpen() {
+    return swipeOpen;
+  }
+
+  public void setSwipeOpen(boolean swipeOpen) {
+    this.swipeOpen = swipeOpen;
+  }
+
+  public boolean isFixed() {
+    return fixed;
+  }
+
+  public void setFixed(boolean fixed) {
+    this.fixed = fixed;
+  }
+
+  public boolean isReveals() {
+    return reveals;
+  }
+
+  public void setReveals(boolean reveals) {
+    this.reveals = reveals;
+  }
+
+  public boolean isCompact() {
+    return compact;
+  }
+
+  public void setCompact(boolean compact) {
+    this.compact = compact;
+  }
 }
