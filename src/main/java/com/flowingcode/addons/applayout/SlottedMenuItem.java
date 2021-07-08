@@ -31,7 +31,9 @@ public abstract class SlottedMenuItem extends Component {
     if (getParent().orElse(null) instanceof SlottedMenuItem) {
       getElement().setAttribute("slot", "menu-item");
     } else {
-      getElement().removeAttribute("slot");
+      if ("menu-item".equals(getElement().getAttribute("slot"))) {
+        getElement().removeAttribute("slot");
+      }
     }
     super.onAttach(attachEvent);
   }

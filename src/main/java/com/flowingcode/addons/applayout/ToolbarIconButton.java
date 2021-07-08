@@ -19,6 +19,7 @@
  */
 package com.flowingcode.addons.applayout;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasEnabled;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -31,7 +32,7 @@ import com.vaadin.flow.server.Command;
 @NpmPackage(value = "@polymer/paper-icon-button", version = "3.0.2")
 @JsModule("@polymer/paper-icon-button/paper-icon-button.js")
 @Tag("paper-icon-button")
-public class ToolbarIconButton extends SlottedMenuItem
+public class ToolbarIconButton extends Component
     implements HasEnabled,
         HasMenuItemCommands<ToolbarIconButton>,
         HasMenuItemIcon<ToolbarIconButton> {
