@@ -55,7 +55,7 @@ interface HasMenuItemCommands<T extends Component & HasMenuItemCommands<T>> exte
                   "mouseup",
                   ev -> {
                     command.execute();
-                    AppDrawer.findAppDrawer((Component) this).ifPresent(AppDrawer::close);
+                    ((Component)this).getElement().executeJs("this.dispatchEvent(new CustomEvent('item-clicked', {bubbles: true}))");
                   })
               .setFilter("event.button==" + button.ordinal());
       data.commands.put(button, Pair.of(command, registration));
