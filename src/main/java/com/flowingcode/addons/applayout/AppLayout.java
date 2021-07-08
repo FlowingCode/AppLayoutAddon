@@ -19,7 +19,12 @@
  */
 package com.flowingcode.addons.applayout;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
@@ -27,8 +32,6 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Component that renders the div that contains the entire layout.
@@ -36,84 +39,90 @@ import java.util.Arrays;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@NpmPackage(value = "@polymer/app-layout", version = AppLayout.NPM_VERSION)
-@NpmPackage(value = "@polymer/font-roboto", version = "^3.0")
-@JsModule("@polymer/app-layout/app-scroll-effects/app-scroll-effects.js")
-@JsModule("@polymer/font-roboto/roboto.js")
-@CssImport("./styles/applayout-styles.css")
+@Tag("fc-applayout")
+@JsModule("@flowingcode/fc-applayout/fc-applayout.js")
+@NpmPackage(value = "@flowingcode/fc-applayout", version = "~0.9.3")
+@CssImport(value="./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements PageConfigurator {
 
   static final String NPM_VERSION = "3.0.2";
-
-  private AppDrawer drawer;
-  private AppHeader header;
+  private List<Component> menuItems = new ArrayList<>();
+  private List<Component> toolbarComponents = new ArrayList<>();
 
   public AppLayout(String title) {
-    drawer = new AppDrawer(title);
-    configureAppLayout(title, null);
+    configureAppLayout(null, title, null);
   }
 
   public AppLayout(Component menuHeader, String title) {
-    drawer = new AppDrawer(menuHeader);
-    configureAppLayout(title, null);
+    configureAppLayout(menuHeader, title, null);
   }
 
   public AppLayout(Image logo, Component menuHeader, String title) {
-    drawer = new AppDrawer(menuHeader);
-    configureAppLayout(title, logo);
+    configureAppLayout(menuHeader, title, logo);
   }
 
-  private void configureAppLayout(String title, Image logo) {
-    header = new AppHeader(logo, title, drawer);
-    add(header);
-    add(drawer);
-    setWidth("100%");
-    setHeight("64px");
+  private void configureAppLayout(Component menuHeader, String aTitle, Image aLogo) {
+    if (aLogo!=null) {
+      aLogo.getElement().setAttribute("slot", "title");
+      add(aLogo);
+    }
+    if (menuHeader!=null) {
+      menuHeader.getElement().setAttribute("slot", "profile");
+      add(menuHeader);
+    }
+    Div title = new Div();
+    title.setText(aTitle);
+    title.getElement().setAttribute("slot", "title");
+    add(title);
   }
 
-  @Override
-  public void setHeight(String height) {
-    super.setHeight(height);
-    header.setHeight(height);
-  }
-
-  public void setMenuItems(Component... menuitems) {
-    drawer.setMenuItems(Arrays.asList(menuitems));
+  public void setMenuItems(Component... someMenuitems) {
+    this.menuItems.addAll(Arrays.asList(someMenuitems));
+    this.menuItems.forEach(item->item.getElement().setAttribute("slot", "menu"));
+    this.add(someMenuitems);
   }
 
   public void clearMenuItems() {
-    drawer.setMenuItems(new ArrayList<>());
+    this.getChildren().forEach(item->{
+      if(this.menuItems.contains(item)) this.remove(item);
+    });
+    this.menuItems.clear();
   }
 
   public void setToolbarIconButtons(Component... components) {
-    header.getAppToolbar().clearToolbarIconButtons();
-    header.getAppToolbar().addToolbarIconButtons(components);
+    toolbarComponents.forEach(this::remove);
+    addToolbarIconButtons(components);
   }
 
   public void addToolbarIconButtons(Component... components) {
-    header.getAppToolbar().addToolbarIconButtons(components);
+    List<Component> componentsToAdd = Arrays.asList(components);
+    componentsToAdd.forEach(comp->comp.getElement().setAttribute("slot", "toolbar"));
+    toolbarComponents.addAll(componentsToAdd);
+    this.add(components);    
   }
 
   public void addToolbarIconButtonAsFirst(Component component) {
-    header.getAppToolbar().addToolbarIconButtonAsFirst(component);
+    toolbarComponents.add(0, component);
+    toolbarComponents.forEach(this::remove);
+    addToolbarIconButtons(toolbarComponents.toArray(new Component[toolbarComponents.size()]));
   }
 
   public void clearToolbarIconButtons() {
-    header.getAppToolbar().clearToolbarIconButtons();
+    toolbarComponents.forEach(this::remove);
+    toolbarComponents.clear();
   }
 
   public void setMenuVisible(boolean visible) {
-    drawer.setVisible(visible);
-    header.getAppToolbar().setMenuIconVisible(visible);
+    this.getElement().setProperty("drawer-visible", visible);
   }
 
   public boolean isMenuVisible() {
-    return drawer.isVisible();
+    return this.getElement().getProperty("drawer-visible", true);
   }
 
   /** Set the toolbar title */
   public void setCaption(String caption) {
-    header.getAppToolbar().setTitle(caption);
+    this.getElement().setAttribute("title", caption);
   }
 
   @Override
@@ -123,16 +132,17 @@ public class AppLayout extends Div implements PageConfigurator {
 
   /** Mantains the header fixed at the top so it never moves away. */
   public void setFixed(boolean fixed) {
-    header.setFixed(fixed);
+    this.getElement().setAttribute("fixed", fixed);
   }
 
   /** Slides back the header when scrolling back up. */
   public void setReveals(boolean reveals) {
-    header.setReveals(reveals);
+    this.getElement().setAttribute("reveals", reveals);
   }
 
   /** Create an area at the edge of the screen to swipe open the app-drawer */
   public void setSwipeOpen(boolean swipeOpen) {
-    drawer.setSwipeOpen(swipeOpen);
+    this.getElement().setAttribute("swipeOpen", swipeOpen);
   }
+
 }
