@@ -19,7 +19,8 @@
  */
 package com.flowingcode.addons.applayout.menu;
 
-import com.flowingcode.addons.applayout.AppDrawer;
+import java.util.Optional;
+
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.HasSize;
@@ -30,7 +31,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.server.Command;
-import java.util.Optional;
 
 /**
  * Component that renders a paper-item
@@ -59,7 +59,7 @@ class PaperIconItem extends Component implements HasComponents, HasText, HasSize
               "click",
               e -> {
                 command.execute();
-                findAppDrawer(this).ifPresent(AppDrawer::close);
+                ((Component)this).getElement().executeJs("this.dispatchEvent(new CustomEvent('item-clicked', {bubbles: true}))");
               });
     }
   }
@@ -104,14 +104,4 @@ class PaperIconItem extends Component implements HasComponents, HasText, HasSize
     }
   }
 
-  private static Optional<AppDrawer> findAppDrawer(Component component) {
-    while (component != null) {
-      if (component instanceof AppDrawer) {
-        return Optional.of((AppDrawer) component);
-      } else {
-        component = component.getParent().orElse(null);
-      }
-    }
-    return Optional.empty();
-  }
 }
