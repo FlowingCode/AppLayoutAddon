@@ -88,10 +88,8 @@ public class ApplayoutDemoView extends VerticalLayout {
 
     if (settings.isCompact()) {
       app.addClassName("compact");
-      app.setHeight("32px");
     } else {
       app.removeClassName("compact");
-      app.setHeight("64px");
     }
   }
 

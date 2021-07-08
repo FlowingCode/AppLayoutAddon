@@ -56,3 +56,7 @@ app-drawer {
 app-drawer paper-listbox {
     overflow-y: auto;
 }
+
+:host(.compact) [part~="toolbar"] {
+  height:32px;
+}
