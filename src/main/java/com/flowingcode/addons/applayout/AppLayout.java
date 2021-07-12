@@ -45,8 +45,8 @@ import com.vaadin.flow.server.PageConfigurator;
 @CssImport(value="./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements PageConfigurator {
 
-  private List<Component> menuItems = new ArrayList<>();
-  private List<Component> toolbarComponents = new ArrayList<>();
+  private final List<Component> menuItems = new ArrayList<>();
+  private final List<Component> toolbarComponents = new ArrayList<>();
 
   public AppLayout(String title) {
     this(null, title, null);
