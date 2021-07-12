@@ -49,18 +49,18 @@ public class AppLayout extends Div implements PageConfigurator {
   private List<Component> toolbarComponents = new ArrayList<>();
 
   public AppLayout(String title) {
-    configureAppLayout(null, title, null);
+    this(null, title, null);
   }
 
   public AppLayout(Component menuHeader, String title) {
-    configureAppLayout(menuHeader, title, null);
+    this(menuHeader, title, null);
   }
 
   public AppLayout(Image logo, Component menuHeader, String title) {
-    configureAppLayout(menuHeader, title, logo);
+    this(menuHeader, title, logo);
   }
 
-  private void configureAppLayout(Component menuHeader, String aTitle, Image aLogo) {
+  private AppLayout(Component menuHeader, String aTitle, Image aLogo) {
     if (aLogo!=null) {
       aLogo.getElement().setAttribute("slot", "title");
       add(aLogo);
