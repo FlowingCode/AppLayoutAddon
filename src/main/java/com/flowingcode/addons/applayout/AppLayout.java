@@ -19,10 +19,6 @@
  */
 package com.flowingcode.addons.applayout;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -32,6 +28,9 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.server.InitialPageSettings;
 import com.vaadin.flow.server.PageConfigurator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Component that renders the div that contains the entire layout.
@@ -42,7 +41,7 @@ import com.vaadin.flow.server.PageConfigurator;
 @Tag("fc-applayout")
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
 @NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.3")
-@CssImport(value="./styles/applayout-styles.css", themeFor = "fc-applayout")
+@CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements PageConfigurator {
 
   private final List<Component> menuItems = new ArrayList<>();
@@ -61,11 +60,11 @@ public class AppLayout extends Div implements PageConfigurator {
   }
 
   private AppLayout(Component menuHeader, String aTitle, Image aLogo) {
-    if (aLogo!=null) {
+    if (aLogo != null) {
       aLogo.getElement().setAttribute("slot", "title");
       add(aLogo);
     }
-    if (menuHeader!=null) {
+    if (menuHeader != null) {
       menuHeader.getElement().setAttribute("slot", "profile");
       add(menuHeader);
     }
@@ -77,14 +76,16 @@ public class AppLayout extends Div implements PageConfigurator {
 
   public void setMenuItems(Component... someMenuitems) {
     this.menuItems.addAll(Arrays.asList(someMenuitems));
-    this.menuItems.forEach(item->item.getElement().setAttribute("slot", "menu"));
+    this.menuItems.forEach(item -> item.getElement().setAttribute("slot", "menu"));
     this.add(someMenuitems);
   }
 
   public void clearMenuItems() {
-    this.getChildren().forEach(item->{
-      if(this.menuItems.contains(item)) this.remove(item);
-    });
+    this.getChildren()
+        .forEach(
+            item -> {
+              if (this.menuItems.contains(item)) this.remove(item);
+            });
     this.menuItems.clear();
   }
 
@@ -95,9 +96,9 @@ public class AppLayout extends Div implements PageConfigurator {
 
   public void addToolbarIconButtons(Component... components) {
     List<Component> componentsToAdd = Arrays.asList(components);
-    componentsToAdd.forEach(comp->comp.getElement().setAttribute("slot", "toolbar"));
+    componentsToAdd.forEach(comp -> comp.getElement().setAttribute("slot", "toolbar"));
     toolbarComponents.addAll(componentsToAdd);
-    this.add(components);    
+    this.add(components);
   }
 
   public void addToolbarIconButtonAsFirst(Component component) {
@@ -143,5 +144,4 @@ public class AppLayout extends Div implements PageConfigurator {
   public void setSwipeOpen(boolean swipeOpen) {
     this.getElement().setAttribute("swipeOpen", swipeOpen);
   }
-
 }
