@@ -32,7 +32,16 @@ class MenuSeparator extends ThemableMixin(PolymerElement) {
 				font-size: 80%;
     			padding-left: 8px;
 			}
+			.divider {
+		        display: block;
+		        height: 1px;
+		        min-height: 1px;
+		        max-height: 1px;
+		        background-color: var(--paper-divider-color, #000);
+		        opacity: 0.12;
+			}
 		</style>		
+		<div class="divider"></div>
 		<div><slot name="label"></slot></div>
 	`;}
 
