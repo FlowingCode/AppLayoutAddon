@@ -30,8 +30,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.server.InitialPageSettings;
-import com.vaadin.flow.server.PageConfigurator;
 
 /**
  * Component that renders the div that contains the entire layout.
@@ -43,7 +41,7 @@ import com.vaadin.flow.server.PageConfigurator;
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
 @NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.3")
 @CssImport(value="./styles/applayout-styles.css", themeFor = "fc-applayout")
-public class AppLayout extends Div implements PageConfigurator {
+public class AppLayout extends Div {
 
   private final List<Component> menuItems = new ArrayList<>();
   private final List<Component> toolbarComponents = new ArrayList<>();
@@ -122,11 +120,6 @@ public class AppLayout extends Div implements PageConfigurator {
   /** Set the toolbar title */
   public void setCaption(String caption) {
     this.getElement().setAttribute("title", caption);
-  }
-
-  @Override
-  public void configurePage(InitialPageSettings settings) {
-    settings.addMetaTag("viewport", "width=device-width, initial-scale=1.0");
   }
 
   /** Mantains the header fixed at the top so it never moves away. */
