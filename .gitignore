@@ -15,3 +15,5 @@
 /tsconfig.json
 /types.d.ts
 /.vscode
+.npmrc
+/frontend/generated
