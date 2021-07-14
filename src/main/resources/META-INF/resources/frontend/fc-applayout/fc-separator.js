@@ -21,8 +21,6 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
 
 import {ThemableMixin} from '@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js';
 
-import "@vaadin/flow-frontend/fc-applayout/paper-divider.js";
-
 class MenuSeparator extends ThemableMixin(PolymerElement) {
 	static get is() { return 'fc-separator'; }
 	
@@ -35,7 +33,6 @@ class MenuSeparator extends ThemableMixin(PolymerElement) {
     			padding-left: 8px;
 			}
 		</style>		
-		<paper-divider></paper-divider>
 		<div><slot name="label"></slot></div>
 	`;}
 
