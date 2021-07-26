@@ -115,6 +115,10 @@ public class MenuItem extends SlottedMenuItem
     return getElement().getAttribute("label");
   }
 
+  public String getHref() {
+    return getElement().getProperty("href");
+  }
+
   public MenuItem setLabel(String label) {
     getElement().setAttribute("label", label);
     return this;
