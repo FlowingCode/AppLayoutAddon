@@ -109,11 +109,12 @@ export class FusionLayout extends LitElement {
 
         .other {
           background-color: white;
+		      color: var(--lumo-contrast);
         }
         .current {
-          background-color: green;
+          background-color: var(--lumo-contrast);
+		      color: white;
         }
-		
 
       `,
     ];
