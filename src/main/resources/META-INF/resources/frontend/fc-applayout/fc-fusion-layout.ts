@@ -171,7 +171,7 @@ export class FusionLayout extends LitElement {
   }
 
   private buildMenu(){
-    this.updateMenuItems();
+	window.requestAnimationFrame(() => this.updateMenuItems());
   }
 
   private async updateMenuItems(){
@@ -210,6 +210,7 @@ export class FusionLayout extends LitElement {
           class=${this.currentLocationClass(""+item.href)}
           href="${routerLink}"
           label="${item.label}"
+		      @click=${this.buildMenu}
           >
         </fc-menuitem>
       `;
