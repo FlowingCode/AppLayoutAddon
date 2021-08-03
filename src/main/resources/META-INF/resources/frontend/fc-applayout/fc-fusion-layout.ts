@@ -45,6 +45,8 @@ export class FusionLayout extends LitElement {
   @property({type: Boolean})
   fixed = false;
 
+  @property({type: Router, attribute: false})
+  router: Router | null = null;
 
   constructor() {
     super();
@@ -165,7 +167,7 @@ export class FusionLayout extends LitElement {
   }
 
   private currentLocationClass(route: string): string {
-    return ""; /*Router.urlForPath(route) === Router.location.pathname?"current":"other";*/
+    return !route.startsWith("http://") && !route.startsWith("https://") && this.router!=null && this.router!.urlForPath(route) === this.router!.location.pathname?"current":"other";
   }
 
   private buildMenu(){
