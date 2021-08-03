@@ -160,7 +160,6 @@ export class FusionLayout extends LitElement {
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    // desregistrar el listener
     window.removeEventListener('requestRefreshMenu',
         this.buildMenuEventListener,
         false
