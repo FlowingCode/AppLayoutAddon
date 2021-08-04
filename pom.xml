@@ -4,7 +4,7 @@
 
     <groupId>com.flowingcode.addons.applayout</groupId>
     <artifactId>app-layout-addon</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>5.0.0-SNAPSHOT</version>
     <name>App Layout Addon</name>
     <description>Integration of app-layout for Vaadin Flow</description>
 
