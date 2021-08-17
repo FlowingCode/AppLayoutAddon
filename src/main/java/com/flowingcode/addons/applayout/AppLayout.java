@@ -44,6 +44,9 @@ import java.util.List;
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements PageConfigurator {
 
+  private static final String PROFILE_SLOT_NAME = "profile";
+  private static final String APP_LAYOUT_TITLE_SLOT_NAME = "title";
+  private static final String TITLE_ATTRIBUTE_NAME = "title";
   private final List<Component> menuItems = new ArrayList<>();
   private final List<Component> toolbarComponents = new ArrayList<>();
 
@@ -61,17 +64,29 @@ public class AppLayout extends Div implements PageConfigurator {
 
   private AppLayout(Component menuHeader, String aTitle, Image aLogo) {
     if (aLogo != null) {
-      aLogo.getElement().setAttribute("slot", "title");
-      add(aLogo);
+      addToTitleSection(aLogo);
     }
     if (menuHeader != null) {
-      menuHeader.getElement().setAttribute("slot", "profile");
-      add(menuHeader);
+      setMenuHeader(menuHeader);
     }
     Div title = new Div();
     title.setText(aTitle);
-    title.getElement().setAttribute("slot", "title");
-    add(title);
+    addToTitleSection(title);
+  }
+
+  public void addToTitleSection(Component component) {
+    component.getElement().setAttribute("slot", APP_LAYOUT_TITLE_SLOT_NAME);
+    add(component);
+  }
+
+  /**
+   * Sets the component to be shown before the menu in the drawer.
+   * @param menuHeader
+   */
+  public void setMenuHeader(Component menuHeader) {
+    getChildren().filter(item->PROFILE_SLOT_NAME.equals(item.getElement().getAttribute("slot"))).forEach(this::remove);
+    menuHeader.getElement().setAttribute("slot", PROFILE_SLOT_NAME);
+    add(menuHeader);
   }
 
   public void setMenuItems(Component... someMenuitems) {
@@ -122,7 +137,7 @@ public class AppLayout extends Div implements PageConfigurator {
 
   /** Set the toolbar title */
   public void setCaption(String caption) {
-    this.getElement().setAttribute("title", caption);
+    this.getElement().setAttribute(TITLE_ATTRIBUTE_NAME, caption);
   }
 
   @Override
