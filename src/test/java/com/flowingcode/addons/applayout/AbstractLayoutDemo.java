@@ -20,12 +20,34 @@
 package com.flowingcode.addons.applayout;
 
 import com.vaadin.flow.component.HasElement;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.H4;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
 
 public class AbstractLayoutDemo extends AbstractFcAppRouterLayout {
 
   @Override
   protected void configure(AppLayout app) {
     app.setMenuItems(new MenuItem("Item 1"), new MenuItem("Item 2"));
+
+    // menu header
+    Div container = new Div();
+    container.getElement().setAttribute("style", "text-align: center;");
+    Image img = new Image("frontend/images/avatar.png", "avatar");
+    img.getStyle().set("width", "80px");
+    img.getStyle().set("margin-top", "20px");
+    H4 h4 = new H4("User");
+    container.add(img, h4);
+    app.setMenuHeader(container);
+
+    // logo
+    Image imglogo = new Image("frontend/images/applogo.png", "applogo");
+    imglogo.setWidth("25px");
+    app.addToTitleSection(imglogo);
+
+    // title
+    app.addToTitleSection(new Div(new Span("Test Application")));
   }
 
   @Override
