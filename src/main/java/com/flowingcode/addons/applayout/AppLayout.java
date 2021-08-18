@@ -40,6 +40,7 @@ import java.util.List;
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
 @NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.3")
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
+@CssImport(value = "./styles/applayout-global-styles.css")
 public class AppLayout extends Div {
 
   private static final String PROFILE_SLOT_NAME = "profile";

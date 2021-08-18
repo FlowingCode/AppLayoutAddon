@@ -17,10 +17,6 @@
  * limitations under the License.
  * #L%
  */
-fc-menuitem fc-menuitem {
-  background-color: var(--lumo-primary-color-10pct);
-}
-
 app-toolbar {
   background-color: #4285f4;
   color: #fff;
