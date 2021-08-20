@@ -126,11 +126,11 @@ public class AppLayout extends Div {
   }
 
   public void setMenuVisible(boolean visible) {
-    this.getElement().setProperty("drawer-visible", visible);
+    this.getElement().setProperty("drawerVisible", visible);
   }
 
   public boolean isMenuVisible() {
-    return this.getElement().getProperty("drawer-visible", true);
+    return this.getElement().getProperty("drawerVisible", true);
   }
 
   /** Set the toolbar title */
