@@ -135,28 +135,44 @@ public class AppLayout extends Div implements PageConfigurator {
     return this.getElement().getProperty("drawerVisible", true);
   }
 
-  /** Set the toolbar title */
-  public void setCaption(String caption) {
-    this.getElement().setAttribute(TITLE_ATTRIBUTE_NAME, caption);
-  }
-
   @Override
   public void configurePage(InitialPageSettings settings) {
     settings.addMetaTag("viewport", "width=device-width, initial-scale=1.0");
   }
 
-  /** Mantains the header fixed at the top so it never moves away. */
+  /**
+   * Sets the toolbar title
+   * @param caption
+   */
+  public void setCaption(String caption) {
+    this.getElement().setAttribute(TITLE_ATTRIBUTE_NAME, caption);
+  }
+  
+  /**
+   * Sets the fixed attribute so it mantains the header fixed at the top 
+   * so it never moves away.
+   * @param fixed
+   */
   public void setFixed(boolean fixed) {
     this.getElement().setAttribute("fixed", fixed);
   }
 
-  /** Slides back the header when scrolling back up. */
+  /**
+   * Sets the reveals attribute so it slides back the header when scrolling 
+   * back up.
+   * @param reveals
+   */
   public void setReveals(boolean reveals) {
     this.getElement().setAttribute("reveals", reveals);
   }
 
-  /** Create an area at the edge of the screen to swipe open the app-drawer */
+  /**
+   * Sets the swipeOpen attribute so it creates an area at the edge of the 
+   * screen to swipe open the app-drawer
+   * @param swipeOpen
+   */
   public void setSwipeOpen(boolean swipeOpen) {
     this.getElement().setAttribute("swipeOpen", swipeOpen);
   }
+
 }
