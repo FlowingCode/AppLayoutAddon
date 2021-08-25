@@ -69,7 +69,7 @@ public abstract class AbstractFcAppRouterLayout extends Div implements RouterLay
     content.getElement().getStyle().set("display", "flex");
     content.getElement().getStyle().set("flex-direction", "column");
     app.setCaption(getCaption(content));
-    RouterLayout.super.showRouterLayoutContent(content);
+    app.getElement().appendChild(content.getElement());
   }
 
   private static String getCaption(HasElement content) {
