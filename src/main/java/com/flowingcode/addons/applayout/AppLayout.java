@@ -40,7 +40,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 @Tag("fc-applayout")
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
-@NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.3")
+@NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.5")
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements PageConfigurator {
 
