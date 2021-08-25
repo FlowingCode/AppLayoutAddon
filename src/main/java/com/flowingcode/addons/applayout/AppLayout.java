@@ -174,5 +174,13 @@ public class AppLayout extends Div implements PageConfigurator {
   public void setSwipeOpen(boolean swipeOpen) {
     this.getElement().setAttribute("swipeOpen", swipeOpen);
   }
-
+  
+  /**
+   * Sets the persistent attribute so it will make the drawer to be always
+   * opened in a non-modal way
+   * @param drawerPersistent
+   */
+  public void setDrawerPersistent(boolean drawerPersistent) {
+    this.getElement().setAttribute("drawerPersistent", drawerPersistent);
+  }
 }

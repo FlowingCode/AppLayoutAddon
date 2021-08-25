@@ -33,6 +33,8 @@ public class DemoSettings {
 
   private boolean compact;
 
+  private boolean drawerPersistent;
+
   public boolean isEnabled() {
     return enabled;
   }
@@ -79,5 +81,13 @@ public class DemoSettings {
 
   public void setCompact(boolean compact) {
     this.compact = compact;
+  }
+
+  public boolean isDrawerPersistent() {
+    return drawerPersistent;
+  }
+
+  public void setDrawerPersistent(boolean drawerPersistent) {
+    this.drawerPersistent = drawerPersistent;
   }
 }
