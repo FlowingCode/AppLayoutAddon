@@ -35,6 +35,8 @@ public class DemoSettings {
 
   private boolean drawerPersistent;
 
+  private boolean drawerBelowHeader;
+
   public boolean isEnabled() {
     return enabled;
   }
@@ -90,4 +92,13 @@ public class DemoSettings {
   public void setDrawerPersistent(boolean drawerPersistent) {
     this.drawerPersistent = drawerPersistent;
   }
+
+  public boolean isDrawerBelowHeader() {
+    return drawerBelowHeader;
+  }
+
+  public void setDrawerBelowHeader(boolean drawerBelowHeader) {
+    this.drawerBelowHeader = drawerBelowHeader;
+  }
+
 }
