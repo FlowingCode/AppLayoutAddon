@@ -183,4 +183,14 @@ public class AppLayout extends Div implements PageConfigurator {
   public void setDrawerPersistent(boolean drawerPersistent) {
     this.getElement().setAttribute("drawerPersistent", drawerPersistent);
   }
+  
+  /**
+   * Sets the drawerBelowHeader attribute so the drawer will be show below
+   * the header of the applayout
+   * @param drawerBelowHeader
+   */
+  public void setDrawerBelowHeader(boolean drawerBelowHeader) {
+    this.getElement().setAttribute("drawerBelowHeader", drawerBelowHeader);
+  }
+
 }

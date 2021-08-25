@@ -87,6 +87,7 @@ public class ApplayoutDemoView extends VerticalLayout {
     app.setFixed(settings.isFixed());
     app.setReveals(settings.isReveals());
     app.setDrawerPersistent(settings.isDrawerPersistent());
+    app.setDrawerBelowHeader(settings.isDrawerBelowHeader());
     
     if (settings.isCompact()) {
       app.addClassName("compact");
@@ -107,6 +108,7 @@ public class ApplayoutDemoView extends VerticalLayout {
     Checkbox cbReveals = new Checkbox("Reveals");
     Checkbox cbCompact = new Checkbox("Compact");
     Checkbox cbPersistent = new Checkbox("Drawer Persistent");
+    Checkbox cbBelowHeader = new Checkbox("Drawer Below Header");
     
     cbMenuVisible.getElement().setAttribute("title", "Toggle visibility of the hamburguer icon.");
     cbSwipeOpen
@@ -127,6 +129,9 @@ public class ApplayoutDemoView extends VerticalLayout {
     cbPersistent
         .getElement()
         .setAttribute("title", "When enabled, the drawer will be opened in a non-modal way");
+    cbBelowHeader
+        .getElement()
+        .setAttribute("title", "When enabled, the drawer will be placed below the header");
 
     Binder<DemoSettings> binder = new Binder<>();
     binder.forField(cbMenuVisible).bind(DemoSettings::isMenuVisible, DemoSettings::setMenuVisible);
@@ -135,10 +140,11 @@ public class ApplayoutDemoView extends VerticalLayout {
     binder.forField(cbReveals).bind(DemoSettings::isReveals, DemoSettings::setReveals);
     binder.forField(cbCompact).bind(DemoSettings::isCompact, DemoSettings::setCompact);
     binder.forField(cbPersistent).bind(DemoSettings::isDrawerPersistent, DemoSettings::setDrawerPersistent);
+    binder.forField(cbBelowHeader).bind(DemoSettings::isDrawerBelowHeader, DemoSettings::setDrawerBelowHeader);
     binder.setBean(this.settings);
 
     VerticalLayout content =
-        new VerticalLayout(cbMenuVisible, cbSwipeOpen, cbFixed, cbReveals, cbCompact, cbPersistent);
+        new VerticalLayout(cbMenuVisible, cbSwipeOpen, cbFixed, cbReveals, cbCompact, cbPersistent, cbBelowHeader);
     content.setSpacing(false);
 
     HorizontalLayout buttons = new HorizontalLayout();
