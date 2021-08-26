@@ -19,6 +19,9 @@
  */
 package com.flowingcode.addons.applayout;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
@@ -26,11 +29,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.server.InitialPageSettings;
-import com.vaadin.flow.server.PageConfigurator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.vaadin.flow.router.RouterLayout;
 
 /**
  * Component that renders the div that contains the entire layout.
@@ -42,7 +41,7 @@ import java.util.List;
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
 @NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.5")
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
-public class AppLayout extends Div implements PageConfigurator {
+public class AppLayout extends Div implements RouterLayout {
 
   private static final String PROFILE_SLOT_NAME = "profile";
   private static final String APP_LAYOUT_TITLE_SLOT_NAME = "title";
@@ -137,11 +136,6 @@ public class AppLayout extends Div implements PageConfigurator {
 
   public boolean isMenuVisible() {
     return this.getElement().getProperty("drawerVisible", true);
-  }
-
-  @Override
-  public void configurePage(InitialPageSettings settings) {
-    settings.addMetaTag("viewport", "width=device-width, initial-scale=1.0");
   }
 
   /**
