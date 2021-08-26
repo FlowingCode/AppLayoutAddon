@@ -50,6 +50,10 @@ public class AppLayout extends Div implements PageConfigurator {
   private final List<Component> menuItems = new ArrayList<>();
   private final List<Component> toolbarComponents = new ArrayList<>();
 
+  public AppLayout() {
+    this(null,"",null);
+  }
+
   public AppLayout(String title) {
     this(null, title, null);
   }
