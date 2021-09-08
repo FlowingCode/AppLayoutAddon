@@ -39,7 +39,7 @@ import com.vaadin.flow.router.RouterLayout;
 @SuppressWarnings("serial")
 @Tag("fc-applayout")
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
-@NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.5")
+@NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.6")
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements RouterLayout {
 
