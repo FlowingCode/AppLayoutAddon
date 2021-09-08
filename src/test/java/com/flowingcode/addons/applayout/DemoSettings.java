@@ -37,6 +37,8 @@ public class DemoSettings {
 
   private boolean drawerBelowHeader;
 
+  private boolean drawerRightAlignment;
+
   public boolean isEnabled() {
     return enabled;
   }
@@ -99,6 +101,14 @@ public class DemoSettings {
 
   public void setDrawerBelowHeader(boolean drawerBelowHeader) {
     this.drawerBelowHeader = drawerBelowHeader;
+  }
+
+  public boolean isDrawerRightAlignment() {
+    return drawerRightAlignment;
+  }
+
+  public void setDrawerRightAlignment(boolean drawerRightAlignment) {
+    this.drawerRightAlignment = drawerRightAlignment;
   }
 
 }

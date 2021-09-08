@@ -88,6 +88,7 @@ public class ApplayoutDemoView extends VerticalLayout {
     app.setReveals(settings.isReveals());
     app.setDrawerPersistent(settings.isDrawerPersistent());
     app.setDrawerBelowHeader(settings.isDrawerBelowHeader());
+    app.setDrawerRightAlignment(settings.isDrawerRightAlignment());
     
     if (settings.isCompact()) {
       app.addClassName("compact");
@@ -109,6 +110,7 @@ public class ApplayoutDemoView extends VerticalLayout {
     Checkbox cbCompact = new Checkbox("Compact");
     Checkbox cbPersistent = new Checkbox("Drawer Persistent");
     Checkbox cbBelowHeader = new Checkbox("Drawer Below Header");
+    Checkbox cbRightAlignment = new Checkbox("Drawer Aligned to Right");
     
     cbMenuVisible.getElement().setAttribute("title", "Toggle visibility of the hamburguer icon.");
     cbSwipeOpen
@@ -132,6 +134,9 @@ public class ApplayoutDemoView extends VerticalLayout {
     cbBelowHeader
         .getElement()
         .setAttribute("title", "When enabled, the drawer will be placed below the header");
+    cbRightAlignment
+        .getElement()
+        .setAttribute("title", "When enabled, the drawer will be right aligned");
 
     Binder<DemoSettings> binder = new Binder<>();
     binder.forField(cbMenuVisible).bind(DemoSettings::isMenuVisible, DemoSettings::setMenuVisible);
@@ -141,10 +146,11 @@ public class ApplayoutDemoView extends VerticalLayout {
     binder.forField(cbCompact).bind(DemoSettings::isCompact, DemoSettings::setCompact);
     binder.forField(cbPersistent).bind(DemoSettings::isDrawerPersistent, DemoSettings::setDrawerPersistent);
     binder.forField(cbBelowHeader).bind(DemoSettings::isDrawerBelowHeader, DemoSettings::setDrawerBelowHeader);
+    binder.forField(cbRightAlignment).bind(DemoSettings::isDrawerRightAlignment, DemoSettings::setDrawerRightAlignment);
     binder.setBean(this.settings);
 
     VerticalLayout content =
-        new VerticalLayout(cbMenuVisible, cbSwipeOpen, cbFixed, cbReveals, cbCompact, cbPersistent, cbBelowHeader);
+        new VerticalLayout(cbMenuVisible, cbSwipeOpen, cbFixed, cbReveals, cbCompact, cbPersistent, cbBelowHeader, cbRightAlignment);
     content.setSpacing(false);
 
     HorizontalLayout buttons = new HorizontalLayout();
