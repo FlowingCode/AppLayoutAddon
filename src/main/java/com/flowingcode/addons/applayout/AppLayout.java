@@ -75,6 +75,7 @@ public class AppLayout extends Div implements RouterLayout {
     Div title = new Div();
     title.setText(aTitle);
     addToTitleSection(title);
+    setDrawerRightAlignment(false);
   }
 
   public void addToTitleSection(Component component) {
@@ -191,4 +192,12 @@ public class AppLayout extends Div implements RouterLayout {
     this.getElement().setAttribute("drawerBelowHeader", drawerBelowHeader);
   }
 
+    /**
+   * Sets the drawerBelowHeader attribute so the drawer will be show below
+   * the header of the applayout
+   * @param drawerBelowHeader
+   */
+  public void setDrawerRightAlignment(boolean drawerRightAlignment) {
+    this.getElement().setAttribute("drawerAlign", drawerRightAlignment?"right":"left");
+  }
 }
