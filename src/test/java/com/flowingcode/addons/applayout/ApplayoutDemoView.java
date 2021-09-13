@@ -69,7 +69,8 @@ public class ApplayoutDemoView extends VerticalLayout {
     app.setMenuItems(createMenuItems());
 
     app.setToolbarIconButtons(miSettings);
-    this.add(app, container);
+    app.add(container);
+    this.add(app);
 
     settings.setSwipeOpen(true);
     settings.setMenuVisible(true);
@@ -85,7 +86,10 @@ public class ApplayoutDemoView extends VerticalLayout {
     app.setSwipeOpen(settings.isSwipeOpen());
     app.setFixed(settings.isFixed());
     app.setReveals(settings.isReveals());
-
+    app.setDrawerPersistent(settings.isDrawerPersistent());
+    app.setDrawerBelowHeader(settings.isDrawerBelowHeader());
+    app.setDrawerRightAlignment(settings.isDrawerRightAlignment());
+    
     if (settings.isCompact()) {
       app.addClassName("compact");
     } else {
@@ -104,7 +108,10 @@ public class ApplayoutDemoView extends VerticalLayout {
     Checkbox cbFixed = new Checkbox("Fixed");
     Checkbox cbReveals = new Checkbox("Reveals");
     Checkbox cbCompact = new Checkbox("Compact");
-
+    Checkbox cbPersistent = new Checkbox("Drawer Persistent");
+    Checkbox cbBelowHeader = new Checkbox("Drawer Below Header");
+    Checkbox cbRightAlignment = new Checkbox("Drawer Aligned to Right");
+    
     cbMenuVisible.getElement().setAttribute("title", "Toggle visibility of the hamburguer icon.");
     cbSwipeOpen
         .getElement()
@@ -121,6 +128,15 @@ public class ApplayoutDemoView extends VerticalLayout {
     cbCompact
         .getElement()
         .setAttribute("title", "When enabled, the height of the header is set to 32px.");
+    cbPersistent
+        .getElement()
+        .setAttribute("title", "When enabled, the drawer will be opened in a non-modal way");
+    cbBelowHeader
+        .getElement()
+        .setAttribute("title", "When enabled, the drawer will be placed below the header");
+    cbRightAlignment
+        .getElement()
+        .setAttribute("title", "When enabled, the drawer will be right aligned");
 
     Binder<DemoSettings> binder = new Binder<>();
     binder.forField(cbMenuVisible).bind(DemoSettings::isMenuVisible, DemoSettings::setMenuVisible);
@@ -128,10 +144,13 @@ public class ApplayoutDemoView extends VerticalLayout {
     binder.forField(cbFixed).bind(DemoSettings::isFixed, DemoSettings::setFixed);
     binder.forField(cbReveals).bind(DemoSettings::isReveals, DemoSettings::setReveals);
     binder.forField(cbCompact).bind(DemoSettings::isCompact, DemoSettings::setCompact);
+    binder.forField(cbPersistent).bind(DemoSettings::isDrawerPersistent, DemoSettings::setDrawerPersistent);
+    binder.forField(cbBelowHeader).bind(DemoSettings::isDrawerBelowHeader, DemoSettings::setDrawerBelowHeader);
+    binder.forField(cbRightAlignment).bind(DemoSettings::isDrawerRightAlignment, DemoSettings::setDrawerRightAlignment);
     binder.setBean(this.settings);
 
     VerticalLayout content =
-        new VerticalLayout(cbMenuVisible, cbSwipeOpen, cbFixed, cbReveals, cbCompact);
+        new VerticalLayout(cbMenuVisible, cbSwipeOpen, cbFixed, cbReveals, cbCompact, cbPersistent, cbBelowHeader, cbRightAlignment);
     content.setSpacing(false);
 
     HorizontalLayout buttons = new HorizontalLayout();

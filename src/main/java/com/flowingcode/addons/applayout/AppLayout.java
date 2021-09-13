@@ -26,6 +26,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.router.RouterLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,15 +39,19 @@ import java.util.List;
 @SuppressWarnings("serial")
 @Tag("fc-applayout")
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
-@NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.3")
+@NpmPackage(value = "@flowingcode/fc-applayout", version = "0.9.6")
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
-public class AppLayout extends Div {
+public class AppLayout extends Div implements RouterLayout {
 
   private static final String PROFILE_SLOT_NAME = "profile";
   private static final String APP_LAYOUT_TITLE_SLOT_NAME = "title";
   private static final String TITLE_ATTRIBUTE_NAME = "title";
   private final List<Component> menuItems = new ArrayList<>();
   private final List<Component> toolbarComponents = new ArrayList<>();
+
+  public AppLayout() {
+    this(null,"",null);
+  }
 
   public AppLayout(String title) {
     this(null, title, null);
@@ -70,6 +75,7 @@ public class AppLayout extends Div {
     Div title = new Div();
     title.setText(aTitle);
     addToTitleSection(title);
+    setDrawerRightAlignment(false);
   }
 
   public void addToTitleSection(Component component) {
@@ -88,18 +94,20 @@ public class AppLayout extends Div {
   }
 
   public void setMenuItems(Component... someMenuitems) {
-    this.menuItems.addAll(Arrays.asList(someMenuitems));
-    this.menuItems.forEach(item -> item.getElement().setAttribute("slot", "menu"));
+    menuItems.addAll(Arrays.asList(someMenuitems));
+    menuItems.forEach(item -> item.getElement().setAttribute("slot", "menu"));
     this.add(someMenuitems);
   }
 
   public void clearMenuItems() {
-    this.getChildren()
+    getChildren()
         .forEach(
             item -> {
-              if (this.menuItems.contains(item)) this.remove(item);
+              if (menuItems.contains(item)) {
+                remove(item);
+              }
             });
-    this.menuItems.clear();
+    menuItems.clear();
   }
 
   public void setToolbarIconButtons(Component... components) {
@@ -126,30 +134,72 @@ public class AppLayout extends Div {
   }
 
   public void setMenuVisible(boolean visible) {
-    this.getElement().setProperty("drawerVisible", visible);
+    getElement().setProperty("drawerVisible", visible);
   }
 
   public boolean isMenuVisible() {
-    return this.getElement().getProperty("drawerVisible", true);
+    return getElement().getProperty("drawerVisible", true);
   }
 
-  /** Set the toolbar title */
+  /**
+   * Sets the toolbar title
+   * @param caption
+   */
   public void setCaption(String caption) {
-    this.getElement().setAttribute(TITLE_ATTRIBUTE_NAME, caption);
+    getElement().setAttribute(TITLE_ATTRIBUTE_NAME, caption);
   }
 
-  /** Mantains the header fixed at the top so it never moves away. */
+  /**
+   * Sets the fixed attribute so it mantains the header fixed at the top
+   * so it never moves away.
+   * @param fixed
+   */
   public void setFixed(boolean fixed) {
-    this.getElement().setAttribute("fixed", fixed);
+    getElement().setAttribute("fixed", fixed);
   }
 
-  /** Slides back the header when scrolling back up. */
+  /**
+   * Sets the reveals attribute so it slides back the header when scrolling
+   * back up.
+   * @param reveals
+   */
   public void setReveals(boolean reveals) {
-    this.getElement().setAttribute("reveals", reveals);
+    getElement().setAttribute("reveals", reveals);
   }
 
-  /** Create an area at the edge of the screen to swipe open the app-drawer */
+  /**
+   * Sets the swipeOpen attribute so it creates an area at the edge of the
+   * screen to swipe open the app-drawer
+   * @param swipeOpen
+   */
   public void setSwipeOpen(boolean swipeOpen) {
-    this.getElement().setAttribute("swipeOpen", swipeOpen);
+    getElement().setAttribute("swipeOpen", swipeOpen);
+  }
+
+  /**
+   * Sets the persistent attribute so it will make the drawer to be always
+   * opened in a non-modal way
+   * @param drawerPersistent
+   */
+  public void setDrawerPersistent(boolean drawerPersistent) {
+    getElement().setAttribute("drawerPersistent", drawerPersistent);
+}
+
+  /**
+   * Sets the drawerBelowHeader attribute so the drawer will be show below
+   * the header of the applayout
+   * @param drawerBelowHeader
+   */
+  public void setDrawerBelowHeader(boolean drawerBelowHeader) {
+    getElement().setAttribute("drawerBelowHeader", drawerBelowHeader);
+  }
+
+    /**
+   * Sets the drawerBelowHeader attribute so the drawer will be show below
+   * the header of the applayout
+   * @param drawerBelowHeader
+   */
+  public void setDrawerRightAlignment(boolean drawerRightAlignment) {
+    getElement().setAttribute("drawerAlign", drawerRightAlignment?"right":"left");
   }
 }
