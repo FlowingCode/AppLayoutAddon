@@ -19,17 +19,15 @@
  */
 package com.flowingcode.addons.applayout;
 
-import com.vaadin.flow.component.HasElement;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 
-public class AbstractLayoutDemo extends AbstractFcAppRouterLayout {
+public class AbstractLayoutDemo extends AppLayout {
 
-  @Override
-  protected void configure(AppLayout app) {
-    app.setMenuItems(new MenuItem("Item 1"), new MenuItem("Item 2"));
+  public AbstractLayoutDemo() {
+    setMenuItems(new MenuItem("Item 1"), new MenuItem("Item 2"));
 
     // menu header
     Div container = new Div();
@@ -39,19 +37,15 @@ public class AbstractLayoutDemo extends AbstractFcAppRouterLayout {
     img.getStyle().set("margin-top", "20px");
     H4 h4 = new H4("User");
     container.add(img, h4);
-    app.setMenuHeader(container);
+    setMenuHeader(container);
 
     // logo
     Image imglogo = new Image("frontend/images/applogo.png", "applogo");
     imglogo.setWidth("25px");
-    app.addToTitleSection(imglogo);
+    addToTitleSection(imglogo);
 
     // title
-    app.addToTitleSection(new Div(new Span("Test Application")));
+    addToTitleSection(new Div(new Span("Test Application")));
   }
 
-  @Override
-  public void showRouterLayoutContent(AppLayout app, HasElement content) {
-    super.showRouterLayoutContent(app, content);
-  }
 }

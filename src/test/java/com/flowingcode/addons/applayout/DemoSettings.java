@@ -33,6 +33,12 @@ public class DemoSettings {
 
   private boolean compact;
 
+  private boolean drawerPersistent;
+
+  private boolean drawerBelowHeader;
+
+  private boolean drawerRightAlignment;
+
   public boolean isEnabled() {
     return enabled;
   }
@@ -80,4 +86,29 @@ public class DemoSettings {
   public void setCompact(boolean compact) {
     this.compact = compact;
   }
+
+  public boolean isDrawerPersistent() {
+    return drawerPersistent;
+  }
+
+  public void setDrawerPersistent(boolean drawerPersistent) {
+    this.drawerPersistent = drawerPersistent;
+  }
+
+  public boolean isDrawerBelowHeader() {
+    return drawerBelowHeader;
+  }
+
+  public void setDrawerBelowHeader(boolean drawerBelowHeader) {
+    this.drawerBelowHeader = drawerBelowHeader;
+  }
+
+  public boolean isDrawerRightAlignment() {
+    return drawerRightAlignment;
+  }
+
+  public void setDrawerRightAlignment(boolean drawerRightAlignment) {
+    this.drawerRightAlignment = drawerRightAlignment;
+  }
+
 }
