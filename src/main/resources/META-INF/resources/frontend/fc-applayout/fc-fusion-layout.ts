@@ -115,6 +115,10 @@ export class FusionLayout extends LitElement {
           background-color: var(--lumo-contrast);
 		      color: white;
         }
+        .fusion-content-container {
+          width: 100%;
+          height: 100%;
+        }
 
       `,
     ];
@@ -133,7 +137,7 @@ export class FusionLayout extends LitElement {
       <div slot="menu" tabindex="0" aria-selected="false">
       ${this.menuItems.map(item => this.generateFcMenuItem(item))}
       </div>
-      <div slot="content">
+      <div class="fusion-content-container" slot="content">
         <slot></slot>
       </div>
     </fc-applayout>		
