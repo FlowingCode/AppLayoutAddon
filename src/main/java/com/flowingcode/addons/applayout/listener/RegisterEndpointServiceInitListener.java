@@ -2,15 +2,12 @@ package com.flowingcode.addons.applayout.listener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import com.flowingcode.addons.applayout.endpoint.MenuEndpoint;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
-import com.vaadin.flow.server.connect.Endpoint;
-import com.vaadin.flow.server.connect.EndpointRegistry;
-
+import com.vaadin.fusion.Endpoint;
+import com.vaadin.fusion.EndpointRegistry;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -18,13 +15,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegisterEndpointServiceInitListener implements VaadinServiceInitListener, ApplicationContextAware {
 
-    private ApplicationContext context;
+    private static ApplicationContext context;
     
-    @Autowired
     private EndpointRegistry endpointRegistry;
 
     @Override
     public void serviceInit(ServiceInitEvent event) {
+        endpointRegistry = context.getBean(EndpointRegistry.class);
         context.getBeansWithAnnotation(Endpoint.class)
                 .forEach((name, endpointBean) -> {
                     if (endpointBean instanceof MenuEndpoint) {
@@ -45,7 +42,7 @@ public class RegisterEndpointServiceInitListener implements VaadinServiceInitLis
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.context = applicationContext;
+        context = applicationContext;
     }
     
 }
