@@ -2,15 +2,15 @@ package com.flowingcode.addons.applayout.endpoint;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Nullable;
+import com.vaadin.fusion.Nonnull;
 
 public class MenuItemDto {
 
     private String label;
     @Nullable
     private String href;
-    private List<MenuItemDto> children = new ArrayList<>();
+    private @Nonnull List<@Nonnull MenuItemDto> children = new ArrayList<>();
 
     public MenuItemDto(String label, List<MenuItemDto> children) {
         this(label,null,children);
@@ -40,10 +40,10 @@ public class MenuItemDto {
     public String getHref() {
         return href;
     }
-    public void setHref(String href) {
+    public void setHref(@Nonnull String href) {
         this.href = href;
     }
-    public void setLabel(String label) {
+    public void setLabel(@Nonnull String label) {
         this.label = label;
     }
 

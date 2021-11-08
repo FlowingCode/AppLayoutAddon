@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import com.flowingcode.addons.applayout.MenuItem;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.fusion.Endpoint;
+import com.vaadin.fusion.Nonnull;
 
 @Endpoint
 @AnonymousAllowed
@@ -16,7 +17,7 @@ public class MenuEndpoint {
         this.menuItemsProviders = menuItemsProviders;
     }
 
-    public List<MenuItemDto> getMenuItems() {
+    public @Nonnull List<@Nonnull MenuItemDto> getMenuItems() {
         List<MenuItem> menuItems = menuItemsProviders.stream().map(MenuItemsProvider::getMenuItems).flatMap(List::stream).collect(Collectors.toList());
         return convertMenuItems(menuItems);
     }
