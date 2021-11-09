@@ -39,7 +39,7 @@ import java.util.function.Consumer;
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @Tag("fc-menuitem")
 @JsModule("@flowingcode/fc-menuitem/fc-menuitem.js")
-@NpmPackage(value = "@flowingcode/fc-menuitem", version = "~0.9.8")
+@NpmPackage(value = "@flowingcode/fc-menuitem", version = "~0.9.9")
 public class MenuItem extends SlottedMenuItem
     implements HasOrderedComponents, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
 
