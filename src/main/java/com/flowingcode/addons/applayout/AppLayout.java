@@ -26,10 +26,14 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.RouterLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Component that renders the div that contains the entire layout.
@@ -45,7 +49,6 @@ public class AppLayout extends Div implements RouterLayout {
 
   private static final String PROFILE_SLOT_NAME = "profile";
   private static final String APP_LAYOUT_TITLE_SLOT_NAME = "title";
-  private static final String TITLE_ATTRIBUTE_NAME = "title";
   private final List<Component> menuItems = new ArrayList<>();
   private final List<Component> toolbarComponents = new ArrayList<>();
 
@@ -146,7 +149,12 @@ public class AppLayout extends Div implements RouterLayout {
    * @param caption
    */
   public void setCaption(String caption) {
-    getElement().setAttribute(TITLE_ATTRIBUTE_NAME, caption);
+    getChildren().map(Component::getElement)
+        .filter(child -> APP_LAYOUT_TITLE_SLOT_NAME.equals(child.getAttribute("slot")))
+        .collect(Collectors.toList()).forEach(Element::removeFromParent);
+    if (!StringUtils.isEmpty(caption)) {
+      addToTitleSection(new Span(caption));
+    }
   }
 
   /**
