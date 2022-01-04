@@ -126,7 +126,7 @@ export class FusionLayout extends LitElement {
 
   render() {
     return html`
-    <fc-applayout reveals=${this.reveals} swipeOpen=${this.swipeOpen} fixed=${this.fixed} title=${this.title} id="fusionLayout">
+    <fc-applayout reveals=${this.reveals} swipeOpen=${this.swipeOpen} fixed=${this.fixed} id="fusionLayout">
       <div slot="profile" style="text-align: center;">
         <img src=${this.profilePicture} alt=${this.profilePictureAlt} style="width: 80px; margin-top: 20px;">
         <h4 slot="profile">${this.userName}</h4>
