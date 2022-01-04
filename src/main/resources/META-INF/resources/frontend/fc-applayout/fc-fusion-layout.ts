@@ -137,7 +137,7 @@ export class FusionLayout extends LitElement {
       <div slot="menu" tabindex="0" aria-selected="false">
       ${this.menuItems.map(item => this.generateFcMenuItem(item))}
       </div>
-      <div class="fusion-content-container" slot="content">
+      <div class="fusion-content-container">
         <slot></slot>
       </div>
     </fc-applayout>		
