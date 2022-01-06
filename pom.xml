@@ -9,7 +9,7 @@
     <description>Integration of app-layout for Vaadin Flow</description>
 
     <properties>
-        <vaadin.version>21.0.3</vaadin.version>
+        <vaadin.version>22.0.2</vaadin.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -171,6 +171,9 @@
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
                 <version>${vaadin.version}</version>
+                <configuration>
+                    <requireHomeNodeExec>true</requireHomeNodeExec>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
