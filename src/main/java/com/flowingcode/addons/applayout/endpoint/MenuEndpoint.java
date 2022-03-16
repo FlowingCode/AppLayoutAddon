@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import com.flowingcode.addons.applayout.MenuItem;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.fusion.Endpoint;
-import com.vaadin.fusion.Nonnull;
+import dev.hilla.Endpoint;
+import dev.hilla.Nonnull;
 
 @Endpoint
 @AnonymousAllowed
