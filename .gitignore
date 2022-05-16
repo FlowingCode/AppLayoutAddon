@@ -17,3 +17,4 @@
 /.vscode
 .npmrc
 /frontend/generated
+frontend/index.html

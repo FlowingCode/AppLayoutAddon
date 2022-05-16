@@ -5,19 +5,19 @@ import java.lang.reflect.Method;
 import com.flowingcode.addons.applayout.endpoint.MenuEndpoint;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
-import com.vaadin.fusion.Endpoint;
-import com.vaadin.fusion.EndpointRegistry;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import dev.hilla.Endpoint;
+import dev.hilla.EndpointRegistry;
 
 @Component
 public class RegisterEndpointServiceInitListener implements VaadinServiceInitListener, ApplicationContextAware {
 
     private static ApplicationContext context;
     
-    private EndpointRegistry endpointRegistry;
+    private transient EndpointRegistry endpointRegistry;
 
     @Override
     public void serviceInit(ServiceInitEvent event) {
@@ -36,7 +36,7 @@ public class RegisterEndpointServiceInitListener implements VaadinServiceInitLis
             m.setAccessible(true);
             m.invoke(endpointRegistry, endpointBean);
         } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            throw new RuntimeException("Problem registering endpoint",e);
+            throw new IllegalStateException("Problem registering endpoint",e);
         }
     }
 

@@ -3,7 +3,7 @@ package com.flowingcode.addons.applayout.endpoint;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nullable;
-import com.vaadin.fusion.Nonnull;
+import dev.hilla.Nonnull;
 
 public class MenuItemDto {
 
