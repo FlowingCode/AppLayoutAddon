@@ -35,7 +35,7 @@ import java.util.function.Consumer;
  * @author mlopez
  */
 @SuppressWarnings("serial")
-@NpmPackage(value = "@polymer/iron-collapse", version = "^3.0.1")
+@NpmPackage(value = "@polymer/iron-collapse", version = "3.0.1")
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @Tag("fc-menuitem")
 @JsModule("@flowingcode/fc-menuitem/fc-menuitem.js")
