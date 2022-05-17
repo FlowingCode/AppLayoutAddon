@@ -17,6 +17,11 @@ This addon is particularly useful if you want to create a new application with s
 * Support for left, middle and right click listeners.
 * Menu items accept arbitrary content (such as checkboxes, or buttons)
 
+## Versions
+
+* 4.x Compatible with Vaadin 14-22
+* 5.x Compatible with Vaadin 23
+
 ## Online demo
 
 [Online demo here](http://addonsv14.flowingcode.com/applayout)
