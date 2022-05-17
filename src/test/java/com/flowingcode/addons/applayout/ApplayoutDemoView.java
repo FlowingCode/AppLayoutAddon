@@ -52,7 +52,7 @@ public class ApplayoutDemoView extends VerticalLayout {
 
   private VerticalLayout container = new VerticalLayout();
   private final AppLayout app =
-      new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 14 Demo");
+      new AppLayout(createLogoImage(), createAvatarComponent(), "AppLayout Vaadin 23 Demo");
   private final ToolbarIconButton miSettings =
       new ToolbarIconButton("Settings", "settings", this::openSettings);
 
