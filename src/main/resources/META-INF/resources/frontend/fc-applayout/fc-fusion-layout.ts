@@ -24,7 +24,7 @@ import {FcAppLayoutElement} from "@flowingcode/fc-applayout/src/fc-applayout";
 import "@flowingcode/fc-menuitem";
 import * as menuItemEndpoint from '@vaadin/flow-frontend/generated/MenuEndpoint';
 import MenuItemDto from '@vaadin/flow-frontend/generated/com/flowingcode/addons/applayout/endpoint/MenuItemDto';
-import { EndpointError } from 'Frontend/../target/flow-frontend';
+import { EndpointError } from '@hilla/frontend';
 import { Router } from '@vaadin/router';
 
 @customElement('fc-fusion-layout')
