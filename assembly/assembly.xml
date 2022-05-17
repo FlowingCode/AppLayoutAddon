@@ -14,7 +14,7 @@
 
     <fileSets>
         <fileSet>
-            <directory>..</directory>
+            <directory>.</directory>
             <includes>
                 <include>LICENSE</include>
                 <include>README.md</include>
@@ -28,7 +28,7 @@
                 <include>*.pdf</include>
             </includes>
             <excludes>
-				<exclude>*-tests.jar</exclude>
+				<exclude>*-demo.jar</exclude>
 			</excludes>
         </fileSet>
     </fileSets>
