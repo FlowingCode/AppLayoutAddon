@@ -21,24 +21,29 @@ package com.flowingcode.addons.applayout.listener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import org.springframework.context.ApplicationContext;
+
 import com.flowingcode.addons.applayout.endpoint.MenuEndpoint;
 import com.vaadin.flow.server.ServiceInitEvent;
 import com.vaadin.flow.server.VaadinServiceInitListener;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
+
 import dev.hilla.Endpoint;
 import dev.hilla.EndpointRegistry;
 
-@Component
-public class RegisterEndpointServiceInitListener implements VaadinServiceInitListener, ApplicationContextAware {
+@SuppressWarnings("serial")
+public class RegisterEndpointServiceInitListener implements VaadinServiceInitListener{
 
-    private static ApplicationContext context;
+    private ApplicationContext context;
     
     private transient EndpointRegistry endpointRegistry;
 
-    @Override
+    public RegisterEndpointServiceInitListener(EndpointRegistry endpointRegistry2, ApplicationContext context) {
+		this.endpointRegistry = endpointRegistry2;
+		this.context = context;
+	}
+
+	@Override
     public void serviceInit(ServiceInitEvent event) {
         endpointRegistry = context.getBean(EndpointRegistry.class);
         context.getBeansWithAnnotation(Endpoint.class)
@@ -58,10 +63,5 @@ public class RegisterEndpointServiceInitListener implements VaadinServiceInitLis
             throw new IllegalStateException("Problem registering endpoint",e);
         }
     }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
-    }
-    
+  
 }
