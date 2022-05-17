@@ -138,6 +138,12 @@ export class FusionLayout extends LitElement {
           width: 100%;
           height: 100%;
         }
+        .profile-title {
+          width: 100%;
+          display: block;
+          font-size: large;
+          font-weight: bold;
+        }
 
       `,
     ];
@@ -148,7 +154,7 @@ export class FusionLayout extends LitElement {
     <fc-applayout reveals=${this.reveals} swipeOpen=${this.swipeOpen} fixed=${this.fixed} id="fusionLayout">
       <div slot="profile" style="text-align: center;">
         <img src=${this.profilePicture} alt=${this.profilePictureAlt} style="width: 80px; margin-top: 20px;">
-        <h4 slot="profile">${this.userName}</h4>
+        <span class="profile-title" slot="profile">${this.userName}</span>
       </div>
       <img slot="title" class="applogo" src=${this.appLogo} alt=${this.appLogoAlt} style="width:50px">
       <div slot="title" main-title="">${this.title}</div>
