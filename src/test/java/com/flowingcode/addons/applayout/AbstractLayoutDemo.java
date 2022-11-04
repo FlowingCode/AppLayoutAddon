@@ -20,7 +20,6 @@
 package com.flowingcode.addons.applayout;
 
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 
@@ -35,8 +34,12 @@ public class AbstractLayoutDemo extends AppLayout {
     Image img = new Image("frontend/images/avatar.png", "avatar");
     img.getStyle().set("width", "80px");
     img.getStyle().set("margin-top", "20px");
-    H4 h4 = new H4("User");
-    container.add(img, h4);
+    Span userTitle = new Span("User");
+    userTitle.setWidthFull();
+    userTitle.getStyle().set("display", "block");
+    userTitle.getStyle().set("font-size", "large");
+    userTitle.getStyle().set("font-weight", "bold");
+    container.add(img, userTitle);
     setMenuHeader(container);
 
     // logo

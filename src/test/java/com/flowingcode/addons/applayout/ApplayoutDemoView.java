@@ -19,6 +19,10 @@
  */
 package com.flowingcode.addons.applayout;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.PaperCard;
 import com.flowingcode.addons.applayout.menu.PaperToggle;
@@ -30,7 +34,6 @@ import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.H5;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
@@ -40,10 +43,6 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 
 @SuppressWarnings("serial")
 @Route(value = "applayout", layout = DemoLayout.class)
@@ -185,8 +184,12 @@ public class ApplayoutDemoView extends VerticalLayout {
     Image img = new Image("/frontend/images/avatar.png", "avatar");
     img.getStyle().set("width", "80px");
     img.getStyle().set("margin-top", "20px");
-    H4 h4 = new H4("User");
-    container.add(img, h4);
+    Span userTitle = new Span("User");
+    userTitle.setWidthFull();
+    userTitle.getStyle().set("display", "block");
+    userTitle.getStyle().set("font-size", "large");
+    userTitle.getStyle().set("font-weight", "bold");
+    container.add(img, userTitle);
     return container;
   }
 
