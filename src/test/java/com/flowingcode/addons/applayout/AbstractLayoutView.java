@@ -22,8 +22,10 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
+import org.junit.Ignore;
 
 @Route(value = "view", layout = AbstractLayoutDemo.class)
+@Ignore
 public class AbstractLayoutView extends Div {
 
   {
