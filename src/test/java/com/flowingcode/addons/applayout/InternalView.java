@@ -22,8 +22,10 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
+import org.junit.Ignore;
 
 @Route("internal-view")
+@Ignore
 public class InternalView extends Div {
 
   public InternalView() {
