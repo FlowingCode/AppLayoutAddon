@@ -39,7 +39,7 @@ import java.util.function.Consumer;
 @NpmPackage(value = "@polymer/paper-item", version = "3.0.1")
 @Tag("fc-menuitem")
 @JsModule("@flowingcode/fc-menuitem/fc-menuitem.js")
-@NpmPackage(value = "@flowingcode/fc-menuitem", version = "0.9.10")
+@NpmPackage(value = "@flowingcode/fc-menuitem", version = "0.9.11")
 public class MenuItem extends SlottedMenuItem
     implements HasOrderedComponents, HasMenuItemCommands<MenuItem>, HasMenuItemIcon<MenuItem> {
 
@@ -132,6 +132,15 @@ public class MenuItem extends SlottedMenuItem
 
   public MenuItem setHref(String href) {
     getElement().setProperty("href", href);
+    return this;
+  }
+  
+  public MenuItem setOpened(boolean opened) {
+    if (opened) {
+      getElement().setAttribute("opened", opened);
+    } else {
+      getElement().removeAttribute("opened");
+    }
     return this;
   }
 

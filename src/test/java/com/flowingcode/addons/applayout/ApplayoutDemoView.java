@@ -262,10 +262,12 @@ public class ApplayoutDemoView extends VerticalLayout {
           }),
       new MenuItem("SubMenu")
           .setIcon("build")
+          .setOpened(true)
           .add(
               new MenuItem("Hello Again", "inbox", () -> showContent("Hello Again!")),
               new MenuItem("And Again", () -> showContent("And Again!")),
               new MenuItem("SubMenu")
+              .setOpened(true)
                   .add(new MenuItem("Hello Again", () -> showContent("Hello Again!")))
                   .add(new MenuItem("And Again", () -> showContent("And Again!")))),
       new MenuSeparator("Separator"),
