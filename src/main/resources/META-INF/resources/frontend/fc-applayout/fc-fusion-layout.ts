@@ -53,6 +53,9 @@ export class FusionLayout extends LitElement {
   appLogoAlt = "Logo";
 
   @property({type: String})
+  welcomeRoute = "welcome";
+
+  @property({type: String})
   userName = "User";
 
   @property({type: Boolean})
@@ -176,9 +179,10 @@ export class FusionLayout extends LitElement {
       this.buildMenuEventListener,
       false
     );
+    let welcomeRoute = this.welcomeRoute;
     window.addEventListener("message", function(event) {
       if (event.data == 'redirect-welcome') {
-        Router.go("welcome");
+        Router.go(welcomeRoute);
       }
     });
   }
