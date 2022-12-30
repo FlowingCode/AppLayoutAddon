@@ -22,8 +22,8 @@ import { css, customElement, html, LitElement, state, property, query } from 'li
 import "@flowingcode/fc-applayout";
 import {FcAppLayoutElement} from "@flowingcode/fc-applayout/src/fc-applayout";
 import "@flowingcode/fc-menuitem";
-import * as menuItemEndpoint from '@vaadin/flow-frontend/generated/MenuEndpoint';
-import MenuItemDto from '@vaadin/flow-frontend/generated/com/flowingcode/addons/applayout/endpoint/MenuItemDto';
+import * as menuItemEndpoint from 'Frontend/generated/MenuEndpoint';
+import MenuItemDto from 'Frontend/generated/com/flowingcode/addons/applayout/endpoint/MenuItemDto';
 import { EndpointError } from '@hilla/frontend';
 import { Router } from '@vaadin/router';
 
