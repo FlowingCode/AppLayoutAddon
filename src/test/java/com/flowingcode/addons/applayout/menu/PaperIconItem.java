@@ -25,6 +25,7 @@ import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.HasText;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.dom.Element;
@@ -42,7 +43,7 @@ import java.util.Optional;
 @Tag("paper-icon-item")
 class PaperIconItem extends Component implements HasComponents, HasText, HasSize {
 
-  private com.vaadin.flow.component.icon.IronIcon ironIcon;
+//  private com.vaadin.flow.component.icon.IronIcon ironIcon;
   private Text text;
 
   public PaperIconItem(String title) {
@@ -90,19 +91,19 @@ class PaperIconItem extends Component implements HasComponents, HasText, HasSize
   }
 
   private Optional<Element> withIronIcon(boolean create) {
-    if (create) {
-      if (this.ironIcon == null) {
-        this.ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
-        ironIcon.getElement().setAttribute("slot", "item-icon");
-        add(ironIcon);
-      }
-      return Optional.of(ironIcon.getElement());
-    } else {
-      if (this.ironIcon != null) {
-        remove(ironIcon);
-        this.ironIcon = null;
-      }
+//    if (create) {
+//      if (this.ironIcon == null) {
+//        this.ironIcon = new com.vaadin.flow.component.icon.IronIcon("", "");
+//        ironIcon.getElement().setAttribute("slot", "item-icon");
+//        add(ironIcon);
+//      }
+//      return Optional.of(ironIcon.getElement());
+//    } else {
+//      if (this.ironIcon != null) {
+//        remove(ironIcon);
+//        this.ironIcon = null;
+//      }
       return Optional.empty();
-    }
+//    }
   }
 }

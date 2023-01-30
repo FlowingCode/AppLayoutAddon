@@ -12,6 +12,8 @@
         <vaadin.version>23.2.10</vaadin.version>
         <hilla.version>1.2.10</hilla.version>
 
+		<spring.boot.version>2.4.5</spring.boot.version>
+		
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -65,6 +67,11 @@
             <id>Vaadin Directory</id>
             <url>https://maven.vaadin.com/vaadin-addons</url>
         </repository>
+        <!-- Repository needed for prerelease versions of Vaadin -->
+        <repository>
+            <id>Vaadin prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+        </repository>
         <repository>
 			<id>FlowingCode Releases</id>
 			<url>https://maven.flowingcode.com/releases</url>
@@ -80,6 +87,14 @@
 			</releases>
 		</repository>
     </repositories>
+    
+    <pluginRepositories>
+       <!-- Repository needed for prerelease versions of Vaadin -->
+        <pluginRepository>
+            <id>Vaadin prereleases</id>
+            <url>https://maven.vaadin.com/vaadin-prereleases</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -94,7 +109,7 @@
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>2.4.5</version>
+			<version>${spring.boot.version}</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -510,5 +525,16 @@
 				</plugins>
 			</build>
 		</profile>
+        <profile>
+            <id>v24</id>
+            <properties>
+                <vaadin.version>24.0.0.alpha9</vaadin.version>
+                <hilla.version>2.0.0.alpha9</hilla.version>
+                <maven.compiler.source>17</maven.compiler.source>
+                <maven.compiler.target>17</maven.compiler.target>
+                <jetty.version>11.0.12</jetty.version>
+                <spring.boot.version>3.0.2</spring.boot.version>
+            </properties>
+        </profile>
     </profiles>
 </project>
