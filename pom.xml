@@ -9,17 +9,17 @@
     <description>Integration of app-layout for Vaadin Flow</description>
 
     <properties>
-        <vaadin.version>23.2.10</vaadin.version>
+        <vaadin.version>24.1.2</vaadin.version>
         <hilla.version>1.2.10</hilla.version>
 
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
 
-        <jetty.version>9.4.36.v20210114</jetty.version>
+        <jetty.version>11.0.14</jetty.version>
     </properties>
     <organization>
 	   <name>Flowing Code</name>
@@ -94,7 +94,7 @@
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>2.4.5</version>
+			<version>3.1.0</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -105,7 +105,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.3.0</version>
+            <version>6.0.9</version>
             <optional>true</optional>
         </dependency>
         <dependency>
@@ -219,11 +219,11 @@
                     <!-- Use test scope because the UI/demo classes are in
                             the test package. -->
                     <useTestScope>true</useTestScope>
-                    <webAppConfig>
+                    <webApp>
                         <resourceBases>
 	                        <resourceBase>src/test/resources/META-INF/resources</resourceBase>
 	                    </resourceBases>
-                    </webAppConfig>
+                    </webApp>
                     <supportedPackagings>
                         <supportedPackaging>jar</supportedPackaging>
                     </supportedPackagings>
