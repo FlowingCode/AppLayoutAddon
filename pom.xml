@@ -9,16 +9,12 @@
     <description>Integration of app-layout for Vaadin Flow</description>
 
     <properties>
-        <vaadin.version>24.3.8</vaadin.version>
-        <hilla.version>2.5.7</hilla.version>
-
+        <vaadin.version>24.4.4</vaadin.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
-
         <jetty.version>11.0.14</jetty.version>
     </properties>
     <organization>
@@ -81,10 +77,8 @@
             <optional>true</optional>
         </dependency>
 		<dependency>
-		    <groupId>dev.hilla</groupId>
-		    <artifactId>endpoint</artifactId>
-		    <version>${hilla.version}</version>
-		    <optional>true</optional>
+			<groupId>com.vaadin</groupId>
+			<artifactId>hilla</artifactId>
 		</dependency>
         <dependency>
 			<groupId>org.springframework.boot</groupId>
