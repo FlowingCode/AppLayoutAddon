@@ -19,10 +19,10 @@
  */
 package com.flowingcode.addons.applayout.endpoint;
 
+import com.vaadin.hilla.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nullable;
-import dev.hilla.Nonnull;
 
 public class MenuItemDto {
 

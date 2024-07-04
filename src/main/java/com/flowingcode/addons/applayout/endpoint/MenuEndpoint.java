@@ -19,12 +19,12 @@
  */
 package com.flowingcode.addons.applayout.endpoint;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import com.flowingcode.addons.applayout.MenuItem;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import dev.hilla.Endpoint;
-import dev.hilla.Nonnull;
+import com.vaadin.hilla.Endpoint;
+import com.vaadin.hilla.Nonnull;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Endpoint
 @AnonymousAllowed
