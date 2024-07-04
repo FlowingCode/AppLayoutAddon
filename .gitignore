@@ -20,3 +20,4 @@
 frontend/index.html
 vite.config.ts
 vite.generated.ts
+src/main/bundles/
