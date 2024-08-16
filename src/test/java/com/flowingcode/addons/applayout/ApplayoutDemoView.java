@@ -46,7 +46,7 @@ import com.vaadin.flow.router.Route;
 import org.junit.Ignore;
 
 @SuppressWarnings("serial")
-@Route(value = "applayout", layout = DemoLayout.class)
+@Route(value = "applayout-full", layout = DemoLayout.class)
 @StyleSheet("context://frontend/styles/app-layout/demo-styles.css")
 @Ignore
 public class ApplayoutDemoView extends VerticalLayout {
