@@ -24,9 +24,9 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
 import org.junit.Ignore;
 
-@Route(value = "view", layout = AbstractLayoutDemo.class)
-@Ignore
-public class AbstractLayoutView extends Div {
+@SuppressWarnings("serial")
+@Route(value = "view", layout = CustomAppLayout.class)
+public class SampleView extends Div {
 
   {
     add(new Span("Hello world"));
