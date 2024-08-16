@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
+		<flowingcode.commons.demo.version>4.0.0</flowingcode.commons.demo.version>
         <jetty.version>11.0.14</jetty.version>
     </properties>
     <organization>
@@ -37,17 +38,22 @@
         <tag>app-layout-addon-2.0.0</tag>
     </scm>
 	
-    <dependencyManagement>
-        <dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.vaadin</groupId>
+				<artifactId>vaadin-bom</artifactId>
+				<type>pom</type>
+				<scope>import</scope>
+				<version>${vaadin.version}</version>
+			</dependency>
             <dependency>
-                <groupId>com.vaadin</groupId>
-                <artifactId>vaadin-bom</artifactId>
-                <type>pom</type>
-                <scope>import</scope>
-                <version>${vaadin.version}</version>
+            	<groupId>com.flowingcode.vaadin.addons.demo</groupId>
+            	<artifactId>commons-demo</artifactId>
+            	<version>${flowingcode.commons.demo.version}</version>
             </dependency>
-        </dependencies>
-    </dependencyManagement>
+		</dependencies>
+	</dependencyManagement>
 
     <repositories>
         <repository>
@@ -97,6 +103,11 @@
             <version>6.0.9</version>
             <optional>true</optional>
         </dependency>
+        <dependency>
+			<groupId>com.flowingcode.vaadin.addons.demo</groupId>
+			<artifactId>commons-demo</artifactId>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
