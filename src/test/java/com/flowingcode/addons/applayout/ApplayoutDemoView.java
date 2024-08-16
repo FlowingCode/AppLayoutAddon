@@ -231,7 +231,7 @@ public class ApplayoutDemoView extends VerticalLayout {
       new MenuItem("Toggle", VaadinIcon.BACKSPACE).configure(mi -> mi.add(new PaperToggle())),
       new MenuItem("Toggle", MenuItem.BLANK).configure(mi -> mi.add(new PaperToggle())),
       new MenuItem("External link").setHref("http://www.google.com"),
-      new MenuItem("Internal Link", InternalView.class),
+      new MenuItem("Internal Link", SampleInternalView.class),
 
       // icon as VaadinIcon enum
       new MenuItem("Content", VaadinIcon.BOOK, () -> showHamletContent())
