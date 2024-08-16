@@ -48,7 +48,6 @@ import org.junit.Ignore;
 @SuppressWarnings("serial")
 @Route(value = "applayout-full", layout = DemoLayout.class)
 @StyleSheet("context://frontend/styles/app-layout/demo-styles.css")
-@Ignore
 public class ApplayoutDemoView extends VerticalLayout {
 
   private VerticalLayout container = new VerticalLayout();
