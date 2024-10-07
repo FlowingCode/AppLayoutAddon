@@ -93,3 +93,13 @@ app.setToolbarIconButtons(
     new ToolbarIconButton("Close", "close", ()->Notification.show("Close action"))
 );
 ```
+
+## Special configuration when using Spring
+
+By default, Vaadin Flow only includes ```com/vaadin/flow/component``` to be always scanned for UI components and views. For this reason, the add-on might need to be allowed in order to display correctly. 
+
+To do so, just add ```com.flowingcode``` to the ```vaadin.allowed-packages``` property in ```src/main/resources/application.properties```, like:
+
+```vaadin.allowed-packages = com.vaadin,org.vaadin,dev.hilla,com.flowingcode```
+ 
+More information on Spring scanning configuration [here](https://vaadin.com/docs/latest/integrations/spring/configuration/#configure-the-scanning-of-packages).
