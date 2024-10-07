@@ -24,11 +24,11 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
 import org.junit.Ignore;
 
-@Route("internal-view")
-@Ignore
-public class InternalView extends Div {
+@SuppressWarnings("serial")
+@Route(value = "view", layout = CustomAppLayout.class)
+public class SampleView extends Div {
 
-  public InternalView() {
-    add(new Span("Internal view"));
+  {
+    add(new Span("Hello world"));
   }
 }

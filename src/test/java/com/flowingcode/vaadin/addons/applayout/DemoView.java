@@ -17,18 +17,19 @@
  * limitations under the License.
  * #L%
  */
-package com.flowingcode.addons.applayout;
+package com.flowingcode.vaadin.addons.applayout;
 
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
-import org.junit.Ignore;
 
-@Route(value = "view", layout = AbstractLayoutDemo.class)
-@Ignore
-public class AbstractLayoutView extends Div {
+@SuppressWarnings("serial")
+@Route("")
+public class DemoView extends VerticalLayout implements BeforeEnterObserver {
 
-  {
-    add(new Span("Hello world"));
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+    event.forwardTo(AppLayoutDemoView.class);
   }
 }

@@ -19,17 +19,17 @@
  */
 package com.flowingcode.addons.applayout;
 
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.router.BeforeEnterEvent;
-import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
+import org.junit.Ignore;
 
 @SuppressWarnings("serial")
-@Route("")
-public class DemoView extends VerticalLayout implements BeforeEnterObserver {
+@Route("internal-view")
+@Ignore
+public class SampleInternalView extends Div {
 
-  @Override
-  public void beforeEnter(BeforeEnterEvent event) {
-    event.forwardTo(ApplayoutDemoView.class);
+  public SampleInternalView() {
+    add(new Span("Internal view"));
   }
 }
