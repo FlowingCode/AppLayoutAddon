@@ -15,6 +15,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
+        <flowingcode.commons.demo.version>4.0.0</flowingcode.commons.demo.version>
         <jetty.version>11.0.14</jetty.version>
     </properties>
     <organization>
@@ -53,6 +54,11 @@
                 <type>pom</type>
                 <scope>import</scope>
                 <version>${vaadin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.flowingcode.vaadin.addons.demo</groupId>
+                <artifactId>commons-demo</artifactId>
+                <version>${flowingcode.commons.demo.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -104,6 +110,11 @@
             <artifactId>spring-context</artifactId>
             <version>6.1.14</version>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.flowingcode.vaadin.addons.demo</groupId>
+            <artifactId>commons-demo</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
