@@ -23,9 +23,10 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Span;
 
-public class AbstractLayoutDemo extends AppLayout {
+@SuppressWarnings("serial")
+public class CustomAppLayout extends AppLayout {
 
-  public AbstractLayoutDemo() {
+  public CustomAppLayout() {
     setMenuItems(new MenuItem("Item 1"), new MenuItem("Item 2"));
 
     // menu header
