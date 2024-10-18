@@ -28,7 +28,7 @@ import com.vaadin.flow.router.Route;
 @SuppressWarnings("serial")
 @ParentLayout(DemoLayout.class)
 @Route("applayout")
-@GithubLink("https://github.com/FlowingCode/ExtendedLoginAddon")
+@GithubLink("https://github.com/FlowingCode/AppLayoutAddon")
 public class AppLayoutDemoView extends TabbedDemo {
 
   public AppLayoutDemoView() {
