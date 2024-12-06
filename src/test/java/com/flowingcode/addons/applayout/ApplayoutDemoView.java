@@ -19,10 +19,6 @@
  */
 package com.flowingcode.addons.applayout;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 import com.flowingcode.addons.applayout.MouseClickEvent.MouseButton;
 import com.flowingcode.addons.applayout.menu.PaperCard;
 import com.flowingcode.addons.applayout.menu.PaperToggle;
@@ -43,11 +39,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 import org.junit.Ignore;
 
 @SuppressWarnings("serial")
 @Route(value = "applayout-full", layout = DemoLayout.class)
 @StyleSheet("context://frontend/styles/app-layout/demo-styles.css")
+@Ignore
 public class ApplayoutDemoView extends VerticalLayout {
 
   private VerticalLayout container = new VerticalLayout();

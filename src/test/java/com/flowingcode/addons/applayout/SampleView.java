@@ -26,6 +26,7 @@ import org.junit.Ignore;
 
 @SuppressWarnings("serial")
 @Route(value = "view", layout = CustomAppLayout.class)
+@Ignore
 public class SampleView extends Div {
 
   {
