@@ -19,6 +19,7 @@
  */
 package com.flowingcode.addons.applayout;
 
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.router.Route;
@@ -26,6 +27,7 @@ import org.junit.Ignore;
 
 @SuppressWarnings("serial")
 @Route(value = "view", layout = CustomAppLayout.class)
+@Uses(AppLayout.class)
 @Ignore
 public class SampleView extends Div {
 
