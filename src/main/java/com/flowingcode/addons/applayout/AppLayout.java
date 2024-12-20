@@ -203,9 +203,9 @@ public class AppLayout extends Div implements RouterLayout {
   }
 
     /**
-   * Sets the drawerBelowHeader attribute so the drawer will be show below
-   * the header of the applayout
-   * @param drawerBelowHeader
+   * Sets the drawerRightAlignment attribute so the drawer will be shown
+   * with right alignment
+   * @param drawerRightAlignment
    */
   public void setDrawerRightAlignment(boolean drawerRightAlignment) {
     getElement().setAttribute("drawerAlign", drawerRightAlignment?"right":"left");
