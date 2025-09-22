@@ -43,7 +43,7 @@ import org.apache.commons.lang3.StringUtils;
 @SuppressWarnings("serial")
 @Tag("fc-applayout")
 @JsModule("@flowingcode/fc-applayout/fc-applayout.js")
-@NpmPackage(value = "@flowingcode/fc-applayout", version = "1.3.0")
+@NpmPackage(value = "@flowingcode/fc-applayout", version = "1.4.0")
 @CssImport(value = "./styles/applayout-styles.css", themeFor = "fc-applayout")
 public class AppLayout extends Div implements RouterLayout {
 
