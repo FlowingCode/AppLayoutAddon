@@ -16,7 +16,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <drivers.dir>${project.basedir}/drivers</drivers.dir>
         <flowingcode.commons.demo.version>4.2.0</flowingcode.commons.demo.version>
-        <jetty.version>11.0.14</jetty.version>
+        <jetty.version>11.0.26</jetty.version>
     </properties>
     <organization>
 	   <name>Flowing Code</name>
