@@ -22,6 +22,8 @@ package com.flowingcode.addons.applayout;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
 import org.junit.Ignore;
 
@@ -29,9 +31,19 @@ import org.junit.Ignore;
 @Route(value = "view", layout = CustomAppLayout.class)
 @Uses(AppLayout.class)
 @Ignore
-public class SampleView extends Div {
+public class SampleView extends Div implements BeforeEnterObserver {
 
   {
     add(new Span("Hello world"));
+  }
+
+  @Override
+  public void beforeEnter(BeforeEnterEvent event) {
+    if (event.getLocation().getQueryParameters().getParameters().containsKey("theme")) {
+      String theme = event.getLocation().getQueryParameters().getParameters().get("theme").get(0);
+      if ("dark".equalsIgnoreCase(theme)) {
+        getElement().executeJs("document.documentElement.setAttribute('theme', 'dark');");
+      }
+    }
   }
 }

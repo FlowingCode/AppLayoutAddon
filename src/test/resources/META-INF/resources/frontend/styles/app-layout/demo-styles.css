@@ -17,44 +17,56 @@
  * limitations under the License.
  * #L%
  */
-html, body {
-  margin: 0;
-  font-family: 'Roboto', 'Noto', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  background: #f1f1f1;
-  max-height: 368px;
-  max-width: 100%;
+html,
+body {
+	margin: 0;
+	font-family: 'Roboto', 'Noto', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	background: #f1f1f1;
+	max-height: 368px;
+	max-width: 100%;
 }
 
 sample-content {
-  padding-top: 64px;
+	padding-top: 64px;
 }
 
 app-drawer {
 	--app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
+
 	--app-drawer-content-container: {
-         background-color: #F1F1F1;
-       }
+		background-color: #F1F1F1;
+	}
+
 	z-index: 1001;
 }
 
 app-drawer paper-listbox {
-	background-color:transparent;
+	background-color: transparent;
 }
 
 img.applogo {
 	margin-right: 8px;
-	width:  48px;
-	height: 48px;	
+	width: 48px;
+	height: 48px;
 }
 
 .compact img.applogo {
-	width:  22px;
+	width: 22px;
 	height: 22px;
 }
 
 .hamlet {
+	color: #000;
 	user-select: none;
+}
+
+vaadin-vertical-layout.hamlet {
+	background-color: #F1F1F1;
+}
+
+.hamlet h5 {
+	color: #000;
 }
 
 .hamlet paper-card {
@@ -63,13 +75,15 @@ img.applogo {
 }
 
 .hamlet paper-card.claudius {
-	background: rgb(220,248,198);
+	background: rgb(220, 248, 198);
 }
 
-.hamlet paper-card h5 {margin-top: 0.25em}
+.hamlet paper-card h5 {
+	margin-top: 0.25em
+}
 
 .hamlet paper-card[elevation="0"] {
-	background: rgb(254,244,197);
+	background: rgb(254, 244, 197);
 	border-radius: 8px;
 	min-width: 30%;
 	height: 42px;
@@ -83,4 +97,3 @@ img.applogo {
 menu-item vcf-toggle-button {
 	padding-bottom: 2px;
 }
-
