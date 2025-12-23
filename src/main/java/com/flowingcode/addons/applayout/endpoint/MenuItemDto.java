@@ -2,7 +2,7 @@
  * #%L
  * App Layout Addon
  * %%
- * Copyright (C) 2018 - 2022 Flowing Code
+ * Copyright (C) 2018 - 2025 Flowing Code
  * %%
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ package com.flowingcode.addons.applayout.endpoint;
 import com.vaadin.hilla.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nullable;
 
 public class MenuItemDto {
 
