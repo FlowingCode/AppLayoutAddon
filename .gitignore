@@ -23,3 +23,4 @@ vite.generated.ts
 src/main/bundles/
 /src/main/frontend/generated
 /src/main/frontend/index.html
+/.claude/settings.local.json
