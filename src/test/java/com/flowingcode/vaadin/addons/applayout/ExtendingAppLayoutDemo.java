@@ -1,13 +1,15 @@
 package com.flowingcode.vaadin.addons.applayout;
 
+import com.flowingcode.addons.applayout.CustomAppLayout;
+import com.flowingcode.addons.applayout.SampleView;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.IFrame;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@DemoSource("/src/test/java/com/flowingcode/addons/applayout/CustomAppLayout.java")
-@DemoSource("/src/test/java/com/flowingcode/addons/applayout/SampleView.java")
+@DemoSource(clazz = CustomAppLayout.class)
+@DemoSource(clazz = SampleView.class)
 @PageTitle("Extending AppLayout Demo")
 @SuppressWarnings("serial")
 @Route(value = "applayout/extending-applayout-demo", layout = AppLayoutDemoView.class)

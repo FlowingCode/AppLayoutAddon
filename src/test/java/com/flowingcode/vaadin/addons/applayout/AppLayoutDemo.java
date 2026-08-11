@@ -1,12 +1,13 @@
 package com.flowingcode.vaadin.addons.applayout;
 
+import com.flowingcode.addons.applayout.ApplayoutDemoView;
 import com.flowingcode.vaadin.addons.demo.DemoSource;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.IFrame;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
-@DemoSource("/src/test/java/com/flowingcode/addons/applayout/ApplayoutDemoView.java")
+@DemoSource(clazz = ApplayoutDemoView.class)
 @DemoSource("/frontend/styles/app-layout/demo-styles.css")
 @PageTitle("AppLayout Full Demo")
 @SuppressWarnings("serial")
