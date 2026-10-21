@@ -8,7 +8,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @DemoSource(clazz = ApplayoutDemoView.class)
-@DemoSource("/frontend/styles/app-layout/demo-styles.css")
+@DemoSource("/src/test/resources/META-INF/resources/styles/app-layout/demo-styles.css")
 @PageTitle("AppLayout Full Demo")
 @SuppressWarnings("serial")
 @Route(value = "applayout/applayout-demo", layout = AppLayoutDemoView.class)

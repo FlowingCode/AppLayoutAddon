@@ -47,7 +47,7 @@ import org.junit.Ignore;
 
 @SuppressWarnings("serial")
 @Route(value = "applayout-full", layout = DemoLayout.class)
-@StyleSheet("context://frontend/styles/app-layout/demo-styles.css")
+@StyleSheet("context://styles/app-layout/demo-styles.css")
 @Ignore
 public class ApplayoutDemoView extends VerticalLayout {
 
@@ -175,7 +175,7 @@ public class ApplayoutDemoView extends VerticalLayout {
   }
 
   private Image createLogoImage() {
-    Image img = new Image("/frontend/images/applogo.png", "applogo");
+    Image img = new Image("/images/applogo.png", "applogo");
     img.addClassName("applogo");
     return img;
   }
@@ -183,7 +183,7 @@ public class ApplayoutDemoView extends VerticalLayout {
   private Component createAvatarComponent() {
     Div container = new Div();
     container.getElement().setAttribute("style", "text-align: center;");
-    Image img = new Image("/frontend/images/avatar.png", "avatar");
+    Image img = new Image("/images/avatar.png", "avatar");
     img.getStyle().set("width", "80px");
     img.getStyle().set("margin-top", "20px");
     Span userTitle = new Span("User");

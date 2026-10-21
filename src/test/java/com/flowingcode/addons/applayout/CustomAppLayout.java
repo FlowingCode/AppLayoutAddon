@@ -32,7 +32,7 @@ public class CustomAppLayout extends AppLayout {
     // menu header
     Div container = new Div();
     container.getElement().setAttribute("style", "text-align: center;");
-    Image img = new Image("frontend/images/avatar.png", "avatar");
+    Image img = new Image("images/avatar.png", "avatar");
     img.getStyle().set("width", "80px");
     img.getStyle().set("margin-top", "20px");
     Span userTitle = new Span("User");
@@ -44,7 +44,7 @@ public class CustomAppLayout extends AppLayout {
     setMenuHeader(container);
 
     // logo
-    Image imglogo = new Image("frontend/images/applogo.png", "applogo");
+    Image imglogo = new Image("images/applogo.png", "applogo");
     imglogo.setWidth("25px");
     addToTitleSection(imglogo);
 
