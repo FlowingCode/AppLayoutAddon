@@ -35,6 +35,10 @@ import org.openqa.selenium.WebElement;
 
 public class ViewIT extends AbstractViewTest {
 
+  public ViewIT() {
+    super("applayout-full");
+  }
+
   private Matcher<TestBenchElement> hasBeenUpgradedToCustomElement =
       new TypeSafeDiagnosingMatcher<TestBenchElement>() {
 
@@ -58,8 +62,11 @@ public class ViewIT extends AbstractViewTest {
 
   @Test
   public void componentWorks() {
-    TestBenchElement header = $("app-header").first();
-    TestBenchElement drawer = $("app-drawer").first();
+    TestBenchElement layout = $("fc-applayout").first();
+    assertThat(layout, hasBeenUpgradedToCustomElement);
+
+    TestBenchElement header = layout.$("app-header").first();
+    TestBenchElement drawer = layout.$("app-drawer").first();
 
     assertThat(header, hasBeenUpgradedToCustomElement);
     assertThat(drawer, hasBeenUpgradedToCustomElement);
@@ -68,16 +75,17 @@ public class ViewIT extends AbstractViewTest {
     assertThat(toolbar, hasBeenUpgradedToCustomElement);
 
     TestBenchElement menu = toolbar.findElement(By.cssSelector("paper-icon-button[icon='menu']"));
-    toolbar.findElement(By.cssSelector("img.applogo"));
-    toolbar.findElement(By.cssSelector("div[main-title]"));
-    toolbar.findElement(By.cssSelector("paper-icon-button[role='button'][icon='settings']"));
+    layout.findElement(By.cssSelector("img.applogo[slot='title']"));
+    layout.findElement(By.cssSelector("div[slot='title']"));
+    layout.findElement(
+        By.cssSelector("paper-icon-button[slot='toolbar'][role='button'][icon='settings']"));
 
     assertThat(menu, hasBeenUpgradedToCustomElement);
 
     TestBenchElement listbox = drawer.findElement(By.cssSelector("paper-listbox"));
     assertThat(listbox, hasBeenUpgradedToCustomElement);
 
-    List<WebElement> items = listbox.findElements(By.cssSelector("*"));
+    List<WebElement> items = layout.findElements(By.cssSelector("[slot='menu']"));
     assertThat(items, is(not(empty())));
 
     for (WebElement item : items) {
